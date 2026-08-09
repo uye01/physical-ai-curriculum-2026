@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Physical AI &amp; World Models 스터디 커리큘럼 — 13 Chapters · 50 Sessions · VLA, World Model, Reasoning, 실시간 제어를 문제 중심·계보 중심으로">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+</head>
+<body>
+<title>Physical AI &amp; World Models 스터디 커리큘럼</title>
+<style>
+  :root {
+    --bg: #F6F7F9;
+    --surface: #FFFFFF;
+    --surface-2: #EFF1F4;
+    --ink: #1B2129;
+    --muted: #5B6573;
+    --faint: #8A93A1;
+    --line: #E2E5EA;
+    --line-strong: #C9CED6;
+    --accent: #C2561B;
+    --accent-text: #A34712;
+    --accent-soft: #F9EBE1;
+    --teal: #0F766E;
+    --teal-soft: #E2F1EF;
+    --violet: #6941C6;
+    --violet-soft: #EFEAFB;
+    --green: #2F7D46;
+    --green-soft: #E5F2E9;
+    --code-bg: #EFF1F4;
+    --shadow: 0 1px 2px rgba(27,33,41,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131720;
+      --surface: #1A202B;
+      --surface-2: #222937;
+      --ink: #E7EAEF;
+      --muted: #9AA3B1;
+      --faint: #717C8C;
+      --line: #2A3240;
+      --line-strong: #3A4454;
+      --accent: #E98B52;
+      --accent-text: #E98B52;
+      --accent-soft: #33261C;
+      --teal: #52B3A9;
+      --teal-soft: #1B2E2C;
+      --violet: #A78BFA;
+      --violet-soft: #2A2440;
+      --green: #7BC894;
+      --green-soft: #1E2F24;
+      --code-bg: #222937;
+      --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131720;
+    --surface: #1A202B;
+    --surface-2: #222937;
+    --ink: #E7EAEF;
+    --muted: #9AA3B1;
+    --faint: #717C8C;
+    --line: #2A3240;
+    --line-strong: #3A4454;
+    --accent: #E98B52;
+    --accent-text: #E98B52;
+    --accent-soft: #33261C;
+    --teal: #52B3A9;
+    --teal-soft: #1B2E2C;
+    --violet: #A78BFA;
+    --violet-soft: #2A2440;
+    --green: #7BC894;
+    --green-soft: #1E2F24;
+    --code-bg: #222937;
+    --shadow: none;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--accent-text); text-decoration: none; border-bottom: 1px solid transparent; }
+  a:hover { border-bottom-color: var(--accent-text); }
+  a:focus-visible, summary:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+  .mono { font-family: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace; }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 216px minmax(0, 1fr);
+    gap: 40px;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 28px 96px;
+  }
+  main { max-width: 860px; min-width: 0; }
+
+  /* ---- TOC ---- */
+  nav.toc {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 36px 0 32px;
+    font-size: 13px;
+  }
+  nav.toc .toc-label {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 10px 10px;
+  }
+  nav.toc a {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 4px 10px;
+    color: var(--muted);
+    border-radius: 6px;
+    border-bottom: none;
+    line-height: 1.4;
+  }
+  nav.toc a .n {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 10.5px;
+    color: var(--faint);
+    min-width: 20px;
+  }
+  nav.toc a:hover { background: var(--surface-2); color: var(--ink); }
+  nav.toc a.on { color: var(--accent-text); background: var(--accent-soft); }
+  nav.toc a.on .n { color: var(--accent-text); }
+  nav.toc .gap { height: 12px; }
+
+  @media (max-width: 980px) {
+    .shell { grid-template-columns: 1fr; gap: 0; padding: 0 18px 72px; }
+    nav.toc {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      height: auto;
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: 2px;
+      padding: 10px 4px;
+      margin: 0 -18px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+    nav.toc::-webkit-scrollbar { display: none; }
+    nav.toc .toc-label, nav.toc .gap { display: none; }
+    nav.toc a { flex: 0 0 auto; padding: 3px 9px; }
+  }
+
+  /* ---- header ---- */
+  header.hero { padding: 52px 0 8px; }
+  .eyebrow {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-size: clamp(26px, 4.2vw, 34px);
+    line-height: 1.25;
+    letter-spacing: -.015em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  .hero .lede { color: var(--muted); max-width: 62ch; margin: 0 0 18px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 10px; }
+  .stat {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 12px;
+  }
+  .stat b { color: var(--ink); font-weight: 600; }
+  .hero .rev { font-size: 12.5px; color: var(--faint); margin: 14px 0 0; }
+
+  /* ---- toolbar / legend ---- */
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 0;
+    margin: 22px 0 6px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .toolbar button {
+    font: inherit;
+    font-size: 12.5px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 7px;
+    padding: 4px 12px;
+    cursor: pointer;
+  }
+  .toolbar button:hover { border-color: var(--accent); color: var(--accent-text); }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
+
+  .b {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: 5px;
+    letter-spacing: .02em;
+    white-space: nowrap;
+  }
+  .b.core { color: var(--accent-text); background: var(--accent-soft); }
+  .b.ext { color: var(--muted); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line-strong); }
+  .b.upd { color: var(--teal); background: var(--teal-soft); }
+  .b.lab { color: var(--violet); background: var(--violet-soft); }
+  .b.prac { color: var(--green); background: var(--green-soft); }
+
+  /* ---- sections ---- */
+  section.blk { margin: 44px 0 0; }
+  section.blk > h2, section.ch header h2 {
+    font-size: 20px;
+    letter-spacing: -.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .blk-sub { color: var(--muted); font-size: 13.5px; margin: 6px 0 16px; }
+
+  .qgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 16px 0 0; }
+  .qcard {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .qcard .qn {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 11px;
+    color: var(--accent-text);
+    letter-spacing: .08em;
+  }
+  .qcard p { margin: 6px 0 0; font-size: 13.5px; color: var(--ink); font-weight: 600; line-height: 1.5; }
+  .qcard ul { margin: 8px 0 0; padding-left: 16px; color: var(--muted); font-size: 12.5px; }
+  .qcard ul li { margin: 2px 0; }
+
+  .plist { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .plist li {
+    padding-left: 14px;
+    border-left: 2px solid var(--line-strong);
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  .plist li b { color: var(--ink); }
+
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  .twrap { overflow-x: auto; margin: 14px 0 0; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  th {
+    font-size: 11.5px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--faint);
+    font-weight: 600;
+    background: var(--surface-2);
+    white-space: nowrap;
+  }
+  td { color: var(--muted); }
+  td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+
+  /* ---- chapters ---- */
+  section.ch { margin: 56px 0 0; }
+  section.ch > header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 2px solid var(--ink);
+  }
+  .chno {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+  .cnt { font-size: 12px; color: var(--faint); margin-left: auto; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  .goal { color: var(--muted); font-size: 13.5px; margin: 10px 0 16px; max-width: 70ch; }
+  .goal em { font-style: normal; color: var(--ink); }
+
+  details.s {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin: 0 0 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  details.s[open] { border-color: var(--line-strong); }
+  details.s summary {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  details.s summary::-webkit-details-marker { display: none; }
+  details.s summary:hover { background: var(--surface-2); }
+  details.s summary .code {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 11.5px;
+    color: var(--faint);
+    flex: 0 0 auto;
+  }
+  details.s[open] summary .code { color: var(--accent-text); }
+  details.s summary .t { font-weight: 600; font-size: 14.5px; flex: 1 1 240px; line-height: 1.45; }
+  details.s summary .t em { font-style: normal; font-weight: 400; color: var(--muted); }
+  details.s summary .badges { display: flex; gap: 4px; flex: 0 0 auto; margin-left: auto; }
+  details.s .body { padding: 2px 16px 16px; border-top: 1px dashed var(--line); }
+  .q { font-size: 13.5px; color: var(--ink); margin: 12px 0 0; }
+  .q::before { content: "핵심 질문"; display: block; font-size: 10.5px; letter-spacing: .1em; color: var(--faint); text-transform: uppercase; font-family: ui-monospace, Consolas, monospace; margin-bottom: 2px; }
+  ul.papers { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 5px; }
+  ul.papers li { font-size: 13px; color: var(--muted); padding-left: 14px; position: relative; }
+  ul.papers li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 2px; background: var(--accent); opacity: .85; }
+  ul.papers li .anchor-tag {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 10px;
+    color: var(--accent-text);
+    background: var(--accent-soft);
+    border-radius: 4px;
+    padding: 1px 5px;
+    margin-left: 6px;
+    vertical-align: 1px;
+  }
+  ul.pts { margin: 10px 0 0; padding-left: 17px; color: var(--muted); font-size: 13px; }
+  ul.pts li { margin: 3px 0; }
+  .note { font-size: 12.5px; color: var(--muted); margin: 12px 0 0; padding: 9px 12px; background: var(--surface-2); border-radius: 8px; }
+  .note b { color: var(--ink); font-weight: 600; }
+
+  details.artifact {
+    border: 1px dashed var(--line-strong);
+    border-radius: 10px;
+    margin: 10px 0 0;
+    background: transparent;
+  }
+  details.artifact summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 10px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  details.artifact summary::-webkit-details-marker { display: none; }
+  details.artifact summary::before { content: "▸ "; color: var(--accent-text); }
+  details.artifact[open] summary::before { content: "▾ "; }
+  details.artifact .twrap { margin: 0 14px 14px; }
+  details.artifact .art-note { font-size: 12.5px; color: var(--muted); margin: 0 14px 14px; }
+
+  /* ---- flow ---- */
+  .flow { display: flex; flex-direction: column; align-items: center; gap: 2px; margin: 20px 0 0; }
+  .fnode {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 6px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .fnode .fc { font-family: ui-monospace, Consolas, monospace; font-size: 10.5px; color: var(--accent-text); margin-right: 7px; letter-spacing: .06em; }
+  .fnode small { display: block; font-weight: 400; font-size: 11.5px; color: var(--muted); }
+  .fnode.opt { border-style: dashed; }
+  .farrow { color: var(--faint); font-size: 13px; line-height: 1.2; }
+  .fpair { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .fnote { font-size: 12px; color: var(--faint); }
+
+  .cols2 { columns: 2; column-gap: 32px; }
+  @media (max-width: 700px) { .cols2 { columns: 1; } }
+  ol.core-path { margin: 14px 0 0; padding-left: 24px; font-size: 13.5px; color: var(--muted); }
+  ol.core-path li { margin: 3px 0; break-inside: avoid; }
+
+  ul.check { list-style: none; margin: 14px 0 0; padding: 0; font-size: 13.5px; color: var(--muted); }
+  ul.check li { position: relative; padding-left: 26px; margin: 7px 0; }
+  ul.check li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 3px;
+    width: 13px; height: 13px;
+    border: 1.5px solid var(--line-strong);
+    border-radius: 4px;
+  }
+
+  /* ---- appendix ---- */
+  .apx { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin: 16px 0 0; }
+  .apx-g { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 13px 15px; }
+  .apx-g h3 { margin: 0 0 8px; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--faint); }
+  .apx-g ul { margin: 0; padding: 0; list-style: none; font-size: 12.5px; }
+  .apx-g li { margin: 4px 0; line-height: 1.5; }
+
+  footer.foot {
+    margin: 64px 0 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--faint);
+  }
+  footer.foot p { margin: 4px 0; }
+</style>
+
+<div class="shell">
+<nav class="toc" id="toc" aria-label="목차">
+  <p class="toc-label">Curriculum</p>
+  <a href="#top"><span class="n">◎</span>개요·원칙</a>
+  <a href="#ch1"><span class="n">01</span>온보딩과 좌표계</a>
+  <a href="#ch2"><span class="n">02</span>VLA 초기 계보</a>
+  <a href="#ch3"><span class="n">03</span>Action 생성 도구</a>
+  <a href="#ch4"><span class="n">04</span>Continuous-action VLA</a>
+  <a href="#ch5"><span class="n">05</span>π 계보</a>
+  <a href="#ch6"><span class="n">06</span>데이터·스케일</a>
+  <a href="#ch7"><span class="n">07</span>표현과 기하</a>
+  <a href="#ch8"><span class="n">08</span>World Model</a>
+  <a href="#ch9"><span class="n">09</span>Reasoning</a>
+  <a href="#ch10"><span class="n">10</span>실시간성</a>
+  <a href="#ch11"><span class="n">11</span>Locomotion</a>
+  <a href="#ch12"><span class="n">12</span>촉각과 힘</a>
+  <a href="#ch13"><span class="n">13</span>평가</a>
+  <div class="gap"></div>
+  <a href="#ops"><span class="n">▸</span>운영 가이드</a>
+  <a href="#apx"><span class="n">▸</span>논문 링크</a>
+</nav>
+
+<main id="top">
+<header class="hero">
+  <p class="eyebrow">DSBA · Paper Seminar</p>
+  <h1>Physical AI &amp; World Models<br>스터디 커리큘럼</h1>
+  <p class="lede">로봇이 세계를 어떻게 관측하고, 표현하고, 예측하며, 행동으로 옮기는가. VLA, 정책 학습, world model, reasoning, 실시간 제어가 만나는 지점을 <b>문제 중심·계보 중심</b>으로 따라간다. 목표는 당장의 연구 착수가 아니라 <b>분야의 이해와 흥미</b>, 그리고 2026년 8월 시점에서 다음 연구를 고를 수 있는 인사이트다.</p>
+  <div class="stats">
+    <span class="stat"><b>13</b> Chapters</span>
+    <span class="stat"><b>50</b> Sessions</span>
+    <span class="stat"><b>100+</b> Papers</span>
+    <span class="stat">세션 1시간 · 논문 <b>2~3편</b></span>
+    <span class="stat">개정 <b>2026-08-09</b></span>
+  </div>
+  <p class="rev">주차가 아니라 Chapter와 학습 질문 기준으로 진행한다. 연구실 스케일 개정안(◆ 세션 3개 포함) 기준. 논문 링크·버전은 발표 1주 전에 재확인한다.</p>
+</header>
+
+<div class="toolbar">
+  <button type="button" id="btn-open">전체 펼치기</button>
+  <button type="button" id="btn-close">전체 접기</button>
+  <div class="legend">
+    <span class="b core">Core</span>
+    <span class="b ext">Extension</span>
+    <span class="b upd">Update</span>
+    <span class="b prac">실습</span>
+    <span class="b lab">◆ 연구실 스케일 (2026)</span>
+  </div>
+</div>
+
+<section class="blk" id="questions">
+  <h2>스터디가 만드는 능력</h2>
+  <p class="blk-sub">백과사전식 완주가 아니라, 아래 네 질문에 답할 수 있는 연구자를 만드는 것이 목적이다.</p>
+  <div class="qgrid">
+    <div class="qcard"><span class="qn">Q1</span><p>처음 보는 VLA·world model 논문의 좌표를 짚을 수 있는가?</p><ul><li>입력·출력, action 표현</li><li>어느 계보의 어떤 한계를 공격하는가</li></ul></div>
+    <div class="qcard"><span class="qn">Q2</span><p>성능 숫자 이전에 실험 조건을 먼저 확인하는가?</p><ul><li>하드웨어·센서, task와 성공 조건</li><li>데이터 출처·비용, 제어 주파수·지연</li></ul></div>
+    <div class="qcard"><span class="qn">Q3</span><p>각 접근의 암묵적 전제를 찾을 수 있는가?</p><ul><li>semantic prior의 전이, 규모 vs 구조</li><li>합성 데이터, 픽셀 vs latent, 2D 스케일링</li></ul></div>
+    <div class="qcard"><span class="qn">Q4</span><p>우리 연구실 자원으로 검증 가능한 공백을 찾을 수 있는가?</p><ul><li>빅테크 자원이 필요한 문제와 그렇지 않은 문제의 구분</li></ul></div>
+  </div>
+</section>
+
+<section class="blk" id="principles">
+  <h2>운영 원칙</h2>
+  <ul class="plist">
+    <li><b>깊이보다 흐름.</b> 한 세션(1시간, 발표 40분 + 토론 15~20분)에 같은 문제를 공유하는 논문 2~3편을 하나의 비교 질문으로 묶는다. 시스템 명세는 anchor 논문 1편만 완전하게 작성한다.</li>
+    <li><b>최신 우선.</b> core 계보가 아니면 2025–2026년 논문을 우선한다. 오래된 원리 논문은 발췌·배경 노트로 강등한다.</li>
+    <li><b>문제 먼저, 도구는 필요할 때.</b> RT 계보로 한계를 확인한 뒤에 Diffusion·Flow Matching을 배운다. 하드웨어는 논문이 등장하는 Chapter에서 필요한 만큼만.</li>
+    <li><b>고전 원전은 발췌로.</b> <i>World Models</i>(2018)와 LeCun position paper(2022)는 독립 세션 없이 계보의 출발점으로만 다룬다.</li>
+    <li><b>회사가 아니라 문제로 Chapter를 나눈다.</b> 연구그룹은 비교 태그로만 유지한다.</li>
+    <li><b>Core / Extension / Update 구분.</b> 새 논문이 나왔다는 이유만으로 Core를 늘리지 않는다 — 새로운 문제 정의·아키텍처·데이터·평가 방식이 있을 때만 승격을 검토한다.</li>
+    <li><b>모든 발제의 세 질문.</b> 이전 접근은 무엇에서 막혔는가 → 무엇을 바꿨는가 → 그 변경이 새로 만든 한계는 무엇인가.</li>
+  </ul>
+  <details class="artifact">
+    <summary>연구그룹 관점 태그 — 핵심 주장과 반증 조건</summary>
+    <div class="twrap"><table>
+      <tr><th>태그</th><th>핵심 주장</th><th>반증 조건</th></tr>
+      <tr><td>Open/Academic</td><td>구조와 표현 설계가 데이터 규모를 절약한다</td><td>충분한 스케일에서 구조 차이가 사라짐</td></tr>
+      <tr><td>Google DeepMind</td><td>VLM의 semantic prior를 물리세계 제어로 전이할 수 있다</td><td>dynamics·contact가 semantic prior로 해결되지 않음</td></tr>
+      <tr><td>NVIDIA</td><td>합성 데이터와 시뮬 인프라가 실물 데이터 부족을 완화한다</td><td>synthetic-to-real gap이 성능 상한을 고정함</td></tr>
+      <tr><td>Physical Intelligence</td><td>대규모 로봇 데이터와 end-to-end 학습이 일반화를 만든다</td><td>수집 비용 발산, long-tail 미커버</td></tr>
+      <tr><td>Meta / JEPA</td><td>픽셀 생성보다 latent prediction이 효율적이다</td><td>latent가 접촉·기하 정보를 잃음</td></tr>
+      <tr><td>Geometry-first</td><td>명시적 3D·4D 구조가 일반화·데이터 효율의 핵심이다</td><td>2D 비디오 스케일링이 기하를 암묵 습득함</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ Ch.1 ============ -->
+<section class="ch" id="ch1">
+  <header><span class="chno">CH.01</span><h2>온보딩과 좌표계</h2><span class="cnt">1 session</span></header>
+  <p class="goal">제품명과 논문 목록을 외우기 전에 전체 질문, 핵심 용어, 스터디 진행 방식을 이해한다.</p>
+
+  <details class="s" id="c01-s01">
+    <summary><span class="code">C01-S01</span><span class="t">Physical AI 온보딩 <em>— 연구 지형, 용어, 논문 읽는 법</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">Physical AI는 기존 vision-language AI와 무엇이 다르며, 이 분야의 논문·테크리포트를 어떤 기준으로 읽어야 하는가?</p>
+      <ul class="pts">
+        <li>perception → representation → prediction → planning → action의 연결과 closed loop</li>
+        <li>최소 로봇 리터러시: observation/state/action, joint·EE space, open/closed-loop, action chunk, teleoperation, control frequency, inference latency</li>
+        <li>읽는 기준: method / data / system / product claim 구분, claim-evidence 구분, task 정의가 다른 성공률을 직접 비교하지 않기</li>
+        <li>(마지막 5~10분) 하드웨어 지형은 "이런 제품들이 있다" 수준으로만</li>
+      </ul>
+      <p class="note"><b>산출물</b> — Physical AI problem map 초안 · 공통 발제 템플릿 확정 · 용어집 v1. 서베이 3종(부록 A.1)은 정독하지 않고 좌표 확인용으로 반복 참조한다.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ============ Ch.2 ============ -->
+<section class="ch" id="ch2">
+  <header><span class="chno">CH.02</span><h2>VLA 초기 계보 — discrete token과 action chunk</h2><span class="cnt">3 sessions</span></header>
+  <p class="goal">생성모델 이론에 들어가기 전에 VLA의 입력·출력·학습 방식, discrete action token과 action chunk의 장단점을 초기 논문 계보로 체감한다.</p>
+
+  <details class="s" id="c02-s01">
+    <summary><span class="code">C02-S01</span><span class="t">RT-1 + RT-2 <em>— action token의 탄생과 웹 지식 전이</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">로봇 action을 언어처럼 token으로 예측하면 무엇이 좋아지고, 웹 규모 VLM의 지식은 어디까지 제어로 전이되는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2212.06817" target="_blank" rel="noopener">RT-1: Robotics Transformer for Real-World Control at Scale</a> (2022)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2307.15818" target="_blank" rel="noopener">RT-2: VLA Models Transfer Web Knowledge to Robotic Control</a> (2023)</li>
+      </ul>
+      <ul class="pts">
+        <li>action discretization과 autoregressive prediction, 13만 episode 데이터 엔진 (RT-1)</li>
+        <li>VLM co-fine-tuning, web knowledge transfer, emergent capability 평가 (RT-2)</li>
+        <li>두 논문 사이에서 유지된 것(action 표현)과 바뀐 것(백본·데이터·주장)</li>
+      </ul>
+      <p class="note"><b>토론</b> — token probability는 continuous multimodality의 해결인가, 우회인가? generalization claim과 평가 설계의 간격. 산업계 claim-evidence 표 첫 적용.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c02-s02">
+    <summary><span class="code">C02-S02</span><span class="t">Open X-Embodiment + OpenVLA <em>— 데이터와 가중치의 공개</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">cross-embodiment 데이터셋과 공개 학습 파이프라인은 왜 그 자체로 연구 기여인가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2310.08864" target="_blank" rel="noopener">Open X-Embodiment: Robotic Learning Datasets and RT-X Models</a> (2023)</li>
+        <li><a href="https://arxiv.org/abs/2406.09246" target="_blank" rel="noopener">OpenVLA: An Open-Source Vision-Language-Action Model</a> (2024)<span class="anchor-tag">anchor</span></li>
+      </ul>
+      <ul class="pts">
+        <li>서로 다른 로봇 데이터를 합칠 때의 action space·카메라·주파수 정렬, positive transfer의 조건 (RT-X)</li>
+        <li>RT 계보의 공개 구현과 fine-tuning, discrete token의 정밀도·주파수·deployment 비용</li>
+      </ul>
+      <p class="note"><b>산출물</b> — 공개성·하드웨어 요구량·수정 가능 지점을 담은 재현 가능성 카드. 우리 연구실이 fine-tuning·probing·adapter 연구를 시작할 수 있는 지점은 어디인가?</p>
+    </div>
+  </details>
+
+  <details class="s" id="c02-s03">
+    <summary><span class="code">C02-S03</span><span class="t">ACT + Mobile ALOHA <em>— action chunking의 초기 계보</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">한 스텝씩 action을 예측하면 왜 실패하며, chunk는 무엇을 해결하고 무엇을 잃는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2304.13705" target="_blank" rel="noopener">Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware (ACT/ALOHA)</a> (2023)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2401.02117" target="_blank" rel="noopener">Mobile ALOHA: Bimanual Mobile Manipulation with Whole-Body Teleoperation</a> (2024)</li>
+      </ul>
+      <ul class="pts">
+        <li>compounding error, action chunking과 temporal aggregation, chunk 길이 vs 반응성 trade-off</li>
+        <li>저가 bimanual teleop rig의 연구적 의미, 베이스 포함 whole-body action과 co-training 효과</li>
+      </ul>
+      <p class="note"><b>연결</b> — DP·π0·GR00T·RDP의 공통 action 단위. 전신 teleop 데이터 수집은 Ch.11에서 humanoid로 확장. 산출물: single-step / chunk / token 1차 비교표.</p>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.2 마감 산출물 · VLA anatomy 표 v1</summary>
+    <div class="twrap"><table>
+      <tr><th>축</th><th>확인할 질문</th></tr>
+      <tr><td>입력</td><td>이미지, 언어, proprioception을 어떻게 넣는가</td></tr>
+      <tr><td>출력</td><td>discrete token인가 continuous vector인가</td></tr>
+      <tr><td>시간</td><td>single step인가 action chunk인가</td></tr>
+      <tr><td>학습 데이터</td><td>단일 로봇, 다중 로봇, 웹 데이터 중 무엇인가</td></tr>
+      <tr><td>제어</td><td>몇 Hz이며 closed-loop로 얼마나 자주 재계획하는가</td></tr>
+      <tr><td>공개성</td><td>코드·가중치·데이터 중 무엇이 공개되는가</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ Ch.3 ============ -->
+<section class="ch" id="ch3">
+  <header><span class="chno">CH.03</span><h2>Action 생성 도구 — 필요한 순간에 배우기</h2><span class="cnt">3 sessions</span></header>
+  <p class="goal">Diffusion, Flow Matching, DiT, action tokenizer를 독립 생성모델 강의가 아니라 로봇 action의 multimodality·정밀도·속도·스케일링 문제에 대한 도구로 이해한다.</p>
+
+  <details class="s" id="c03-s01">
+    <summary><span class="code">C03-S01</span><span class="t">Diffusion Policy + Flow Matching</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">같은 관측에서 여러 action이 모두 정답일 때 MSE 회귀는 왜 실패하며, iterative sampling의 비용은 어떻게 줄이는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2303.04137" target="_blank" rel="noopener">Diffusion Policy: Visuomotor Policy Learning via Action Diffusion</a> (2023)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2210.02747" target="_blank" rel="noopener">Flow Matching for Generative Modeling</a> (2023)</li>
+      </ul>
+      <ul class="pts">
+        <li>action multimodality, observation-conditioned denoising, receding-horizon 실행</li>
+        <li>diffusion↔flow의 관계, vector field·ODE 직관, 적은 sampling step이 제어 주파수에 중요한 이유</li>
+        <li>기초 범위: DDPM forward/reverse 직관까지만 — ELBO 유도·OT 이론 생략</li>
+      </ul>
+      <p class="note"><b>핵심 장면</b> — 좌·우 회피가 모두 정답인데 평균 action이 장애물 정면을 향하는 사례. 산출물: 추론 step ↔ latency ↔ control frequency 표 시작.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c03-s02">
+    <summary><span class="code">C03-S02</span><span class="t">DiT + FAST <em>— 아키텍처와 tokenizer라는 별개의 층위</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">학습 목표(diffusion/flow)와 별개로, 아키텍처와 action tokenizer는 각각 무엇을 결정하는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2212.09748" target="_blank" rel="noopener">Scalable Diffusion Models with Transformers (DiT)</a> (2023)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2501.09747" target="_blank" rel="noopener">FAST: Efficient Action Tokenization for VLA Models</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>U-Net 대신 Transformer를 쓰는 이유, conditioning 주입, 스케일링 (DiT)</li>
+        <li>naive binning token이 고주파·정밀 action에서 무너지는 이유, DCT 기반 압축 tokenization (FAST)</li>
+      </ul>
+      <p class="note"><b>토론</b> — tokenizer가 충분히 좋아지면 discrete vs continuous 논쟁의 결론이 바뀌는가? 연결: RDT·GR00T의 DiT 계열, π0-FAST.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c03-s03">
+    <summary><span class="code">C03-S03</span><span class="t">3D Diffusion Policy + iDP3</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">action model을 그대로 두고 입력 표현만 2D→3D로 바꾸면 왜 데이터 효율이 달라지며, humanoid·egocentric·onboard 환경에서는 무엇이 새로 필요한가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2403.03954" target="_blank" rel="noopener">3D Diffusion Policy</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2410.10803" target="_blank" rel="noopener">Generalizable Humanoid Manipulation with 3D Diffusion Policies (iDP3)</a> (2024)</li>
+      </ul>
+      <ul class="pts">
+        <li>point cloud 표현, viewpoint invariance, demonstration efficiency</li>
+        <li>egocentric 관측, noisy human data, onboard compute, scene generalization</li>
+      </ul>
+      <p class="note"><b>반증 조건</b> — depth sensor·calibration 비용까지 포함해도 3D 이득이 유지되는가? Update 지침: 2025-26 후속 3D 정책 연구가 있으면 비교 슬롯 추가.</p>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.3 마감 산출물 · Action 표현 비교표</summary>
+    <div class="twrap"><table>
+      <tr><th>축</th><th>선택지</th></tr>
+      <tr><td>action distribution</td><td>regression / token probability / diffusion / flow</td></tr>
+      <tr><td>temporal unit</td><td>single step / fixed chunk / adaptive chunk</td></tr>
+      <tr><td>input representation</td><td>2D / depth / point cloud / latent</td></tr>
+      <tr><td>sampling</td><td>autoregressive token / compressed token (FAST) / iterative denoise / ODE step</td></tr>
+      <tr><td>주요 비용</td><td>quantization / sampling latency / sensor dependence / compute</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ Ch.4 ============ -->
+<section class="ch" id="ch4">
+  <header><span class="chno">CH.04</span><h2>Continuous-action VLA 아키텍처</h2><span class="cnt">3 sessions</span></header>
+  <p class="goal">VLM의 semantic representation과 continuous robot action 사이를 연결하는 구조적 선택을 비교한다.</p>
+
+  <details class="s" id="c04-s01">
+    <summary><span class="code">C04-S01</span><span class="t">CogACT + Octo <em>— diffusion head를 붙이는 두 가지 동기</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">cognition-action 분리와 재사용성·adaptation이라는 서로 다른 설계 동기는 구조를 어떻게 다르게 만드는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2411.19650" target="_blank" rel="noopener">CogACT: Synergizing Cognition and Action</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2405.12213" target="_blank" rel="noopener">Octo: An Open-Source Generalist Robot Policy</a> (2024)</li>
+      </ul>
+      <ul class="pts">
+        <li>VLM backbone + diffusion action module 분리, stage-wise training (CogACT)</li>
+        <li>transformer policy, diffusion head, task token, fine-tuning interface (Octo)</li>
+      </ul>
+      <p class="note"><b>토론</b> — 모듈 분리는 inductive bias인가, scale 부족을 보완하는 engineering choice인가? 새 sensor·robot에 붙일 때 최소 수정 모듈은?</p>
+    </div>
+  </details>
+
+  <details class="s" id="c04-s02">
+    <summary><span class="code">C04-S02</span><span class="t">RDT-1B + Diffusion-VLA <em>— DiT 스케일업과 reasoning 조건화</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">DiT 기반 action model을 대규모 bimanual foundation model로 키우면 무엇이 달라지고, reasoning을 조건으로 넣으면 무엇을 얻고 잃는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2410.07864" target="_blank" rel="noopener">RDT-1B: a Diffusion Foundation Model for Bimanual Manipulation</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2412.03293" target="_blank" rel="noopener">Diffusion-VLA</a> (2024)</li>
+      </ul>
+      <ul class="pts">
+        <li>diffusion transformer, heterogeneous bimanual data, unified action representation</li>
+        <li>self-generated reasoning 조건화와 interpretability claim</li>
+      </ul>
+      <p class="note"><b>토론</b> — 통합 action space는 cross-embodiment의 해결인가, 공통 좌표계로 미룬 것인가? π0와의 차이: diffusion vs flow, 공개 vs 폐쇄. Update 지침: 2025-26 후속 버전 확인.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c04-s03">
+    <summary><span class="code">C04-S03</span><span class="t">경량·공개 VLA의 흐름 <em>— OpenVLA-OFT + SmolVLA</em></span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <div class="body">
+      <p class="q">빅테크 밖의 공개 VLA는 어떤 구조적 차별화로 경쟁하는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2502.19645" target="_blank" rel="noopener">Fine-Tuning VLA Models: Optimizing Speed and Success (OpenVLA-OFT)</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2506.01844" target="_blank" rel="noopener">SmolVLA: Affordable and Efficient Robotics</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>parallel decoding, continuous action head, fine-tuning 레시피 (OFT)</li>
+        <li>경량 VLM + flow expert + community data + async inference (SmolVLA)</li>
+        <li>Landscape: WALL-OSS, AgiBot GO-1, GR-3, RoboVLM 등은 설계가 다를 때만 짧게</li>
+      </ul>
+      <p class="note"><b>개인 연구자 관점</b> — 연구실 GPU에서 fine-tuning 가능한 모델은 무엇이며, 무엇을 포기한 설계인가?</p>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.4 마감 산출물 · VLA 3갈래 분류표</summary>
+    <div class="twrap"><table>
+      <tr><th>갈래</th><th>대표</th><th>action 표현</th><th>강점</th><th>주요 대가</th></tr>
+      <tr><td>discrete token</td><td>RT-1/2, OpenVLA, π0-FAST</td><td>quantized/compressed token</td><td>next-token interface 재사용</td><td>정밀도, token latency</td></tr>
+      <tr><td>diffusion head</td><td>CogACT, Octo, RDT-1B</td><td>continuous iterative denoising</td><td>multimodality, 표현력</td><td>sampling cost</td></tr>
+      <tr><td>flow head</td><td>π0 계열, SmolVLA</td><td>continuous flow trajectory</td><td>적은 step, 빠른 생성</td><td>구현 복잡도, scale 검증</td></tr>
+    </table></div>
+  </details>
+</section>
+<!-- ============ Ch.5 ============ -->
+<section class="ch" id="ch5">
+  <header><span class="chno">CH.05</span><h2>π 계보 — 손재주에서 경험 학습까지</h2><span class="cnt">4 sessions</span></header>
+  <p class="goal">π0 → π0.5 → π*0.6과 그 사이의 도구 논문들을, 각 버전이 이전 버전의 한계를 <em>어떻게 시인하고 확장했는지</em>의 사슬로 추적한다.</p>
+
+  <details class="s" id="c05-s01">
+    <summary><span class="code">C05-S01</span><span class="t">π0 + π0.5 <em>— flow expert와 open-world 일반화</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">discrete token의 정밀도·속도 한계를 flow-matching action expert가 어떻게 공격하며, dexterity가 확보된 뒤에도 처음 보는 환경·long-horizon task에서 실패하는 이유는 무엇인가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2410.24164" target="_blank" rel="noopener">π0: A Vision-Language-Action Flow Model for General Robot Control</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2504.16054" target="_blank" rel="noopener">π0.5: a VLA with Open-World Generalization</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>VLM backbone + flow expert + action chunk, heterogeneous robot data (π0)</li>
+        <li>heterogeneous co-training, web data, semantic subtask, open-world task 정의 (π0.5)</li>
+        <li>성능 숫자보다 '새 집에서 부엌 정리'라는 평가 task 정의 방식을 본다</li>
+      </ul>
+      <p class="note"><b>토론</b> — semantic hierarchy가 control generalization을 만든 것인가, task decomposition을 외부에서 제공한 것인가?</p>
+    </div>
+  </details>
+
+  <details class="s" id="c05-s02">
+    <summary><span class="code">C05-S02</span><span class="t">π*0.6 / RECAP + Real-Time Chunking <em>— 경험 학습과 실시간 실행</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">demonstration만으로 학습한 VLA가 실제 실패에서 배우려면, 그리고 큰 flow policy가 추론 지연 속에서도 끊기지 않고 움직이려면 각각 무엇이 필요한가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2511.14759" target="_blank" rel="noopener">π*0.6: a VLA That Learns From Experience (RECAP)</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2506.07339" target="_blank" rel="noopener">Real-Time Execution of Action Chunking Flow Policies</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>experience collection, intervention, advantage-conditioned policy, reward/judge (RECAP)</li>
+        <li>추론 지연 동안 chunk를 이어붙이는 inpainting식 비동기 실행 (RTC)</li>
+      </ul>
+      <p class="note"><b>쟁점</b> — 보상은 누가 정의하며 VLM-as-judge를 얼마나 신뢰할 수 있는가? chunk를 어느 구간에서 잘라도 안전한가? 연결: Ch.13 평가, Ch.10 실시간성.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c05-s03">
+    <summary><span class="code">C05-S03</span><span class="t">Hi Robot + Knowledge Insulation <em>— 계층과 학습 레시피</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <div class="body">
+      <p class="q">낮은 수준 policy 위에 System 2 VLM을 얹는 계층화와, VLM 지식을 보호하며 action expert를 학습시키는 레시피는 각각 어떤 실패를 막는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2502.19417" target="_blank" rel="noopener">Hi Robot: Open-Ended Instruction Following with Hierarchical VLAs</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2505.23705" target="_blank" rel="noopener">Knowledge Insulating Vision-Language-Action Models</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>open-ended instruction, 사용자 개입·피드백 처리, 고수준-저수준 분업 (Hi Robot)</li>
+        <li>continuous action head의 gradient가 VLM representation을 훼손하는 문제와 차단 레시피 (KI)</li>
+      </ul>
+      <p class="note"><b>연결</b> — Ch.10 dual system, Ch.6 데이터 엔진.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c05-s04">
+    <summary><span class="code">C05-S04</span><span class="t">연구실 스케일 post-training <em>— Continual RL과 capability 이식</em></span><span class="badges"><span class="b lab">◆ 연구실</span><span class="b ext">Extension</span></span></summary>
+    <div class="body">
+      <p class="q">robot fleet 없이, 공개 VLA를 배포 후에도 계속 개선하거나 능력을 이식하는 연구는 어디까지 가능한가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2602.10503" target="_blank" rel="noopener">Towards Long-Lived Robots: Continual Learning VLA Models via Reinforcement Fine-Tuning</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2605.10903" target="_blank" rel="noopener">CapVector: Transferable Capability Vectors in Parametric Space for VLAs</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>시뮬레이터·벤치마크 위 RL fine-tuning과 continual learning의 catastrophic forgetting</li>
+        <li>fine-tuned 모델 간 parameter-space 연산으로 능력을 추출·이식하는 접근</li>
+      </ul>
+      <p class="note"><b>비교축</b> — π*0.6 RECAP의 '배포 후에도 배우는 로봇'이라는 같은 질문을 공개 모델 + 시뮬 + 소수 GPU 규모에서 공격한다. OpenVLA·π0 계열 공개 가중치와 LIBERO/RoboTwin급 벤치마크로 시작 가능.</p>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.5 마감 산출물 · π 계보 한계 시인 사슬</summary>
+    <div class="twrap"><table>
+      <tr><th>버전</th><th>해결하려는 문제</th><th>추가한 것</th><th>다음에 드러난 한계</th></tr>
+      <tr><td>π0</td><td>정밀한 continuous control</td><td>flow action expert</td><td>낯선 환경·long horizon 일반화</td></tr>
+      <tr><td>π0.5</td><td>open-world generalization</td><td>heterogeneous co-training, semantic subtask</td><td>실제 실패에서의 개선</td></tr>
+      <tr><td>π*0.6</td><td>experience learning</td><td>intervention·RECAP·advantage conditioning</td><td>reward reliability, data cost, safety</td></tr>
+    </table></div>
+    <p class="art-note">보조 계보: FAST(tokenizer), Real-Time Chunking(실시간 실행), Hi Robot(계층 지시), Knowledge Insulation(학습 레시피)은 본선 버전 사이를 잇는 도구 논문으로 함께 읽는다.</p>
+  </details>
+</section>
+
+<!-- ============ Ch.6 ============ -->
+<section class="ch" id="ch6">
+  <header><span class="chno">CH.06</span><h2>데이터 · 스케일 · Embodiment</h2><span class="cnt">7 sessions</span></header>
+  <p class="goal">VLA 일반화를 모델 아키텍처만의 문제가 아니라 데이터 엔진, embodiment alignment, action label, 합성 데이터의 문제로 본다.</p>
+
+  <details class="s" id="c06-s01">
+    <summary><span class="code">C06-S01</span><span class="t">Gemini Robotics 1.0 + 1.5</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">RT-2의 'semantic knowledge transfer' 주장은 실제 generalist robot system에서 어떻게 확장되고 수정되는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2503.20020" target="_blank" rel="noopener">Gemini Robotics</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2510.03342" target="_blank" rel="noopener">Gemini Robotics 1.5</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>embodied reasoning(ER) 모델의 분리와 역할, motion transfer와 cross-embodiment 학습</li>
+        <li>think-before-acting interface와 thinking budget (1.5) — On-Device 등 파생 릴리스는 노트로만</li>
+      </ul>
+      <p class="note"><b>발표 방식</b> — 버전별 요약이 아니라 RT-2 → 1.0 → 1.5 계보의 주장과 증거 비교. 발표 1주 전 최신 공식 버전 확인.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c06-s02">
+    <summary><span class="code">C06-S02</span><span class="t">GR00T N1 + N1.5</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">humanoid foundation model에서 VLM과 action model을 dual-system으로 나누는 이유는 무엇이며, 버전업에서 무엇이 바뀌었는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2503.14734" target="_blank" rel="noopener">GR00T N1: An Open Foundation Model for Generalist Humanoid Robots</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://huggingface.co/nvidia/GR00T-N1.5-3B" target="_blank" rel="noopener">GR00T N1.5 공식 릴리스 (모델 카드·기술 문서)</a></li>
+      </ul>
+      <ul class="pts">
+        <li>System 2 VLM + System 1 action model(DiT/flow), 실물·합성·웹 비디오의 data pyramid</li>
+        <li>N1.5의 변화: frozen VLM, 새 embodiment head, DreamGen 합성 데이터 활용</li>
+      </ul>
+      <p class="note"><b>연결</b> — Ch.10 dual system, Ch.11 whole-body control 인터페이스. 사용 humanoid와 onboard/offboard compute를 명시한다.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c06-s03">
+    <summary><span class="code">C06-S03</span><span class="t">LAPA + DreamGen <em>— 라벨 없는 비디오와 생성 비디오</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">'action label이 붙은 실물 teleop 데이터'라는 병목을 우회하는 두 갈래 — latent action과 neural trajectory — 는 각각 어떤 학습 신호를 만들어내는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2410.11758" target="_blank" rel="noopener">Latent Action Pretraining from Videos (LAPA)</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2505.12705" target="_blank" rel="noopener">DreamGen: Unlocking Generalization through Neural Trajectories</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>latent action discovery, video pretraining, policy adaptation (LAPA)</li>
+        <li>video world model fine-tuning → 합성 trajectory → policy 학습, generation-to-real gap (DreamGen)</li>
+      </ul>
+      <p class="note"><b>쟁점</b> — 해석 불가능한 latent action의 디버깅·정렬. 생성 trajectory는 새 정보인가, 기존 분포의 재조합인가? 연결: Ch.8 Genie·world model as data engine.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c06-s04">
+    <summary><span class="code">C06-S04</span><span class="t">MimicGen 계보 <em>— 시연을 프로그램적으로 증식하기</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <div class="body">
+      <p class="q">소수의 사람 시연을 시뮬레이터에서 대량의 새 시연으로 증식할 때, 그 diversity는 어디까지 진짜인가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2410.24185" target="_blank" rel="noopener">DexMimicGen</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2310.17596" target="_blank" rel="noopener">MimicGen</a> (2023) — 원리 발췌만</li>
+      </ul>
+      <ul class="pts">
+        <li>object-centric segment 재조합, scene 변형, 증식 데이터 품질 필터링, humanoid·bimanual 확장</li>
+        <li>실물 teleop(ALOHA 계보) vs 생성 비디오(DreamGen) vs 프로그램적 증식의 비용·오류·확장성</li>
+      </ul>
+      <p class="note"><b>Update</b> — 발표 시점의 2025-26 demonstration synthesis 후속을 확인해 보강. 연결: GR00T 데이터 파이프라인.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c06-s05">
+    <summary><span class="code">C06-S05</span><span class="t">VLA 데이터셋 · 벤치마크 · 데이터 엔진</span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <div class="body">
+      <p class="q">현재 VLA 병목은 모델보다 데이터 infrastructure에 있는가?</p>
+      <ul class="papers">
+        <li>Open X-Embodiment(재방문), <a href="https://arxiv.org/abs/2403.12945" target="_blank" rel="noopener">DROID</a>, BridgeData, AgiBot World, LeRobot community data</li>
+        <li><a href="https://arxiv.org/abs/2604.23001" target="_blank" rel="noopener">VLA in Robotics: A Survey of Datasets, Benchmarks, and Data Engines</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>embodiment diversity, action space mismatch, temporal alignment, annotation·language 품질, real/sim/generated mixture</li>
+      </ul>
+      <p class="note"><b>산출물</b> — 데이터셋을 episode 수가 아니라 fidelity, diversity, action semantics, reproducibility로 비교.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c06-s06">
+    <summary><span class="code">C06-S06</span><span class="t">Cross-embodiment action representation</span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <div class="body">
+      <p class="q">서로 다른 관절 구조와 action dimension을 하나의 모델에 어떻게 정렬하는가?</p>
+      <ul class="pts">
+        <li>비교 후보: RDT unified action space, Gemini motion transfer, GR00T embodiment head, 최신 canonical action representation</li>
+        <li>모델 전체가 아니라 cross-embodiment interface만 분리해 비교한다</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="s" id="c06-s07">
+    <summary><span class="code">C06-S07</span><span class="t">연구실 데이터 엔진 2026 <em>— 로봇 없이, 저가 하드웨어로</em></span><span class="badges"><span class="b lab">◆ 연구실</span><span class="b ext">Extension</span></span></summary>
+    <div class="body">
+      <p class="q">2026년 현재, 대학 연구실이 감당 가능한 비용으로 만들 수 있는 데이터 수집 시스템은 어디까지 왔는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2606.06033" target="_blank" rel="noopener">RealDexUMI: A Wearable Universal Manipulation Interface</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2602.11150" target="_blank" rel="noopener">YOR: Your Own Mobile Manipulator for Generalizable Robotics</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>로봇 없이 사람 시연을 수집하는 wearable interface와 embodiment gap 처리 — UMI(2024) 계보의 최신</li>
+        <li>저비용 자작 mobile manipulator 플랫폼과 그 위의 generalist policy 학습</li>
+        <li>그 외 2026 후보: <a href="https://arxiv.org/abs/2607.17970" target="_blank" rel="noopener">MEVION</a>, <a href="https://arxiv.org/abs/2606.10244" target="_blank" rel="noopener">YUBI</a>, XLeRobot 계열 — 발표 시 택1 비교</li>
+      </ul>
+      <p class="note"><b>비교축</b> — ALOHA → UMI → 2026 시스템으로 이어지는 '데이터 수집 민주화'의 현재 지점. 어떤 시스템이 우리 예산·인력으로 재현 가능한가?</p>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.6 마감 산출물 · 데이터 엔진 비교표</summary>
+    <div class="twrap"><table>
+      <tr><th>축</th><th>확인할 내용</th></tr>
+      <tr><td>데이터 출처</td><td>실물 teleoperation / human video / simulator / generated world / 프로그램적 증식</td></tr>
+      <tr><td>supervision</td><td>action label / language / reward / latent action</td></tr>
+      <tr><td>embodiment</td><td>단일 / 다중 / humanoid / canonical representation</td></tr>
+      <tr><td>비용</td><td>수집 장비, 인력, compute, post-processing</td></tr>
+      <tr><td>주요 오류</td><td>label mismatch, temporal drift, sim gap, generation artifact</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ Ch.7 ============ -->
+<section class="ch" id="ch7">
+  <header><span class="chno">CH.07</span><h2>Predictive Representation과 기하</h2><span class="cnt">4 sessions</span></header>
+  <p class="goal">world model이 무엇을 예측해야 하는지 묻는다. 픽셀 생성, latent prediction, 명시적 3D·4D 표현의 전제와 반증 조건을 비교한다.</p>
+
+  <details class="s" id="c07-s01">
+    <summary><span class="code">C07-S01</span><span class="t">LeCun의 자율지능 아키텍처 + I-JEPA</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">예측 불가능한 픽셀 디테일을 생성하지 않고 latent에서 예측하면 무엇이 달라지는가?</p>
+      <ul class="papers">
+        <li><a href="https://openreview.net/forum?id=BZ5a1r-kVsf" target="_blank" rel="noopener">A Path Towards Autonomous Machine Intelligence</a> (2022) — 관련 절만 발췌</li>
+        <li><a href="https://arxiv.org/abs/2301.08243" target="_blank" rel="noopener">I-JEPA: Joint-Embedding Predictive Architecture</a> (2023)<span class="anchor-tag">anchor</span></li>
+      </ul>
+      <ul class="pts">
+        <li>predictor, target encoder, representation collapse 방지, energy-based 관점의 최소 개념</li>
+        <li>pixel reconstruction 계열과 latent prediction 계열이 각각 버리는 정보</li>
+      </ul>
+      <p class="note">position paper 전체 정독과 장기 철학 토론은 피하고, I-JEPA 설계로 이어지는 부분만 다룬다.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c07-s02">
+    <summary><span class="code">C07-S02</span><span class="t">V-JEPA 2 + V-JEPA 2.1</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">인터넷 비디오에서 학습한 latent representation이 실제 prediction과 robot planning에 충분한가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2506.09985" target="_blank" rel="noopener">V-JEPA 2</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2603.14482" target="_blank" rel="noopener">V-JEPA 2.1</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>video pretraining, action-conditioned model, planning, real-robot evaluation, dense feature 개선</li>
+        <li>추적할 변화: image→video, global→dense spatiotemporal feature, understanding→prediction·planning·control</li>
+      </ul>
+      <p class="note"><b>핵심 질문</b> — 접촉, 힘, 미세 기하처럼 latent가 놓칠 수 있는 정보는 무엇인가?</p>
+    </div>
+  </details>
+
+  <details class="s" id="c07-s03">
+    <summary><span class="code">C07-S03</span><span class="t">DUSt3R + VGGT <em>— geometry foundation model</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">3D를 얻기 위해 고전적 calibration·reconstruction pipeline이 반드시 필요한가? 하나의 feed-forward transformer로 camera·depth·pointmap·track을 동시에 추론할 수 있는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2312.14132" target="_blank" rel="noopener">DUSt3R: Geometric 3D Vision Made Easy</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2503.11651" target="_blank" rel="noopener">VGGT: Visual Geometry Grounded Transformer</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>pointmap regression, pairwise geometry, camera-free 3D reconstruction, 단일 모델 통합</li>
+        <li>후속 계보(MASt3R, CUT3R 등)는 핵심 변화만 짧게</li>
+      </ul>
+      <p class="note"><b>연결</b> — 3D Diffusion Policy가 필요로 하는 geometry를 더 싸게 얻는 방법.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c07-s04">
+    <summary><span class="code">C07-S04</span><span class="t">3D-VLA + 4D-VLA</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">정적 3D representation에 시간을 추가한 4D representation은 VLA에 어떤 정보를 더 주는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2403.09631" target="_blank" rel="noopener">3D-VLA</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2506.22242" target="_blank" rel="noopener">4D-VLA</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>2D → 3D → 4D 전이에서 새로 필요한 supervision과 compute를 비교 (논문별 요약 금지)</li>
+      </ul>
+      <p class="note"><b>쟁점</b> — 명시적 geometry가 성능을 만드는가, 추가 sensor·annotation·capacity가 만드는가?</p>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.7 마감 산출물 · 표현 선택과 반증 조건 표</summary>
+    <p class="art-note">각 세션의 발제에서 채워 학기 중 완성한다. structure vs scale 논쟁은 별도 토론 세션 없이 이 표의 '반증 조건' 열로 관리한다.</p>
+    <div class="twrap"><table>
+      <tr><th>표현</th><th>얻는 것</th><th>잃는 것</th><th>추가 비용</th><th>반증 조건</th></tr>
+      <tr><td>pixel/video</td><td>풍부한 관측 재현</td><td>불필요한 디테일·생성 비용</td><td>대규모 compute</td><td>생성 품질이 planning과 무관함</td></tr>
+      <tr><td>latent</td><td>효율·semantic abstraction</td><td>국소 geometry·contact 손실 가능</td><td>representation validation</td><td>latent가 제어에 필요한 정보를 잃음</td></tr>
+      <tr><td>explicit 3D/4D</td><td>geometry·view invariance</td><td>sensor·calibration 의존</td><td>depth/compute</td><td>2D scale이 같은 일반화를 달성함</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ Ch.8 ============ -->
+<section class="ch" id="ch8">
+  <header><span class="chno">CH.08</span><h2>World Model을 도구로 쓰기</h2><span class="cnt">7 sessions</span></header>
+  <p class="goal">world model을 모호한 '세계 이해'가 아니라 정책 학습, planning, 데이터 생성, 평가에 사용되는 구체적 도구로 분해한다.</p>
+
+  <details class="s" id="c08-s01">
+    <summary><span class="code">C08-S01</span><span class="t">World Models 발췌 + Dreamer 4 <em>— imagination 계보</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">'꿈속에서 학습한다'는 아이디어는 최신 world model agent에서 무엇으로 남았는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/1803.10122" target="_blank" rel="noopener">World Models</a> (2018) — latent dynamics·imagination 부분 발췌</li>
+        <li><a href="https://arxiv.org/abs/2509.24527" target="_blank" rel="noopener">Dreamer 4</a> (2025)<span class="anchor-tag">anchor</span></li>
+      </ul>
+      <ul class="pts">
+        <li>representation model, dynamics model, reward prediction, imagined rollout, actor-critic learning</li>
+      </ul>
+      <p class="note"><b>토론</b> — scale이 커진 것 외에 실제로 해결된 instability·long-horizon 문제는 무엇인가?</p>
+    </div>
+  </details>
+
+  <details class="s" id="c08-s02">
+    <summary><span class="code">C08-S02</span><span class="t">Genie + Genie 3 <em>— latent action에서 실시간 상호작용 세계로</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">action label 없는 비디오에서 제어 가능한 세계를 학습하는 아이디어는 실시간 상호작용 세계까지 어떻게 확장되었는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2402.15391" target="_blank" rel="noopener">Genie: Generative Interactive Environments</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/" target="_blank" rel="noopener">Genie 3 공식 블로그·데모</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>latent action, video tokenizer, action-controllable generation (Genie)</li>
+        <li>실시간 720p/24fps, 분 단위 일관성, promptable world event, agent 학습 환경 (Genie 3)</li>
+      </ul>
+      <p class="note"><b>주의</b> — 데모의 visual quality와 agent training utility를 구분한다. Genie 3는 기술 보고서가 얇으므로 claim-evidence 구분 연습 대상. LAPA는 latent action을 policy에, Genie는 world generation에 쓴다.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c08-s03">
+    <summary><span class="code">C08-S03</span><span class="t">Cosmos 플랫폼 + Cosmos-Transfer</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">world model을 단일 논문이 아니라 데이터·생성·제어 플랫폼으로 만들면 연구 문제가 어떻게 분해되는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2501.03575" target="_blank" rel="noopener">Cosmos World Foundation Model Platform</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2503.14492" target="_blank" rel="noopener">Cosmos-Transfer1</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>Predict / Transfer / Reason 기능 분해, multimodal conditioning, synthetic data pipeline</li>
+        <li>모델 이름 나열 대신 플랫폼 기능 분해도 한 장으로 통합</li>
+      </ul>
+      <p class="note"><b>개인 연구자 관점</b> — 거대 모델 학습보다 공개 모델을 이용한 data pipeline·evaluation 설계에서 배울 점.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c08-s04">
+    <summary><span class="code">C08-S04</span><span class="t">Cosmos-Predict2.5 + Cosmos 3 <em>— 통합 world model 백본</em></span><span class="badges"><span class="b core">Core</span><span class="b upd">Update</span></span></summary>
+    <div class="body">
+      <p class="q">video world model 계보는 왜 '용도별 모델 묶음'에서 '통합 flow 모델'로, 다시 reasoning·generation·action을 한 백본에 넣은 omnimodal 모델로 이동하는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2511.00062" target="_blank" rel="noopener">Cosmos-Predict2.5: World Simulation with Video Foundation Models</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2606.02800" target="_blank" rel="noopener">Cosmos 3: Omnimodal World Models for Physical AI</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>Text2World/Image2World/Video2World 통합, Cosmos-Reason 결합, RL post-training (Predict2.5)</li>
+        <li>mixture-of-transformers, understanding·generation·action 단일 백본 (Cosmos 3)</li>
+      </ul>
+      <p class="note"><b>쟁점</b> — 통합 백본은 로봇 정책 학습에 실제로 무엇을 주는가: 표현인가, 시뮬레이터인가, 정책 초기화인가?</p>
+    </div>
+  </details>
+
+  <details class="s" id="c08-s05">
+    <summary><span class="code">C08-S05</span><span class="t">Ctrl-World + WorldVLA <em>— 분리형과 통합형</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">정책이 지정한 action을 따르는 미래 관측을 분리된 controllable world model로 만들 것인가, policy와 world model을 하나의 autoregressive 모델로 합칠 것인가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2510.10125" target="_blank" rel="noopener">Ctrl-World: A Controllable Generative World Model for Robot Manipulation</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2506.21539" target="_blank" rel="noopener">WorldVLA: Towards Autoregressive Action World Model</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>action conditioning, controllability, temporal consistency (Ctrl-World)</li>
+        <li>observation/action 통합 sequence modeling, 상호 개선 주장 (WorldVLA)</li>
+      </ul>
+      <p class="note"><b>쟁점</b> — 시각적으로 action을 따라가는 것과 dynamics가 정확한 것은 같은가? 통합 objective가 planning을 실제로 보장하는가?</p>
+    </div>
+  </details>
+
+  <details class="s" id="c08-s06">
+    <summary><span class="code">C08-S06</span><span class="t">World model as data engine &amp; policy evaluator</span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <div class="body">
+      <p class="q">world model을 데이터 생성기로 쓸 때와 정책 평가기로 쓸 때, 각각 어디에서 오류가 증폭되는가?</p>
+      <ul class="papers">
+        <li>C06-S03의 DreamGen을 world model 관점에서 재분석</li>
+        <li><a href="https://arxiv.org/abs/2512.10675" target="_blank" rel="noopener">Evaluating Gemini Robotics Policies in a Veo World Simulator</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>generation artifact → action label error → policy failure의 오류 전파</li>
+        <li>policy evaluation protocol, real-world correlation, red-teaming, coverage (Veo)</li>
+      </ul>
+      <p class="note"><b>연결</b> — Ch.13의 순환 논증 문제. 산출물: 데이터 생성·정책 평가 각각의 오류 전파도.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c08-s07">
+    <summary><span class="code">C08-S07</span><span class="t">World-Gymnast와 RL inside world models</span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <div class="body">
+      <p class="q">생성 world model rollout과 VLM reward로 실제 policy를 개선할 수 있는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2602.02454" target="_blank" rel="noopener">World-Gymnast: Training Robots with RL in a World Model</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>physics simulator vs generative world model — 두 접근의 sim-to-real gap은 어떤 종류로 다른가?</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.8 마감 산출물 · World model 기능 분해표</summary>
+    <div class="twrap"><table>
+      <tr><th>기능</th><th>입력</th><th>출력</th><th>정책과의 결합</th><th>대표 실패</th></tr>
+      <tr><td>representation</td><td>관측</td><td>latent state</td><td>policy input</td><td>필요한 정보 손실</td></tr>
+      <tr><td>prediction</td><td>state/action</td><td>future state</td><td>planner rollout</td><td>compounding error</td></tr>
+      <tr><td>generation</td><td>video/action condition</td><td>future observation</td><td>data augmentation</td><td>visual artifact, dynamics error</td></tr>
+      <tr><td>reward/evaluation</td><td>rollout/task</td><td>score</td><td>RL·policy selection</td><td>judge bias, circular evaluation</td></tr>
+      <tr><td>interactive simulator</td><td>user/policy action</td><td>responsive world</td><td>online agent training</td><td>controllability·consistency trade-off</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ Ch.9 ============ -->
+<section class="ch" id="ch9">
+  <header><span class="chno">CH.09</span><h2>행동 전에 생각하기</h2><span class="cnt">4 sessions</span></header>
+  <p class="goal">VLA의 reasoning을 'CoT가 있는가'로 분류하지 않고, 추론의 매체·위치·지연·검증 가능성으로 비교한다.</p>
+
+  <details class="s" id="c09-s01">
+    <summary><span class="code">C09-S01</span><span class="t">Cosmos-Reason + Alpamayo-R1 <em>— ontology와 인과 라벨</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">physical common sense와 인과를 명시적 ontology·라벨·reasoning supervision으로 만들 수 있는가 — 조작과 자율주행 각각에서?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2503.15558" target="_blank" rel="noopener">Cosmos-Reason1</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2511.00088" target="_blank" rel="noopener">Alpamayo-R1</a> (2025) — 자율주행의 Chain of Causation</li>
+      </ul>
+      <ul class="pts">
+        <li>physical reasoning taxonomy, 데이터 구축, reasoning trace, downstream use</li>
+        <li>인과 라벨 데이터, trajectory decoder와 reasoning 정렬, latency·RL alignment</li>
+      </ul>
+      <p class="note"><b>쟁점</b> — ontology는 physics 학습인가, 언어 설명 능력 평가인가? 조작 task에서 인과 라벨을 싸게 만들 수 있는가?</p>
+    </div>
+  </details>
+
+  <details class="s" id="c09-s02">
+    <summary><span class="code">C09-S02</span><span class="t">ECoT + CoT-VLA <em>— 언어로 생각하기와 이미지로 생각하기</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">action 앞에 자연어 plan을 생성하는 것과 미래 프레임을 생성하는 것은 각각 성능·지연·해석 가능성에 무엇을 주는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2407.08693" target="_blank" rel="noopener">Robotic Control via Embodied Chain-of-Thought Reasoning (ECoT)</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2503.22020" target="_blank" rel="noopener">CoT-VLA: Visual Chain-of-Thought Reasoning</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>language reasoning trace, grounding, supervision (ECoT)</li>
+        <li>future frame subgoal, visual error propagation, generation latency (CoT-VLA)</li>
+      </ul>
+      <p class="note"><b>토론</b> — reasoning trace는 모델을 위한 representation인가, 사람을 위한 interface인가? 미래 이미지는 explanation인가 plan인가?</p>
+    </div>
+  </details>
+
+  <details class="s" id="c09-s03">
+    <summary><span class="code">C09-S03</span><span class="t">ACoT + DualCoT <em>— action-space reasoning과 병렬화</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">언어·이미지를 거치지 않고 action space 안에서 reasoning할 수 있는가, autoregressive reasoning의 지연·오류 누적을 병렬화로 줄일 수 있는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2601.11404" target="_blank" rel="noopener">ACoT-VLA</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2603.22280" target="_blank" rel="noopener">DualCoT-VLA</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>action chain, latent/action reasoning, direct control interface (ACoT)</li>
+        <li>visual-linguistic parallel reasoning, synchronization (DualCoT)</li>
+      </ul>
+      <p class="note"><b>비교</b> — visual / language / action reasoning을 같은 task·latency 기준으로. trade-off: 지연 감소 vs 해석 가능성.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c09-s04">
+    <summary><span class="code">C09-S04</span><span class="t">Reasoning-VLA 최신 업데이트</span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <div class="body">
+      <ul class="pts">
+        <li>선택 기준: 새로운 추론 매체·위치 / 지연을 줄이는 새 메커니즘 / trace-action 일치 검증 방법 중 하나 이상</li>
+        <li>Ch.9 마감 비교표에 행을 추가하는 형식으로 정리</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.9 마감 산출물 · 추론 비교표</summary>
+    <div class="twrap"><table>
+      <tr><th>추론 매체</th><th>대표</th><th>장점</th><th>지연 비용</th><th>검증 방식</th><th>주요 실패</th></tr>
+      <tr><td>language</td><td>ECoT, Gemini reasoning</td><td>사람이 읽을 수 있음</td><td>token decoding</td><td>trace-grounding 일치</td><td>그럴듯한 설명, action 불일치</td></tr>
+      <tr><td>image/video</td><td>CoT-VLA</td><td>공간 subgoal 표현</td><td>generation cost</td><td>future observation consistency</td><td>hallucinated future</td></tr>
+      <tr><td>action/latent</td><td>ACoT</td><td>빠르고 direct</td><td>내부 step 비용</td><td>action outcome</td><td>해석 불가</td></tr>
+      <tr><td>ontology/causal</td><td>Cosmos-Reason, Alpamayo</td><td>명시적 구조</td><td>annotation cost</td><td>causal consistency</td><td>label bias</td></tr>
+    </table></div>
+  </details>
+</section>
+<!-- ============ Ch.10 ============ -->
+<section class="ch" id="ch10">
+  <header><span class="chno">CH.10</span><h2>실시간성과 Dual System</h2><span class="cnt">4 sessions</span></header>
+  <p class="goal">실시간성을 단순 inference optimization이 아니라 perception, reasoning, action, reflex의 서로 다른 시간 규모를 조정하는 시스템 문제로 본다.</p>
+
+  <details class="s" id="c10-s01">
+    <summary><span class="code">C10-S01</span><span class="t">Fast-in-Slow + Hume</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">느린 System 2는 빠른 System 1을 생성·조정·선택하는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2506.01953" target="_blank" rel="noopener">Fast-in-Slow</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2505.21432" target="_blank" rel="noopener">Hume</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>통합형: fast module이 slow model 내부에 위치 vs 탐색형: slow가 후보를 생성하고 value로 선택</li>
+        <li>비교: GR00T N1의 분리형, Hi Robot의 계층형</li>
+      </ul>
+      <p class="note"><b>주의</b> — 인간 뇌 System 1/2 유비를 설계 근거와 사후 설명으로 구분한다.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c10-s02">
+    <summary><span class="code">C10-S02</span><span class="t">Reactive Diffusion Policy + TacMamba <em>— 다중 주파수 제어</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">느린 시각 계획과 빠른 촉각 반응을 서로 다른 frequency로 실행하려면, 고주파 sensor history를 무엇으로 압축해 전달해야 하는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2503.02881" target="_blank" rel="noopener">Reactive Diffusion Policy</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2603.01700" target="_blank" rel="noopener">TacMamba</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>slow-fast policy, visual-tactile asymmetry, reactive control (RDP)</li>
+        <li>tactile history compression, state-space model, fast reflex adapter (TacMamba)</li>
+      </ul>
+      <p class="note"><b>되짚기</b> — ACT의 chunk가 길수록 반응성이 떨어지는 문제. 연결: Ch.12 tactile 시간 특성.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c10-s03">
+    <summary><span class="code">C10-S03</span><span class="t">Think Twice, Act Once + DeeR-VLA <em>— adaptive inference</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">모델을 작게 만들지 않고도 추론 횟수, token 수, 사용하는 layer 수를 상황에 따라 줄일 수 있는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2505.21200" target="_blank" rel="noopener">Think Twice, Act Once</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2411.02359" target="_blank" rel="noopener">DeeR-VLA: Dynamic Inference for Efficient Robot Execution</a> (2024)</li>
+      </ul>
+      <ul class="pts">
+        <li>token compression, action reuse, replanning trigger (TTAO)</li>
+        <li>dynamic early-exit, 난이도별 compute 배분 (DeeR-VLA)</li>
+      </ul>
+      <p class="note"><b>쟁점</b> — action을 재사용해도 되는 안정 구간을 어떻게 감지하는가? 비교: fixed chunk / receding horizon / event-triggered replanning.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c10-s04">
+    <summary><span class="code">C10-S04</span><span class="t">Onboard deployment budget</span><span class="badges"><span class="b core">Core</span><span class="b prac">실습</span></span></summary>
+    <div class="body">
+      <p class="q">논문의 architecture를 실제 GPU·edge device에서 몇 Hz로 실행할 수 있는가?</p>
+      <ul class="pts">
+        <li>대상: OpenVLA, π0 계열 공개 구현, diffusion policy, compact VLA, 연구실 GPU 또는 Jetson급</li>
+        <li>model size·memory, vision encoder frequency, action head sampling step, 통신 latency, warm-up·precision</li>
+        <li>Real-Time Chunking(C05-S02)의 비동기 실행이 예산을 어떻게 바꾸는가</li>
+      </ul>
+      <p class="note"><b>산출물</b> — 실측 또는 공식 수치 기반 end-to-end latency budget (아래 예산표).</p>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.10 마감 산출물 · 실시간성 예산표</summary>
+    <div class="twrap"><table>
+      <tr><th>단계</th><th>줄일 수 있는 방법</th><th>줄였을 때의 위험</th></tr>
+      <tr><td>camera/sensor acquisition</td><td>downsampling</td><td>contact·motion 손실</td></tr>
+      <tr><td>vision encoding</td><td>frame reuse, smaller encoder</td><td>stale representation</td></tr>
+      <tr><td>reasoning</td><td>parallel/latent reasoning</td><td>interpretability 감소</td></tr>
+      <tr><td>action generation</td><td>fewer flow/diffusion steps, async chunking</td><td>action quality 저하</td></tr>
+      <tr><td>communication/control</td><td>onboard execution</td><td>compute·thermal 제한</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ Ch.11 ============ -->
+<section class="ch" id="ch11">
+  <header><span class="chno">CH.11</span><h2>Locomotion과 Whole-Body Control</h2><span class="cnt">3 sessions</span></header>
+  <p class="goal">manipulation 중심 VLA 계보와 거의 독립적으로 발전해 온 locomotion·whole-body RL 계보의 문제 설정을 이해하고, 두 계보가 humanoid에서 만나는 지점을 본다. 선택적 Chapter — Ch.12와 순서 교체·병렬 가능, 최소 한 세션 권장. <em>대비축: demonstration이 아닌 시뮬 RL·보상, 수십~수백 Hz 제어, sim-to-real이 1급 문제, 실패 비용은 낙상.</em></p>
+
+  <details class="s" id="c11-s01">
+    <summary><span class="code">C11-S01</span><span class="t">Locomotion RL의 현재 <em>— 지형 locomotion과 agile motion tracking</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">왜 locomotion은 demonstration 없이 시뮬레이터 RL만으로 학습이 가능하며, 2025-26년의 전선은 어디까지 와 있는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2503.00692" target="_blank" rel="noopener">Learning Perceptive Humanoid Locomotion over Challenging Terrain</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2508.08241" target="_blank" rel="noopener">BeyondMimic: From Motion Tracking to Versatile Humanoid Control via Guided Diffusion</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>perception 기반 지형 locomotion, 보상 설계, curriculum, domain randomization, teacher-student distillation</li>
+        <li>사람 동작 tracking으로 배운 agile 기술을 guided diffusion으로 조합하는 test-time 제어</li>
+        <li>배경 노트: 대규모 병렬 시뮬 RL(Isaac Gym 계열, 2021~)·quadruped parkour 계보는 원리만 한 문단으로</li>
+      </ul>
+      <p class="note"><b>토론</b> — manipulation은 왜 같은 방식으로 풀리지 않는가? (접촉 다양성, 물체 분포, 보상 정의)</p>
+    </div>
+  </details>
+
+  <details class="s" id="c11-s02">
+    <summary><span class="code">C11-S02</span><span class="t">Humanoid whole-body control <em>— HOVER + ASAP</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">서로 다른 제어 모드를 하나의 whole-body 컨트롤러로 통합할 수 있는가, 시뮬과 실물의 물리 격차는 어떻게 보정하는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2410.21229" target="_blank" rel="noopener">HOVER: Versatile Neural Whole-Body Controller</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2502.01143" target="_blank" rel="noopener">ASAP: Aligning Simulation and Real-World Physics</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>motion tracking 기반 통합 컨트롤러 distillation, command space 통일 (HOVER)</li>
+        <li>delta action model로 dynamics 격차 보정, agile 전신 기술 (ASAP)</li>
+      </ul>
+      <p class="note"><b>연결</b> — GR00T 계열에서 VLA(상체 조작)와 whole-body controller(하체·전신)가 만나는 인터페이스.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c11-s03">
+    <summary><span class="code">C11-S03</span><span class="t">전신 teleop 데이터 수집 <em>— TWIST + TWIST2</em></span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <div class="body">
+      <p class="q">사람의 전신 동작을 humanoid 데이터로 바꾸는 retargeting·teleop 시스템은 manipulation 데이터 엔진이 될 수 있는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2505.02833" target="_blank" rel="noopener">TWIST: Teleoperated Whole-Body Imitation System</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2511.02832" target="_blank" rel="noopener">TWIST2: Scalable, Portable, and Holistic Humanoid Data Collection</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>human motion retargeting, RL+BC 통합 whole-body controller, 이동형 데이터 수집으로의 확장</li>
+        <li>비교 노트: HumanPlus, OmniH2O, ExBody2(2024)는 계보 배경으로만</li>
+      </ul>
+      <p class="note"><b>연결</b> — Ch.2 ALOHA 계보의 전신 확장, Ch.6 데이터 엔진 비교표에 행 추가.</p>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.11 마감 산출물 · manipulation vs locomotion 비교표</summary>
+    <div class="twrap"><table>
+      <tr><th>축</th><th>manipulation VLA</th><th>locomotion RL</th></tr>
+      <tr><td>학습 신호</td><td>demonstration·teleop</td><td>시뮬레이터 RL·보상</td></tr>
+      <tr><td>데이터 병목</td><td>실물 수집 비용</td><td>sim-to-real gap</td></tr>
+      <tr><td>제어 주파수</td><td>수 Hz ~ 수십 Hz</td><td>수십 ~ 수백 Hz</td></tr>
+      <tr><td>일반화 대상</td><td>물체·task·환경</td><td>지형·외란·dynamics</td></tr>
+      <tr><td>실패 비용</td><td>task 실패</td><td>낙상·파손</td></tr>
+      <tr><td>만나는 지점</td><td colspan="2">humanoid 전신 조작, loco-manipulation</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ Ch.12 ============ -->
+<section class="ch" id="ch12">
+  <header><span class="chno">CH.12</span><h2>촉각과 힘</h2><span class="cnt">4 sessions</span></header>
+  <p class="goal">촉각과 힘을 단순한 추가 modality가 아니라 시각과 통계적·시간적 성질이 다른 signal로 다룬다. 공통 비교축: 센서 종류·위치, sampling frequency, no-contact 신호의 의미, 융합 위치, architecture 변경 여부, 사전학습·calibration 요구.</p>
+
+  <details class="s" id="c12-s01">
+    <summary><span class="code">C12-S01</span><span class="t">VTLA + ForceVLA <em>— tactile image와 force/torque</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">시각만으로 원리적으로 풀기 어려운 task는 어떻게 정의하며, tactile image와 wrist F/T vector는 같은 modality로 취급할 수 있는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2505.09577" target="_blank" rel="noopener">VTLA: Vision-Tactile-Language-Action with Preference Learning</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2505.22159" target="_blank" rel="noopener">ForceVLA</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>insertion task, tactile modality, preference learning (VTLA)</li>
+        <li>6축 force/torque, force-aware MoE, contact-rich manipulation (ForceVLA)</li>
+      </ul>
+      <p class="note"><b>주의</b> — 센서·task가 다르므로 성공률 직접 비교 금지. 토론: 촉각의 효과인가, task-specific inductive bias인가? 산출물: tactile/force/proprioception 신호 구분표.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c12-s02">
+    <summary><span class="code">C12-S02</span><span class="t">Tactile-VLA + TacVLA/TAP-VLA <em>— grounding과 융합 위치</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">VLA가 언어·시각에서 학습한 물성 지식을 tactile signal과 연결할 수 있는가? tactile token 직접 주입과 visual prompt 우회 중 어느 쪽이 유리한가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2507.09160" target="_blank" rel="noopener">Tactile-VLA</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2603.12665" target="_blank" rel="noopener">TacVLA</a> (2026) · <a href="https://arxiv.org/abs/2606.29089" target="_blank" rel="noopener">TAP-VLA</a> (2026) — architecture modification vs input transformation 대조</li>
+      </ul>
+      <ul class="pts">
+        <li>physical language instruction, tactile generalization, pretrained VLA knowledge</li>
+        <li>contact-aware selective gating vs tactile annotation overlay/prompting</li>
+      </ul>
+      <p class="note"><b>쟁점</b> — '부드럽게', '미끄럽다' 같은 언어 개념이 실제 force/contact control로 grounding되는가? 가중치 수정 없는 접근의 재현 가능성.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c12-s03">
+    <summary><span class="code">C12-S03</span><span class="t">RDP 재방문 + Tactile-WAM <em>— 시간 특성과 tactile pollution</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <div class="body">
+      <p class="q">tactile modality의 가치는 표현 정보보다 빠른 feedback loop에 있는가? 희소·국소·이벤트성 tactile signal은 왜 visual dynamics model을 오염시키는가?</p>
+      <ul class="papers">
+        <li>C10-S02를 tactile fusion 위치·sampling frequency 관점에서 재분석</li>
+        <li><a href="https://arxiv.org/abs/2606.26663" target="_blank" rel="noopener">Tactile-WAM: Touch-Aware World Action Model</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>tactile pollution, asymmetric attention, world-action modeling</li>
+        <li>되짚기: JEPA·world model latent가 contact 정보를 얼마나 보존하는가?</li>
+      </ul>
+      <p class="note"><b>산출물</b> — modality별 적정 update frequency 표.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c12-s04">
+    <summary><span class="code">C12-S04</span><span class="t">촉각·힘 최신 논문 업데이트</span><span class="badges"><span class="b upd">Update</span></span></summary>
+    <div class="body">
+      <ul class="pts">
+        <li>선택 기준: contact onset detection / sensor-free force inference / cross-sensor generalization / high-frequency control / tactile pretraining / calibration-free fusion 중 하나를 새롭게 해결한 연구 (후보: <a href="https://arxiv.org/abs/2606.31723" target="_blank" rel="noopener">UniTacVLA</a> 등)</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.12 마감 산출물 · 융합 위치 비교표</summary>
+    <div class="twrap"><table>
+      <tr><th>접근</th><th>신호</th><th>융합 위치</th><th>arch. 변경</th><th>장점</th><th>실패 가능성</th></tr>
+      <tr><td>input token</td><td>tactile image</td><td>입력단</td><td>작음/중간</td><td>단순</td><td>no-contact noise</td></tr>
+      <tr><td>gated fusion</td><td>tactile/contact</td><td>중간층</td><td>큼</td><td>필요할 때만 사용</td><td>gate failure</td></tr>
+      <tr><td>action-head fusion</td><td>force/tactile</td><td>action module</td><td>중간</td><td>control 직접 반영</td><td>semantic backbone과 단절</td></tr>
+      <tr><td>visual overlay</td><td>tactile field</td><td>입력 우회</td><td>없음</td><td>기존 VLA 재사용</td><td>정보 압축·왜곡</td></tr>
+      <tr><td>slow-fast</td><td>visual+tactile</td><td>policy hierarchy</td><td>큼</td><td>빠른 반응</td><td>synchronization</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ Ch.13 ============ -->
+<section class="ch" id="ch13">
+  <header><span class="chno">CH.13</span><h2>평가와 물리 일관성</h2><span class="cnt">3 sessions</span></header>
+  <p class="goal">benchmark score, visual plausibility, internal world consistency, real-robot utility를 분리해서 평가한다.</p>
+
+  <details class="s" id="c13-s01">
+    <summary><span class="code">C13-S01</span><span class="t">평가 지형 요약 <em>— 벤치마크, 평가 방식, 함정</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">2026년 현재 world model과 VLA를 평가하는 데이터셋·벤치마크·프로토콜에는 무엇이 있고, 각각 무엇을 측정하며 무엇을 놓치는가?</p>
+      <ul class="papers">
+        <li>내재 일관성 — <a href="https://arxiv.org/abs/2406.03689" target="_blank" rel="noopener">Evaluating the World Model Implicit in a Generative Model</a> (2024): counterfactual probe 개념만 발췌</li>
+        <li>Physics benchmark — <a href="https://arxiv.org/abs/2501.09038" target="_blank" rel="noopener">Physics-IQ</a> · <a href="https://arxiv.org/abs/2502.20694" target="_blank" rel="noopener">WorldModelBench</a>: judge(사람/VLM/metric) 비교</li>
+        <li>시뮬 벤치마크 — <a href="https://arxiv.org/abs/2306.03310" target="_blank" rel="noopener">LIBERO</a> · <a href="https://arxiv.org/abs/2405.05941" target="_blank" rel="noopener">SimplerEnv</a>: real-to-sim 상관과 무너지는 조건</li>
+        <li>재현성·순환 논증 — camera pose·reset·object set·operator 개입 + world model로 policy를 평가할 때의 순환 논증(Veo, World-Gymnast 재방문)</li>
+      </ul>
+      <ul class="pts">
+        <li>논문 정독이 아니라 평가 지형의 빠른 요약 — 네 묶음을 평가 계층표 한 장으로</li>
+      </ul>
+      <p class="note"><b>쟁점</b> — benchmark가 shortcut을 측정하는 것은 아닌가? evaluator와 policy가 같은 실패를 공유하면? 산출물: 평가 계층표 + 우리가 쓸 수 있는 평가 스택 메모.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c13-s02">
+    <summary><span class="code">C13-S02</span><span class="t">Reward model과 preference optimization의 물리성</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <div class="body">
+      <p class="q">물리 법칙을 직접 모델링하는 대신 '물리적으로 그럴듯함'에 대한 선호를 학습하는 것이 정당한가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2512.24551" target="_blank" rel="noopener">PhyGDPO</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2510.13809" target="_blank" rel="noopener">PhysMaster</a> (2025)</li>
+      </ul>
+      <ul class="pts">
+        <li>연결: π*0.6의 judge, World-Gymnast의 reward, autonomous driving RL alignment</li>
+      </ul>
+      <p class="note"><b>토론</b> — judge가 포착하지 못하는 위반을 정책·생성 모델이 악용할 수 있는가?</p>
+    </div>
+  </details>
+
+  <details class="s" id="c13-s03">
+    <summary><span class="code">C13-S03</span><span class="t">연구실 스케일 평가·분석 연구</span><span class="badges"><span class="b lab">◆ 연구실</span><span class="b ext">Extension</span></span></summary>
+    <div class="body">
+      <p class="q">새 모델을 만들지 않고도, 저가 로봇 벤치마크와 통제된 실증 분석만으로 어떤 기여가 가능한가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2605.20774" target="_blank" rel="noopener">VLA-REPLICA: A Low-Cost, Reproducible Benchmark for Real-World Evaluation</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2606.08881" target="_blank" rel="noopener">Benchmarking VLA Models on SO-101: Failure and Recovery Analysis</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>저비용·재현 가능한 실물 평가 프로토콜 설계, LeRobot SO-101급 저가 암의 표준화 평가·실패 분류·recovery 지표</li>
+        <li>분석 연구 후보(택1): <a href="https://arxiv.org/abs/2601.03309" target="_blank" rel="noopener">VLM4VLA</a>(VLM backbone의 기여를 되묻는 실증 연구) · <a href="https://arxiv.org/abs/2603.22078" target="_blank" rel="noopener">Do World Action Models Generalize Better than VLAs?</a>(강건성 비교)</li>
+      </ul>
+      <p class="note"><b>개인 연구자 관점</b> — 벤치마크·실패 분석 논문이 기여로 인정받는 조건: 프로토콜·코드 공개, 통계적 엄밀성, 다른 연구의 채택 가능성.</p>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.13 마감 산출물 · 평가 계층표</summary>
+    <div class="twrap"><table>
+      <tr><th>계층</th><th>평가 질문</th><th>대표 metric</th><th>놓치는 것</th></tr>
+      <tr><td>visual</td><td>영상이 자연스러운가</td><td>FVD, human preference</td><td>dynamics correctness</td></tr>
+      <tr><td>physical event</td><td>물리 위반이 있는가</td><td>Physics benchmark</td><td>long-horizon state</td></tr>
+      <tr><td>state consistency</td><td>내부 상태가 일관적인가</td><td>probe, counterfactual test</td><td>policy utility</td></tr>
+      <tr><td>policy utility</td><td>더 좋은 action을 선택하는가</td><td>success, return</td><td>evaluator bias</td></tr>
+      <tr><td>deployment</td><td>실제 시스템에서 안정적인가</td><td>closed-loop success, latency</td><td>환경 다양성</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ 운영 ============ -->
+<section class="blk" id="ops">
+  <h2>운영 가이드</h2>
+
+  <h3 style="font-size:15px; margin:26px 0 0;">권장 진행 순서</h3>
+  <p class="blk-sub">선수 관계 때문에 아래 순서를 권장한다. Ch.7·Ch.8은 순서 교체·병렬 가능(단, Ch.9 전에 predictive representation과 world model의 차이를 정리). Ch.11은 선택적.</p>
+  <div class="flow">
+    <div class="fnode"><span class="fc">CH.01</span>온보딩</div><div class="farrow">↓</div>
+    <div class="fnode"><span class="fc">CH.02</span>VLA 초기 계보<small>RT-1·RT-2 → OXE·OpenVLA → ACT·Mobile ALOHA</small></div><div class="farrow">↓</div>
+    <div class="fnode"><span class="fc">CH.03</span>Action 생성 도구<small>DP·FM → DiT·FAST → 3D policy</small></div><div class="farrow">↓</div>
+    <div class="fnode"><span class="fc">CH.04</span>Continuous-action VLA</div><div class="farrow">↓</div>
+    <div class="fnode"><span class="fc">CH.05</span>π 계보</div><div class="farrow">↓</div>
+    <div class="fnode"><span class="fc">CH.06</span>데이터·스케일·Embodiment</div><div class="farrow">↓</div>
+    <div class="fpair">
+      <div class="fnode"><span class="fc">CH.07</span>표현과 기하</div>
+      <div class="fnode"><span class="fc">CH.08</span>World Model</div>
+    </div>
+    <div class="fnote">순서 교체·병렬 가능</div><div class="farrow">↓</div>
+    <div class="fnode"><span class="fc">CH.09</span>Reasoning</div><div class="farrow">↓</div>
+    <div class="fnode"><span class="fc">CH.10</span>실시간성</div><div class="farrow">↓</div>
+    <div class="fnode opt"><span class="fc">CH.11</span>Locomotion<small>선택 — Ch.12와 병렬 가능</small></div><div class="farrow">↓</div>
+    <div class="fnode"><span class="fc">CH.12</span>촉각과 힘</div><div class="farrow">↓</div>
+    <div class="fnode"><span class="fc">CH.13</span>평가</div>
+  </div>
+
+  <h3 style="font-size:15px; margin:34px 0 0;">최소 Core 경로 <span style="font-weight:400; color:var(--faint); font-size:12px;">— 시간이 부족할 때 우선하는 28세션</span></h3>
+  <div class="cols2">
+    <ol class="core-path">
+      <li>Physical AI 온보딩 (지형·용어·읽는 법)</li>
+      <li>RT-1 + RT-2</li>
+      <li>Open X-Embodiment + OpenVLA</li>
+      <li>ACT + Mobile ALOHA</li>
+      <li>Diffusion Policy + Flow Matching</li>
+      <li>DiT + FAST</li>
+      <li>CogACT + Octo</li>
+      <li>RDT-1B + Diffusion-VLA</li>
+      <li>π0 + π0.5</li>
+      <li>π*0.6 + Real-Time Chunking</li>
+      <li>Gemini Robotics 1.0 + 1.5</li>
+      <li>GR00T N1 + N1.5</li>
+      <li>LAPA + DreamGen</li>
+      <li>LeCun 발췌 + I-JEPA</li>
+      <li>V-JEPA 2.x</li>
+      <li>DUSt3R + VGGT 또는 3D/4D-VLA</li>
+      <li>World Models 발췌 + Dreamer 4</li>
+      <li>Genie + Genie 3</li>
+      <li>Cosmos 플랫폼 + Transfer</li>
+      <li>Cosmos-Predict2.5 + Cosmos 3</li>
+      <li>Ctrl-World + WorldVLA</li>
+      <li>Cosmos-Reason + Alpamayo-R1</li>
+      <li>ECoT + CoT-VLA</li>
+      <li>Fast-in-Slow + Hume</li>
+      <li>onboard latency 실습</li>
+      <li>VTLA + ForceVLA</li>
+      <li>평가 지형 요약</li>
+      <li>물리성 선호 학습 (PhyGDPO + PhysMaster)</li>
+    </ol>
+  </div>
+
+  <h3 style="font-size:15px; margin:34px 0 0;">발표 템플릿과 규칙</h3>
+  <ul class="plist" style="margin-top:12px;">
+    <li><b>한 문장 위치.</b> "이 연구는 ___ 계보에서 ___ 문제를 해결하기 위해 ___를 바꾼 연구다." 여러 논문 세션은 "이 세션은 ___라는 질문에 대해 ___와 ___를 비교한다"를 추가.</li>
+    <li><b>시스템 명세.</b> robot/embodiment, sensor, observation, action space, action chunk, control frequency, model size, data source, task·성공 정의, 공개 여부 — anchor 논문만 완전하게, 나머지는 달라진 항목만.</li>
+    <li><b>가장 강한 증거와 가장 약한 증거.</b> 주장을 가장 잘 지지하는 실험 1개, 부족한 실험 또는 누락된 대조군 1개.</li>
+    <li><b>재현·연구 가능성.</b> 공개 자원으로 재현 가능한 부분 / 우리 연구실에서 수정 가능한 부분 / 빅테크 자원 없이는 어려운 부분.</li>
+    <li><b>최신성 규칙.</b> core 계보가 아니면 2025-26 논문 우선. 발표 1주 전 arXiv 최신 버전·공식 페이지·코드 확인. 단순 SOTA 향상은 10분 업데이트로. 블로그만 있고 방법·평가가 없으면 Core 지정 금지. 논문 버전·확인 날짜를 슬라이드에 기록.</li>
+  </ul>
+
+  <h3 style="font-size:15px; margin:34px 0 0;">최종 체크리스트 <span style="font-weight:400; color:var(--faint); font-size:12px;">— 스터디 종료 시 답할 수 있어야 하는 것</span></h3>
+  <ul class="check">
+    <li>VLA 논문을 discrete/compressed token, diffusion head, flow head로 분류할 수 있다.</li>
+    <li>action chunk 길이와 replanning frequency의 trade-off를 설명할 수 있다.</li>
+    <li>Flow Matching(학습 목표), DiT(아키텍처), FAST(tokenizer)가 서로 다른 층위임을 설명할 수 있다.</li>
+    <li>π0 → π0.5 → π*0.6의 발전을 '한계 시인 사슬'로 설명할 수 있다.</li>
+    <li>pixel generation, latent prediction, explicit geometry의 전제를 비교할 수 있다.</li>
+    <li>world model을 representation, simulator, data engine, reward/evaluator로 분해할 수 있다.</li>
+    <li>reasoning trace의 매체와 latency·interpretability trade-off를 분석할 수 있다.</li>
+    <li>manipulation VLA와 locomotion RL의 문제 설정 차이를 설명할 수 있다.</li>
+    <li>촉각·힘 신호를 센서·주파수·융합 위치 기준으로 비교할 수 있다.</li>
+    <li>success rate를 hardware·task·control 조건 없이 직접 비교하지 않는다.</li>
+    <li>2025-2026년 논문 지형에서 다음에 검증해 볼 만한 연구 방향을 최소 하나 말할 수 있다.</li>
+  </ul>
+</section>
+
+<!-- ============ 부록 ============ -->
+<section class="blk" id="apx">
+  <h2>부록 · 주요 논문 링크</h2>
+  <p class="blk-sub">링크와 버전은 발표 1주 전에 다시 확인한다. 세션에 링크된 논문 외의 참고 자료만 모았다.</p>
+  <div class="apx">
+    <div class="apx-g"><h3>서베이 (좌표 확인용)</h3><ul>
+      <li><a href="https://arxiv.org/abs/2407.06886" target="_blank" rel="noopener">Comprehensive Survey on Embodied AI</a></li>
+      <li><a href="https://arxiv.org/abs/2405.14093" target="_blank" rel="noopener">Survey on VLA Models for Embodied AI</a></li>
+      <li><a href="https://arxiv.org/abs/2510.16732" target="_blank" rel="noopener">Survey on World Models for Embodied AI</a></li>
+      <li><a href="https://arxiv.org/abs/2605.00080" target="_blank" rel="noopener">World Model for Robot Learning Survey</a></li>
+      <li><a href="https://arxiv.org/abs/2604.23001" target="_blank" rel="noopener">VLA Datasets, Benchmarks, and Data Engines</a></li>
+    </ul></div>
+    <div class="apx-g"><h3>Geometry·기타</h3><ul>
+      <li><a href="https://arxiv.org/abs/2605.22882" target="_blank" rel="noopener">GEM-4D</a></li>
+      <li><a href="https://arxiv.org/abs/2403.12945" target="_blank" rel="noopener">DROID</a></li>
+      <li><a href="https://arxiv.org/abs/2412.13196" target="_blank" rel="noopener">ExBody2</a> · <a href="https://arxiv.org/abs/2406.10454" target="_blank" rel="noopener">HumanPlus</a> · <a href="https://arxiv.org/abs/2406.08858" target="_blank" rel="noopener">OmniH2O</a></li>
+    </ul></div>
+    <div class="apx-g"><h3>연구실 스케일 (2026)</h3><ul>
+      <li><a href="https://arxiv.org/abs/2602.10503" target="_blank" rel="noopener">Long-Lived Robots (Continual RL)</a></li>
+      <li><a href="https://arxiv.org/abs/2605.10903" target="_blank" rel="noopener">CapVector</a></li>
+      <li><a href="https://arxiv.org/abs/2606.06033" target="_blank" rel="noopener">RealDexUMI</a> · <a href="https://arxiv.org/abs/2602.11150" target="_blank" rel="noopener">YOR</a></li>
+      <li><a href="https://arxiv.org/abs/2607.17970" target="_blank" rel="noopener">MEVION</a> · <a href="https://arxiv.org/abs/2606.10244" target="_blank" rel="noopener">YUBI</a></li>
+      <li><a href="https://arxiv.org/abs/2605.20774" target="_blank" rel="noopener">VLA-REPLICA</a> · <a href="https://arxiv.org/abs/2606.08881" target="_blank" rel="noopener">SO-101 벤치마크</a></li>
+      <li><a href="https://arxiv.org/abs/2601.03309" target="_blank" rel="noopener">VLM4VLA</a> · <a href="https://arxiv.org/abs/2603.22078" target="_blank" rel="noopener">WAM vs VLA Robustness</a></li>
+    </ul></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>개정 기준일 2026-08-09 · 연구실 스케일 개정안(50세션) 기준 · 커리큘럼 원문: Physical_AI_study_curriculum_revised.md</p>
+  <p>산업계 테크리포트는 "실험으로 보인 것 / 저자가 해석한 것 / 마케팅·전망"을 구분해서 읽는다. 커뮤니티 정리는 논문 발견용으로만 쓰고 직접 인용하지 않는다.</p>
+</footer>
+</main>
+</div>
+
+<script>
+  (function () {
+    var openBtn = document.getElementById('btn-open');
+    var closeBtn = document.getElementById('btn-close');
+    function setAll(state) {
+      document.querySelectorAll('details.s, details.artifact').forEach(function (d) { d.open = state; });
+    }
+    if (openBtn) openBtn.addEventListener('click', function () { setAll(true); });
+    if (closeBtn) closeBtn.addEventListener('click', function () { setAll(false); });
+
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+    var map = {};
+    links.forEach(function (a) {
+      var id = a.getAttribute('href').slice(1);
+      map[id] = a;
+    });
+    var targets = Object.keys(map).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    if ('IntersectionObserver' in window) {
+      var current = null;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            if (current) current.classList.remove('on');
+            current = map[e.target.id];
+            if (current) current.classList.add('on');
+          }
+        });
+      }, { rootMargin: '-15% 0px -75% 0px' });
+      targets.forEach(function (t) { io.observe(t); });
+    }
+
+    // 세션 앵커로 직접 진입하면 해당 카드를 펼친다
+    if (location.hash) {
+      var el = document.querySelector(location.hash);
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    }
+  })();
+</script>
+
+</body>
+</html>
