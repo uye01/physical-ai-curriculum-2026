@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Copy-Item \"C:\\\\DSBA\\\\Paper Seminar & PYSR\\\\physical_ai_curriculum\\\\Physical_AI_study_curriculum.md\" \"C:\\\\DSBA\\\\Paper Seminar & PYSR\\\\physical_ai_curriculum\\\\Physical_AI_study_curriculum_������_�����ǽ�����.md\")"
+    ]
+  }
+}
