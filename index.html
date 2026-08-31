@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Physical AI &amp; World Models 스터디 커리큘럼 — 13 Chapters · 50 Sessions · VLA, World Model, Reasoning, 실시간 제어를 문제 중심·계보 중심으로">
+<meta name="description" content="Physical AI &amp; World Models 스터디 커리큘럼 — 14 Chapters · 51 Sessions · VLA, World Model, Reasoning, 실시간 제어를 문제 중심·계보 중심으로">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
 </head>
 <body>
@@ -454,7 +454,8 @@
   <a href="#ch10"><span class="n">10</span>실시간성</a>
   <a href="#ch11"><span class="n">11</span>Locomotion</a>
   <a href="#ch12"><span class="n">12</span>촉각과 힘</a>
-  <a href="#ch13"><span class="n">13</span>평가</a>
+  <a href="#ch13"><span class="n">13</span>Social WM</a>
+  <a href="#ch14"><span class="n">14</span>평가</a>
   <div class="gap"></div>
   <a href="#ops"><span class="n">▸</span>운영 가이드</a>
   <a href="#apx"><span class="n">▸</span>논문 링크</a>
@@ -466,11 +467,11 @@
   <h1>Physical AI &amp; World Models<br>스터디 커리큘럼</h1>
   <p class="lede">로봇이 세계를 어떻게 관측하고, 표현하고, 예측하며, 행동으로 옮기는가. VLA, 정책 학습, world model, reasoning, 실시간 제어가 만나는 지점을 <b>문제 중심·계보 중심</b>으로 따라간다. 목표는 당장의 연구 착수가 아니라 <b>분야의 이해와 흥미</b>, 그리고 2026년 8월 시점에서 다음 연구를 고를 수 있는 인사이트다.</p>
   <div class="stats">
-    <span class="stat"><b>13</b> Chapters</span>
-    <span class="stat"><b>50</b> Sessions</span>
+    <span class="stat"><b>14</b> Chapters</span>
+    <span class="stat"><b>51</b> Sessions</span>
     <span class="stat"><b>100+</b> Papers</span>
     <span class="stat">세션 1시간 · 논문 <b>2~3편</b></span>
-    <span class="stat">개정 <b>2026-08-09</b></span>
+    <span class="stat">개정 <b>2026-08-31</b></span>
   </div>
   <p class="rev">주차가 아니라 Chapter와 학습 질문 기준으로 진행한다. 연구실 스케일 개정안(◆ 세션 3개 포함) 기준. 논문 링크·버전은 발표 1주 전에 재확인한다.</p>
 </header>
@@ -776,7 +777,7 @@
         <li>experience collection, intervention, advantage-conditioned policy, reward/judge (RECAP)</li>
         <li>추론 지연 동안 chunk를 이어붙이는 inpainting식 비동기 실행 (RTC)</li>
       </ul>
-      <p class="note"><b>쟁점</b> — 보상은 누가 정의하며 VLM-as-judge를 얼마나 신뢰할 수 있는가? chunk를 어느 구간에서 잘라도 안전한가? 연결: Ch.13 평가, Ch.10 실시간성.</p>
+      <p class="note"><b>쟁점</b> — 보상은 누가 정의하며 VLM-as-judge를 얼마나 신뢰할 수 있는가? chunk를 어느 구간에서 잘라도 안전한가? 연결: Ch.14 평가, Ch.10 실시간성.</p>
     </div>
   </details>
 
@@ -1125,7 +1126,7 @@
         <li>generation artifact → action label error → policy failure의 오류 전파</li>
         <li>policy evaluation protocol, real-world correlation, red-teaming, coverage (Veo)</li>
       </ul>
-      <p class="note"><b>연결</b> — Ch.13의 순환 논증 문제. 산출물: 데이터 생성·정책 평가 각각의 오류 전파도.</p>
+      <p class="note"><b>연결</b> — Ch.14의 순환 논증 문제. 산출물: 데이터 생성·정책 평가 각각의 오류 전파도.</p>
     </div>
   </details>
 
@@ -1453,11 +1454,47 @@
 
 <!-- ============ Ch.13 ============ -->
 <section class="ch" id="ch13">
-  <header><span class="chno">CH.13</span><h2>평가와 물리 일관성</h2><span class="cnt">3 sessions</span></header>
-  <p class="goal">benchmark score, visual plausibility, internal world consistency, real-robot utility를 분리해서 평가한다.</p>
+  <header><span class="chno">CH.13</span><h2>Social World Model</h2><span class="cnt">1 session</span></header>
+  <p class="goal">world model의 시야를 물리 세계에서 사회적 세계로 한 번 확장한다. 사람과 에이전트의 믿음·의도·행동을 상태로 취급하는 social world model이 physical world model과 어떤 구조를 공유하고 무엇이 다른지 확인한다.</p>
 
   <details class="s" id="c13-s01">
-    <summary><span class="code">C13-S01</span><span class="t">평가 지형 요약 <em>— 벤치마크, 평가 방식, 함정</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C13-S01</span><span class="t">Social world model <em>— 사람과 에이전트를 상태로 모델링하기</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <div class="body">
+      <p class="q">physical world model이 물체의 상태와 동역학을 예측하듯, 상호작용하는 에이전트의 mental state와 다음 행동을 예측하는 world model은 어떻게 정형화하고 평가하는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2509.00559" target="_blank" rel="noopener">Social World Models</a> (2025/26)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2606.11482" target="_blank" rel="noopener">Building Social World Models with Large Language Models</a> (2026)</li>
+      </ul>
+      <ul class="pts">
+        <li>S3AP — 사회적 상호작용을 상태·행동·mental state의 구조화된 표현으로 정형화, theory-of-mind 추론(FANToM 등)을 크게 개선</li>
+        <li>사건에 따른 사회적 믿음의 갱신 추적 — 관측 뒤에 숨은 mental state를 latent 상태로 추적한다는 점에서 partially observable world model과 같은 구조</li>
+        <li>데이터셋: <a href="https://huggingface.co/collections/nvidia/nemotron-personas" target="_blank" rel="noopener">NVIDIA Nemotron-Personas</a> — 인구통계·지리 분포 기반 다국가 합성 페르소나(7개국 9개 locale, 약 5,300만 개; ko_KR 포함). social simulation의 '인구'를 무엇으로 채우고 대표성·편향을 어떻게 통제하는가</li>
+        <li>physical AI와의 접점: 사람이 있는 환경의 로봇(HRI), 보행자·운전자 의도 예측, 협업 manipulation</li>
+      </ul>
+      <p class="note"><b>토론</b> — physical world model과 social world model은 하나의 모델로 통합되어야 하는가, 별개 모듈로 두고 인터페이스만 맞추면 되는가? 연결: Ch.8 world model 기능 분해, Ch.9 reasoning 매체, Ch.14 평가.</p>
+    </div>
+  </details>
+
+  <details class="artifact">
+    <summary>Ch.13 마감 산출물 · physical vs social world model 비교 메모</summary>
+    <div class="twrap"><table>
+      <tr><th>축</th><th>Physical world model</th><th>Social world model</th></tr>
+      <tr><td>상태</td><td>물체 pose·동역학</td><td>에이전트의 믿음·의도·감정</td></tr>
+      <tr><td>관측 가능성</td><td>부분 관측 (occlusion)</td><td>근본적으로 비관측 (mental state)</td></tr>
+      <tr><td>전이 규칙</td><td>물리 법칙</td><td>사회 규범·전략적 행동</td></tr>
+      <tr><td>평가</td><td>physics benchmark·rollout 일관성</td><td>theory-of-mind 벤치마크·시뮬레이션</td></tr>
+      <tr><td>데이터</td><td>로봇 시연·비디오</td><td>대화·상호작용 기록·합성 페르소나 (Nemotron-Personas)</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ============ Ch.14 ============ -->
+<section class="ch" id="ch14">
+  <header><span class="chno">CH.14</span><h2>평가와 물리 일관성</h2><span class="cnt">3 sessions</span></header>
+  <p class="goal">benchmark score, visual plausibility, internal world consistency, real-robot utility를 분리해서 평가한다.</p>
+
+  <details class="s" id="c14-s01">
+    <summary><span class="code">C14-S01</span><span class="t">평가 지형 요약 <em>— 벤치마크, 평가 방식, 함정</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
       <p class="q">2026년 현재 world model과 VLA를 평가하는 데이터셋·벤치마크·프로토콜에는 무엇이 있고, 각각 무엇을 측정하며 무엇을 놓치는가?</p>
       <ul class="papers">
@@ -1473,8 +1510,8 @@
     </div>
   </details>
 
-  <details class="s" id="c13-s02">
-    <summary><span class="code">C13-S02</span><span class="t">Reward model과 preference optimization의 물리성</span><span class="badges"><span class="b core">Core</span></span></summary>
+  <details class="s" id="c14-s02">
+    <summary><span class="code">C14-S02</span><span class="t">Reward model과 preference optimization의 물리성</span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
       <p class="q">물리 법칙을 직접 모델링하는 대신 '물리적으로 그럴듯함'에 대한 선호를 학습하는 것이 정당한가?</p>
       <ul class="papers">
@@ -1488,8 +1525,8 @@
     </div>
   </details>
 
-  <details class="s" id="c13-s03">
-    <summary><span class="code">C13-S03</span><span class="t">연구실 스케일 평가·분석 연구</span><span class="badges"><span class="b lab">◆ 연구실</span><span class="b ext">Extension</span></span></summary>
+  <details class="s" id="c14-s03">
+    <summary><span class="code">C14-S03</span><span class="t">연구실 스케일 평가·분석 연구</span><span class="badges"><span class="b lab">◆ 연구실</span><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">새 모델을 만들지 않고도, 저가 로봇 벤치마크와 통제된 실증 분석만으로 어떤 기여가 가능한가?</p>
       <ul class="papers">
@@ -1505,7 +1542,7 @@
   </details>
 
   <details class="artifact">
-    <summary>Ch.13 마감 산출물 · 평가 계층표</summary>
+    <summary>Ch.14 마감 산출물 · 평가 계층표</summary>
     <div class="twrap"><table>
       <tr><th>계층</th><th>평가 질문</th><th>대표 metric</th><th>놓치는 것</th></tr>
       <tr><td>visual</td><td>영상이 자연스러운가</td><td>FVD, human preference</td><td>dynamics correctness</td></tr>
@@ -1539,7 +1576,8 @@
     <div class="fnode"><span class="fc">CH.10</span>실시간성</div><div class="farrow">↓</div>
     <div class="fnode opt"><span class="fc">CH.11</span>Locomotion<small>선택 — Ch.12와 병렬 가능</small></div><div class="farrow">↓</div>
     <div class="fnode"><span class="fc">CH.12</span>촉각과 힘</div><div class="farrow">↓</div>
-    <div class="fnode"><span class="fc">CH.13</span>평가</div>
+    <div class="fnode opt"><span class="fc">CH.13</span>Social World Model<small>시야 확장 — 1세션</small></div><div class="farrow">↓</div>
+    <div class="fnode"><span class="fc">CH.14</span>평가</div>
   </div>
 
   <h3 style="font-size:15px; margin:34px 0 0;">최소 Core 경로 <span style="font-weight:400; color:var(--faint); font-size:12px;">— 시간이 부족할 때 우선하는 28세션</span></h3>
@@ -1596,6 +1634,7 @@
     <li>reasoning trace의 매체와 latency·interpretability trade-off를 분석할 수 있다.</li>
     <li>manipulation VLA와 locomotion RL의 문제 설정 차이를 설명할 수 있다.</li>
     <li>촉각·힘 신호를 센서·주파수·융합 위치 기준으로 비교할 수 있다.</li>
+    <li>social world model이 physical world model과 상태·전이·평가에서 어떻게 다른지 설명할 수 있다.</li>
     <li>success rate를 hardware·task·control 조건 없이 직접 비교하지 않는다.</li>
     <li>2025-2026년 논문 지형에서 다음에 검증해 볼 만한 연구 방향을 최소 하나 말할 수 있다.</li>
   </ul>
@@ -1618,6 +1657,11 @@
       <li><a href="https://arxiv.org/abs/2403.12945" target="_blank" rel="noopener">DROID</a></li>
       <li><a href="https://arxiv.org/abs/2412.13196" target="_blank" rel="noopener">ExBody2</a> · <a href="https://arxiv.org/abs/2406.10454" target="_blank" rel="noopener">HumanPlus</a> · <a href="https://arxiv.org/abs/2406.08858" target="_blank" rel="noopener">OmniH2O</a></li>
     </ul></div>
+    <div class="apx-g"><h3>Social World Model</h3><ul>
+      <li><a href="https://arxiv.org/abs/2509.00559" target="_blank" rel="noopener">Social World Models</a></li>
+      <li><a href="https://arxiv.org/abs/2606.11482" target="_blank" rel="noopener">Building Social World Models with LLMs</a></li>
+      <li><a href="https://huggingface.co/collections/nvidia/nemotron-personas" target="_blank" rel="noopener">Nemotron-Personas (데이터셋)</a></li>
+    </ul></div>
     <div class="apx-g"><h3>연구실 스케일 (2026)</h3><ul>
       <li><a href="https://arxiv.org/abs/2602.10503" target="_blank" rel="noopener">Long-Lived Robots (Continual RL)</a></li>
       <li><a href="https://arxiv.org/abs/2605.10903" target="_blank" rel="noopener">CapVector</a></li>
@@ -1630,7 +1674,7 @@
 </section>
 
 <footer class="foot">
-  <p>개정 기준일 2026-08-09 · 연구실 스케일 개정안(50세션) 기준 · 커리큘럼 원문: Physical_AI_study_curriculum_revised.md</p>
+  <p>개정 기준일 2026-08-31 · 연구실 스케일 개정안(51세션) 기준 · 커리큘럼 원문: Physical_AI_study_curriculum_revised.md</p>
   <p>산업계 테크리포트는 "실험으로 보인 것 / 저자가 해석한 것 / 마케팅·전망"을 구분해서 읽는다. 커뮤니티 정리는 논문 발견용으로만 쓰고 직접 인용하지 않는다.</p>
 </footer>
 </main>

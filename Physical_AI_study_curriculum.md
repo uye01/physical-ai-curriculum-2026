@@ -1,8 +1,8 @@
 # Physical AI & World Models 스터디 커리큘럼
 
-> 개정 기준일: 2026-08-09  
+> 개정 기준일: 2026-08-31  
 > 운영 원칙: **주차가 아니라 Chapter와 학습 질문을 기준으로 진행한다.** 휴회, 발표자 수, 논문 발표 속도에 따라 한 Chapter의 세션 수와 진행 기간을 자유롭게 조정한다.  
-> 이번 개정: (1) 온보딩을 1세션으로 압축, (2) 논문 없는 토론 전용 세션 제거, (3) 평가 Chapter를 요약형 2세션으로 축소, (4) 종합·연구 제안 Chapter 제거, (5) **core 계보가 아니면 2025-2026년 논문을 우선**하는 최신성 원칙 적용(locomotion 세션 전면 교체 포함). 세션당 논문 2~3편 원칙은 유지한다. 총 47세션.
+> 이번 개정: (1) 온보딩을 1세션으로 압축, (2) 논문 없는 토론 전용 세션 제거, (3) 평가 Chapter를 요약형 2세션으로 축소, (4) 종합·연구 제안 Chapter 제거, (5) **core 계보가 아니면 2025-2026년 논문을 우선**하는 최신성 원칙 적용(locomotion 세션 전면 교체 포함), (6) social world model 세션(Ch.13) 1회 추가. 세션당 논문 2~3편 원칙은 유지한다. 총 48세션.
 
 ---
 
@@ -155,13 +155,14 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 | **Ch.10 실시간성과 dual system** | 큰 모델의 느린 추론과 빠른 제어를 어떻게 분리하는가 | 모델 크기 × 지연 × 제어 주파수 표 |
 | **Ch.11 Locomotion과 whole-body control** | 다리·전신 제어는 manipulation과 어떻게 다른 문제인가 | manipulation vs locomotion 문제 설정 비교표 |
 | **Ch.12 촉각과 힘** | 시각 중심 VLA에 고주파·희소 접촉 신호를 어떻게 넣는가 | 촉각·힘 융합 위치 비교표 |
-| **Ch.13 평가와 물리 일관성** | 그럴듯한 생성과 일관된 world model을 어떻게 구분하는가 | 평가 실패 모드 표 |
+| **Ch.13 Social world model** | 사람과 에이전트의 mental state를 world model의 상태로 어떻게 다루는가 | physical vs social world model 비교 메모 |
+| **Ch.14 평가와 물리 일관성** | 그럴듯한 생성과 일관된 world model을 어떻게 구분하는가 | 평가 실패 모드 표 |
 
 ---
 
 ### 1.1 전체 세션 리스트 (한눈에 보기)
 
-> 총 47세션. 세부 내용은 2장의 각 세션 항목을 본다.
+> 총 48세션. 세부 내용은 2장의 각 세션 항목을 본다.
 
 | 세션 | 주제 · 논문 | 구분 |
 | --- | --- | --- |
@@ -222,9 +223,11 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 | C12-S02 | Tactile-VLA + TacVLA/TAP-VLA — grounding과 융합 위치 | Core |
 | C12-S03 | RDP 재방문 + Tactile-WAM — 시간 특성과 tactile pollution | Extension |
 | C12-S04 | 촉각·힘 최신 논문 업데이트 | Update |
-| **Ch.13 평가와 물리 일관성** | | |
-| C13-S01 | 평가 지형 요약 — 벤치마크·평가 방식·함정 한눈에 보기 | Core |
-| C13-S02 | PhyGDPO + PhysMaster — 물리성 선호 학습 | Core |
+| **Ch.13 Social World Model** | | |
+| C13-S01 | Social World Models + Building Social World Models with LLMs — 사회적 상태의 world model | Extension |
+| **Ch.14 평가와 물리 일관성** | | |
+| C14-S01 | 평가 지형 요약 — 벤치마크·평가 방식·함정 한눈에 보기 | Core |
+| C14-S02 | PhyGDPO + PhysMaster — 물리성 선호 학습 | Core |
 
 ---
 
@@ -507,7 +510,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 - **쟁점:**
   - 보상을 누가 정의하며 VLM-as-judge를 얼마나 신뢰할 수 있는가?
   - chunk를 어느 구간에서 잘라 이어도 안전한가?
-- **연결:** Ch.13의 평가와 reward hacking, Ch.10의 실시간성 예산
+- **연결:** Ch.14의 평가와 reward hacking, Ch.10의 실시간성 예산
 
 ---
 
@@ -769,7 +772,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
   - Text2World / Image2World / Video2World의 단일 flow 모델 통합, Cosmos-Reason과의 결합, RL 기반 post-training, 데이터 큐레이션 (Predict2.5)
   - mixture-of-transformers, understanding·generation·action의 단일 백본 통합, omnimodal 평가 (Cosmos 3)
 - **쟁점:** 통합 백본은 로봇 정책 학습에 실제로 무엇을 주는가 — 표현인가, 시뮬레이터인가, 정책 초기화인가?
-- **연결:** C08-S03의 기능 분해도 갱신, Ch.9 Cosmos-Reason, Ch.13 평가
+- **연결:** C08-S03의 기능 분해도 갱신, Ch.9 Cosmos-Reason, Ch.14 평가
 
 ---
 
@@ -799,7 +802,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 - **다루는 것:**
   - generation artifact → action label error → policy failure의 오류 전파
   - policy evaluation protocol, real-world correlation, red-teaming, coverage (Veo)
-- **연결:** Ch.13의 순환 논증 문제
+- **연결:** Ch.14의 순환 논증 문제
 - **산출물:** 데이터 생성·정책 평가 각각의 오류 전파도
 
 ---
@@ -1135,13 +1138,48 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 ---
 
-### Ch.13 평가와 물리 일관성
+### Ch.13 Social world model
+
+> 목표: world model의 시야를 물리 세계에서 사회적 세계로 한 번 확장한다. 사람과 에이전트의 믿음·의도·행동을 상태로 취급하는 social world model이 physical world model과 어떤 구조를 공유하고 무엇이 다른지 확인한다.
+
+---
+
+#### C13-S01 · Social world model — 사람과 에이전트를 상태로 모델링하기
+
+- **구분:** Extension
+- **핵심 질문:** physical world model이 물체의 상태와 동역학을 예측하듯, 상호작용하는 에이전트의 mental state와 다음 행동을 예측하는 world model은 어떻게 정형화하고 평가하는가?
+- **논문:**
+  - *Social World Models* (Zhou et al., 2025/26) — anchor. 사회적 상호작용을 상태·행동·mental state의 구조화된 표현(S3AP)으로 정형화하고, 이를 통해 LLM의 theory-of-mind 추론(FANToM 등)을 크게 개선
+  - *Building Social World Models with Large Language Models* (2026) — 사건에 따라 사회적 믿음이 어떻게 갱신되는지를 추적하는 SWM 프레임워크
+- **다루는 것:**
+  - social world model의 정의 — 관측 뒤에 숨은 mental state(믿음·의도·감정)를 latent 상태로 추적한다는 점에서, partially observable world model과 같은 구조라는 관점
+  - S3AP 표현 형식과 theory-of-mind 벤치마크의 평가 방식
+  - **데이터셋:** NVIDIA **Nemotron-Personas** — 실제 인구통계·지리 분포에 기반한 다국가 합성 페르소나 컬렉션(7개국 9개 locale, 약 5,300만 개; ko_KR 포함). social simulation의 '인구'를 무엇으로 채우고, 그 대표성·편향을 어떻게 통제하는가
+  - physical AI와의 접점: 사람이 있는 환경에서 동작하는 로봇(HRI), 보행자·운전자 의도 예측(autonomous driving), 협업 manipulation
+- **토론:** physical world model과 social world model은 하나의 모델로 통합되어야 하는가, 별개 모듈로 두고 인터페이스만 맞추면 되는가?
+- **연결:** Ch.8의 world model 기능 분해(상태 공간에 '다른 에이전트의 mental state'를 추가하는 확장), Ch.9의 reasoning 매체 논의, Ch.14 평가(사회적 추론 벤치마크도 shortcut을 측정할 수 있다)
+
+---
+
+#### Ch.13 마감 산출물 · physical vs social world model 비교 메모
+
+| 축 | Physical world model | Social world model |
+| --- | --- | --- |
+| 상태 | 물체 pose·동역학 | 에이전트의 믿음·의도·감정 |
+| 관측 가능성 | 부분 관측 (occlusion) | 근본적으로 비관측 (mental state) |
+| 전이 규칙 | 물리 법칙 | 사회 규범·전략적 행동 |
+| 평가 | physics benchmark·rollout 일관성 | theory-of-mind 벤치마크·시뮬레이션 |
+| 데이터 | 로봇 시연·비디오 | 대화·상호작용 기록·합성 페르소나 (Nemotron-Personas) |
+
+---
+
+### Ch.14 평가와 물리 일관성
 
 > 목표: benchmark score, visual plausibility, internal world consistency, real-robot utility를 분리해서 평가한다.
 
 ---
 
-#### C13-S01 · 평가 지형 요약: 벤치마크, 평가 방식, 함정
+#### C14-S01 · 평가 지형 요약: 벤치마크, 평가 방식, 함정
 
 - **구분:** Core
 - **핵심 질문:** 2026년 현재 world model과 VLA를 평가하는 데이터셋·벤치마크·프로토콜에는 무엇이 있고, 각각 무엇을 측정하며 무엇을 놓치는가?
@@ -1156,7 +1194,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 ---
 
-#### C13-S02 · Reward model과 preference optimization의 물리성
+#### C14-S02 · Reward model과 preference optimization의 물리성
 
 - **구분:** Core
 - **핵심 질문:** 물리 법칙을 직접 모델링하는 대신 '물리적으로 그럴듯함'에 대한 선호를 학습하는 것이 정당한가?
@@ -1166,7 +1204,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 ---
 
-#### Ch.13 마감 산출물 · 평가 계층표
+#### Ch.14 마감 산출물 · 평가 계층표
 
 | 계층 | 평가 질문 | 대표 metric | 놓치는 것 |
 | --- | --- | --- | --- |
@@ -1205,11 +1243,14 @@ Ch.7 JEPA·geometry              Ch.8 World model
                     ↓
              Ch.12 Tactile/Force
                     ↓
-             Ch.13 Evaluation
+        Ch.13 Social WM (시야 확장, 1세션)
+                    ↓
+             Ch.14 Evaluation
 ```
 
 - Ch.7과 Ch.8은 발표 인원과 관심사에 따라 순서를 바꾸거나 일부 병렬 운영할 수 있다. 다만 Ch.9 이전에 predictive representation과 world model의 차이를 정리해야 한다.
 - Ch.11은 humanoid 관심도에 따라 축소·생략하거나 Ch.12와 병렬로 운영할 수 있다.
+- Ch.13은 물리 세계 밖으로 시야를 넓히는 1세션 챕터로, 일정이 부족하면 Ch.14 이후로 미루거나 생략할 수 있다.
 
 ---
 
@@ -1369,6 +1410,7 @@ Physical AI는 모델과 릴리스 주기가 빠르므로 다음 규칙을 적�
 - [ ] reasoning trace의 매체와 latency·interpretability trade-off를 분석할 수 있다.
 - [ ] manipulation VLA와 locomotion RL의 문제 설정 차이(학습 신호, 제어 주파수, sim의 역할)를 설명할 수 있다.
 - [ ] 촉각과 힘 신호를 센서·주파수·융합 위치 기준으로 비교할 수 있다.
+- [ ] social world model이 physical world model과 상태·전이·평가에서 어떻게 다른지 설명할 수 있다.
 - [ ] 논문의 success rate를 hardware·task·control 조건 없이 직접 비교하지 않는다.
 - [ ] 2025-2026년 논문 지형에서 다음에 검증해 볼 만한 연구 방향을 최소 하나 말할 수 있다.
 
@@ -1490,7 +1532,13 @@ Physical AI는 모델과 릴리스 주기가 빠르므로 다음 규칙을 적�
 - [UniTacVLA](https://arxiv.org/abs/2606.31723)
 - [Tactile-WAM](https://arxiv.org/abs/2606.26663)
 
-### A.10 평가와 물리 일관성
+### A.10 Social World Model
+
+- [Social World Models](https://arxiv.org/abs/2509.00559)
+- [Building Social World Models with Large Language Models](https://arxiv.org/abs/2606.11482)
+- [Nemotron-Personas (Hugging Face collection)](https://huggingface.co/collections/nvidia/nemotron-personas)
+
+### A.11 평가와 물리 일관성
 
 - [Evaluating the World Model Implicit in a Generative Model](https://arxiv.org/abs/2406.03689)
 - [Physics-IQ](https://arxiv.org/abs/2501.09038)
