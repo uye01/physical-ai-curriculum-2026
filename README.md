@@ -1,4 +1,4 @@
-# Physical AI & World Models 스터디 커리큘럼
+# Physical AI 스터디 커리큘럼
 
 **📖 커리큘럼 웹페이지 → <https://uye01.github.io/physical-ai-curriculum-2026/>**
 
