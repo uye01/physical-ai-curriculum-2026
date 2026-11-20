@@ -510,13 +510,13 @@
 <header class="hero">
   <p class="eyebrow">DSBA · Paper Seminar</p>
   <h1>Physical AI <br>스터디 커리큘럼</h1>
-  <p class="lede">로봇이 세계를 어떻게 관측하고, 표현하고, 예측하며, 행동으로 옮기는가. VLA, 정책 학습, world model, reasoning, 실시간 제어가 만나는 지점을 <b>문제 중심·계보 중심</b>으로 따라간다. 목표는 당장의 연구 착수가 아니라 <b>분야의 이해와 흥미</b>, 그리고 2026년 8월 시점에서 다음 연구를 고를 수 있는 인사이트다.</p>
+  <p class="lede">로봇이 세계를 어떻게 관측하고, 표현하고, 예측하며, 행동으로 옮기는가. VLA, 정책 학습, world model, reasoning, 실시간 제어가 만나는 지점을 <b>문제 중심·계보 중심</b>으로 따라간다. 목표는 당장의 연구 착수가 아니라 <b>분야의 이해와 흥미</b>, 그리고 2026년 11월 시점에서 다음 연구를 고를 수 있는 인사이트다.</p>
   <div class="stats">
     <span class="stat"><b>14</b> Chapters</span>
     <span class="stat"><b>51</b> Sessions</span>
     <span class="stat"><b>100+</b> Papers</span>
     <span class="stat">세션 1시간 · 논문 <b>2~3편</b></span>
-    <span class="stat">개정 <b>2026-08-31</b></span>
+    <span class="stat">개정 <b>2026-11-20</b></span>
   </div>
   <p class="rev">주차가 아니라 Chapter와 학습 질문 기준으로 진행한다. 연구실 스케일 개정안(◆ 세션 3개 포함) 기준. 논문 링크·버전은 발표 1주 전에 재확인한다.</p>
 </header>
@@ -553,6 +553,9 @@
     <li><b>고전 원전은 발췌로.</b> <i>World Models</i>(2018)와 LeCun position paper(2022)는 독립 세션 없이 계보의 출발점으로만 다룬다.</li>
     <li><b>회사가 아니라 문제로 Chapter를 나눈다.</b> 연구그룹은 비교 태그로만 유지한다.</li>
     <li><b>Core / Extension / Update 구분.</b> 새 논문이 나왔다는 이유만으로 Core를 늘리지 않는다 — 새로운 문제 정의·아키텍처·데이터·평가 방식이 있을 때만 승격을 검토한다.</li>
+    <li><b>시리즈는 발전 과정으로.</b> Gemini Robotics, GR00T, π, Genie, Cosmos처럼 버전이 이어지는 연구는 원리 논문 1편을 anchor로 정독하고, 나머지 버전은 계보 표 한 장(버전 × 추가된 것 × 근거 × 남은 한계)으로 발전 과정과 방향을 보인다.</li>
+    <li><b>발표 분량 상한.</b> 정독은 세션당 2편까지. 세 번째 이후 자료는 발췌, 배경 노트 1장, 또는 표의 한 행으로만 다룬다.</li>
+    <li><b>논문이 아닌 업계 변화도 다룬다.</b> API 공개, 가중치 릴리스, 공식 데모는 Industry brief 형식으로 다루되 세션의 anchor로 지정하지 않는다.</li>
     <li><b>모든 발제의 세 질문.</b> 이전 접근은 무엇에서 막혔는가 → 무엇을 바꿨는가 → 그 변경이 새로 만든 한계는 무엇인가.</li>
   </ul>
   <details class="artifact">
@@ -790,8 +793,8 @@
 </section>
 <!-- ============ Ch.5 ============ -->
 <section class="ch" id="ch5">
-  <header><span class="chno">CH.05</span><h2>π 계보 — 손재주에서 경험 학습까지</h2><span class="cnt">4 sessions</span></header>
-  <p class="goal">π0 → π0.5 → π*0.6과 그 사이의 도구 논문들을, 각 버전이 이전 버전의 한계를 <em>어떻게 시인하고 확장했는지</em>의 사슬로 추적한다.</p>
+  <header><span class="chno">CH.05</span><h2>π 계보 — 손재주에서 경험 학습까지</h2><span class="cnt">3 sessions</span></header>
+  <p class="goal">π0 → π0.5 → π*0.6 → π0.7과 그 사이의 도구 논문들을, 각 버전이 이전 버전의 한계를 <em>어떻게 시인하고 확장했는지</em>의 사슬로 추적한다.</p>
 
   <details class="s" id="c05-s01">
     <summary><span class="code">C05-S01</span><span class="t">π0 + π0.5 <em>— flow expert와 open-world 일반화</em></span><span class="badges"><span class="b core">Core</span></span></summary>
@@ -811,39 +814,25 @@
   </details>
 
   <details class="s" id="c05-s02">
-    <summary><span class="code">C05-S02</span><span class="t">π*0.6 / RECAP + Real-Time Chunking <em>— 경험 학습과 실시간 실행</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C05-S02</span><span class="t">π*0.6 + π0.7 <em>— 경험 학습에서 steerable generalist로</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">demonstration만으로 학습한 VLA가 실제 실패에서 배우려면, 그리고 큰 flow policy가 추론 지연 속에서도 끊기지 않고 움직이려면 각각 무엇이 필요한가?</p>
+      <p class="q">demonstration만으로 학습한 VLA가 실제 실패에서 배우려면 무엇이 필요하며, 실패·자율 수집·비로봇 데이터까지 한 모델에 넣으려면 '어떻게 할지'를 어떤 조건으로 줘야 하는가?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2511.14759" target="_blank" rel="noopener">π*0.6: a VLA That Learns From Experience (RECAP)</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2506.07339" target="_blank" rel="noopener">Real-Time Execution of Action Chunking Flow Policies</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2604.15483" target="_blank" rel="noopener">π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2511.14759" target="_blank" rel="noopener">π*0.6: a VLA That Learns From Experience (RECAP)</a> (2025) — RECAP 절만 발췌</li>
       </ul>
       <ul class="pts">
-        <li>experience collection, intervention, advantage-conditioned policy, reward/judge (RECAP)</li>
-        <li>추론 지연 동안 chunk를 이어붙이는 inpainting식 비동기 실행 (RTC)</li>
+        <li>experience collection, intervention, advantage-conditioned policy, reward/judge (RECAP 핵심)</li>
+        <li>diverse context conditioning: 언어 지시 + task 수행 metadata + subgoal image로 전략까지 steer (π0.7)</li>
+        <li>demonstration, 실패를 포함한 자율 수집 데이터, 비로봇 데이터를 함께 쓰는 학습 설정</li>
+        <li>읽는 범위: π0.7은 방법 절과 핵심 실험 2개, π*0.6은 RECAP 절만</li>
       </ul>
-      <p class="note"><b>쟁점</b> — 보상은 누가 정의하며 VLM-as-judge를 얼마나 신뢰할 수 있는가? chunk를 어느 구간에서 잘라도 안전한가? 연결: Ch.13 평가, Ch.10 실시간성.</p>
+      <p class="note"><b>쟁점</b> — advantage 조건과 metadata 조건은 같은 아이디어의 일반화인가? 자사 이전 모델과의 비교가 중심인 평가에서 'emergent capability' 주장을 어디까지 받아들일 수 있는가? 배경 노트(1장): <a href="https://arxiv.org/abs/2502.19417" target="_blank" rel="noopener">Hi Robot</a>, <a href="https://arxiv.org/abs/2505.23705" target="_blank" rel="noopener">Knowledge Insulation</a>. Real-Time Chunking은 C10-S03에서 다룬다.</p>
     </div>
   </details>
 
   <details class="s" id="c05-s03">
-    <summary><span class="code">C05-S03</span><span class="t">Hi Robot + Knowledge Insulation <em>— 계층과 학습 레시피</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
-    <div class="body">
-      <p class="q">낮은 수준 policy 위에 System 2 VLM을 얹는 계층화와, VLM 지식을 보호하며 action expert를 학습시키는 레시피는 각각 어떤 실패를 막는가?</p>
-      <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2502.19417" target="_blank" rel="noopener">Hi Robot: Open-Ended Instruction Following with Hierarchical VLAs</a> (2025)</li>
-        <li><a href="https://arxiv.org/abs/2505.23705" target="_blank" rel="noopener">Knowledge Insulating Vision-Language-Action Models</a> (2025)</li>
-      </ul>
-      <ul class="pts">
-        <li>open-ended instruction, 사용자 개입·피드백 처리, 고수준-저수준 분업 (Hi Robot)</li>
-        <li>continuous action head의 gradient가 VLM representation을 훼손하는 문제와 차단 레시피 (KI)</li>
-      </ul>
-      <p class="note"><b>연결</b> — Ch.10 dual system, Ch.6 데이터 엔진.</p>
-    </div>
-  </details>
-
-  <details class="s" id="c05-s04">
-    <summary><span class="code">C05-S04</span><span class="t">연구실 스케일 post-training <em>— Continual RL과 capability 이식</em></span><span class="badges"><span class="b lab">◆ 연구실</span><span class="b ext">Extension</span></span></summary>
+    <summary><span class="code">C05-S03</span><span class="t">연구실 스케일 post-training <em>— Continual RL과 capability 이식</em></span><span class="badges"><span class="b lab">◆ 연구실</span><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">robot fleet 없이, 공개 VLA를 배포 후에도 계속 개선하거나 능력을 이식하는 연구는 어디까지 가능한가?</p>
       <ul class="papers">
@@ -864,9 +853,10 @@
       <tr><th>버전</th><th>해결하려는 문제</th><th>추가한 것</th><th>다음에 드러난 한계</th></tr>
       <tr><td>π0</td><td>정밀한 continuous control</td><td>flow action expert</td><td>낯선 환경·long horizon 일반화</td></tr>
       <tr><td>π0.5</td><td>open-world generalization</td><td>heterogeneous co-training, semantic subtask</td><td>실제 실패에서의 개선</td></tr>
-      <tr><td>π*0.6</td><td>experience learning</td><td>intervention·RECAP·advantage conditioning</td><td>reward reliability, data cost, safety</td></tr>
+      <tr><td>π*0.6</td><td>experience learning</td><td>intervention·RECAP·advantage conditioning</td><td>reward reliability, data cost, task별 fine-tuning</td></tr>
+      <tr><td>π0.7</td><td>품질이 다른 데이터를 한 모델에, out-of-the-box 성능</td><td>context conditioning (metadata·subgoal image)</td><td>발제에서 채운다 — 후보: 외부 baseline 비교, 재현 가능성</td></tr>
     </table></div>
-    <p class="art-note">보조 계보: FAST(tokenizer), Real-Time Chunking(실시간 실행), Hi Robot(계층 지시), Knowledge Insulation(학습 레시피)은 본선 버전 사이를 잇는 도구 논문으로 함께 읽는다.</p>
+    <p class="art-note">보조 계보: FAST(tokenizer, C03-S02), Real-Time Chunking(실시간 실행, C10-S03), Hi Robot(계층 지시), Knowledge Insulation(학습 레시피)은 본선 버전 사이를 잇는 도구 논문으로, 독립 세션 없이 해당 세션의 배경 노트로 읽는다.</p>
   </details>
 </section>
 
@@ -876,34 +866,36 @@
   <p class="goal">VLA 일반화를 모델 아키텍처만의 문제가 아니라 데이터 엔진, embodiment alignment, action label, 합성 데이터의 문제로 본다.</p>
 
   <details class="s" id="c06-s01">
-    <summary><span class="code">C06-S01</span><span class="t">Gemini Robotics 1.0 + 1.5</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C06-S01</span><span class="t">Gemini Robotics 계보 <em>— 1.0 → 1.5 → 2</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">RT-2의 'semantic knowledge transfer' 주장은 실제 generalist robot system에서 어떻게 확장되고 수정되는가?</p>
+      <p class="q">RT-2의 'semantic knowledge transfer' 주장은 generalist robot system에서 어떻게 확장되었고, 1.0 → 1.5 → 2로 가며 무엇이 추가되었는가?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2503.20020" target="_blank" rel="noopener">Gemini Robotics</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2510.03342" target="_blank" rel="noopener">Gemini Robotics 1.5</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2510.03342" target="_blank" rel="noopener">Gemini Robotics 1.5</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/" target="_blank" rel="noopener">Gemini Robotics 2 공식 블로그</a> (2026) · <a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-robotics-er-2/" target="_blank" rel="noopener">ER 2</a> — VLA, embodied reasoning, On-Device의 3종 구성</li>
+        <li><a href="https://arxiv.org/abs/2503.20020" target="_blank" rel="noopener">Gemini Robotics</a> (2025) — 계보 표의 출발점으로만 발췌</li>
       </ul>
       <ul class="pts">
-        <li>embodied reasoning(ER) 모델의 분리와 역할, motion transfer와 cross-embodiment 학습</li>
-        <li>think-before-acting interface와 thinking budget (1.5) — On-Device 등 파생 릴리스는 노트로만</li>
+        <li>embodied reasoning(ER) 모델의 분리와 역할, think-before-acting interface와 thinking budget (1.5)</li>
+        <li>motion transfer와 cross-embodiment 학습 (1.5 → 2)</li>
+        <li>상체 tabletop 조작에서 whole-body 제어로의 확장, 새 embodiment 적응에 필요한 데이터 규모에 대한 주장 (2)</li>
       </ul>
-      <p class="note"><b>발표 방식</b> — 버전별 요약이 아니라 RT-2 → 1.0 → 1.5 계보의 주장과 증거 비교. 발표 1주 전 최신 공식 버전 확인.</p>
+      <p class="note"><b>발표 방식</b> — 버전별 요약이 아니라 계보 표 한 장(버전 × 추가된 것 × 근거의 종류 × 남은 한계)으로 발전 과정과 방향을 보인다. Gemini Robotics 2는 테크리포트가 확인되지 않은 블로그 중심 자료이므로 claim-evidence 구분 대상. 발표 1주 전 최신 공식 버전 확인.</p>
     </div>
   </details>
 
   <details class="s" id="c06-s02">
-    <summary><span class="code">C06-S02</span><span class="t">GR00T N1 + N1.5</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C06-S02</span><span class="t">GR00T N1 → N1.7 <em>— humanoid dual-system VLA 계보</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">humanoid foundation model에서 VLM과 action model을 dual-system으로 나누는 이유는 무엇이며, 버전업에서 무엇이 바뀌었는가?</p>
+      <p class="q">humanoid foundation model에서 VLM과 action model을 dual-system으로 나누는 이유는 무엇이며, N1에서 N1.7까지 무엇이 바뀌었는가?</p>
       <ul class="papers">
         <li><a href="https://arxiv.org/abs/2503.14734" target="_blank" rel="noopener">GR00T N1: An Open Foundation Model for Generalist Humanoid Robots</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://huggingface.co/nvidia/GR00T-N1.5-3B" target="_blank" rel="noopener">GR00T N1.5 공식 릴리스 (모델 카드·기술 문서)</a></li>
+        <li>공식 릴리스(모델 카드·기술 문서): <a href="https://huggingface.co/nvidia/GR00T-N1.5-3B" target="_blank" rel="noopener">N1.5</a> · <a href="https://huggingface.co/nvidia/GR00T-N1.6-3B" target="_blank" rel="noopener">N1.6</a> · <a href="https://huggingface.co/nvidia/GR00T-N1.7-3B" target="_blank" rel="noopener">N1.7</a> — 계보 표로 정리</li>
       </ul>
       <ul class="pts">
         <li>System 2 VLM + System 1 action model(DiT/flow), 실물·합성·웹 비디오의 data pyramid</li>
-        <li>N1.5의 변화: frozen VLM, 새 embodiment head, DreamGen 합성 데이터 활용</li>
+        <li>버전별 변화: frozen VLM, 새 embodiment head, DreamGen 합성 데이터 활용 등 — 계보 표(버전 × 바뀐 것 × 바꾼 이유)는 모델 카드에서 직접 확인해 채운다</li>
       </ul>
-      <p class="note"><b>연결</b> — Ch.10 dual system, Ch.11 whole-body control 인터페이스. 사용 humanoid와 onboard/offboard compute를 명시한다.</p>
+      <p class="note"><b>연결</b> — Ch.10 dual system, Ch.11 whole-body control 인터페이스. VLM backbone을 video world model로 바꾼 GR00T 2(World Action Model)는 C08-S05에서 이어서 다룬다. 사용 humanoid와 onboard/offboard compute를 명시한다.</p>
     </div>
   </details>
 
@@ -913,55 +905,67 @@
       <p class="q">'action label이 붙은 실물 teleop 데이터'라는 병목을 우회하는 두 갈래 — latent action과 neural trajectory — 는 각각 어떤 학습 신호를 만들어내는가?</p>
       <ul class="papers">
         <li><a href="https://arxiv.org/abs/2410.11758" target="_blank" rel="noopener">Latent Action Pretraining from Videos (LAPA)</a> (2024)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2505.12705" target="_blank" rel="noopener">DreamGen: Unlocking Generalization through Neural Trajectories</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2505.12705" target="_blank" rel="noopener">DreamGen: Unlocking Generalization through Video World Models</a> (2025)</li>
       </ul>
       <ul class="pts">
         <li>latent action discovery, video pretraining, policy adaptation (LAPA)</li>
         <li>video world model fine-tuning → 합성 trajectory → policy 학습, generation-to-real gap (DreamGen)</li>
       </ul>
-      <p class="note"><b>쟁점</b> — 해석 불가능한 latent action의 디버깅·정렬. 생성 trajectory는 새 정보인가, 기존 분포의 재조합인가? 연결: Ch.8 Genie·world model as data engine.</p>
+      <p class="note"><b>쟁점</b> — 해석 불가능한 latent action의 디버깅·정렬. 생성 trajectory는 새 정보인가, 기존 분포의 재조합인가? 시뮬레이터 안에서의 프로그램적 증식(<a href="https://arxiv.org/abs/2310.17596" target="_blank" rel="noopener">MimicGen</a>·<a href="https://arxiv.org/abs/2410.24185" target="_blank" rel="noopener">DexMimicGen</a>)은 비교표의 한 행으로만. 연결: Ch.8 Genie·world model as data engine.</p>
     </div>
   </details>
 
   <details class="s" id="c06-s04">
-    <summary><span class="code">C06-S04</span><span class="t">MimicGen 계보 <em>— 시연을 프로그램적으로 증식하기</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <summary><span class="code">C06-S04</span><span class="t">대표 데이터셋과 시뮬레이션 벤치마크</span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
-      <p class="q">소수의 사람 시연을 시뮬레이터에서 대량의 새 시연으로 증식할 때, 그 diversity는 어디까지 진짜인가?</p>
+      <p class="q">VLA 연구가 실제로 학습하고 평가하는 데이터셋과 시뮬레이션 환경은 무엇을 담고 있으며, 무엇을 담지 못하는가?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2410.24185" target="_blank" rel="noopener">DexMimicGen</a> (2024)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2310.17596" target="_blank" rel="noopener">MimicGen</a> (2023) — 원리 발췌만</li>
+        <li>데이터셋 — <a href="https://arxiv.org/abs/2403.12945" target="_blank" rel="noopener">DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li>데이터셋 — <a href="https://arxiv.org/abs/2503.06669" target="_blank" rel="noopener">AgiBot World Colosseo</a> (2025)</li>
+        <li>시뮬레이션 — <a href="https://arxiv.org/abs/2506.18088" target="_blank" rel="noopener">RoboTwin 2.0: A Scalable Data Generator and Benchmark</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li>시뮬레이션 — <a href="https://arxiv.org/abs/2306.03310" target="_blank" rel="noopener">LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning</a> (2023)</li>
       </ul>
       <ul class="pts">
-        <li>object-centric segment 재조합, scene 변형, 증식 데이터 품질 필터링, humanoid·bimanual 확장</li>
-        <li>실물 teleop(ALOHA 계보) vs 생성 비디오(DreamGen) vs 프로그램적 증식의 비용·오류·확장성</li>
+        <li>실물 데이터셋: 수집 방식(분산 수집 vs 표준화된 수집 파이프라인), 규모, embodiment·환경 다양성, action 정의, 언어 annotation 품질</li>
+        <li>시뮬레이션: task 생성 방식, domain randomization, 평가 프로토콜, 학습 데이터 생성기로서의 쓰임</li>
+        <li>정독은 anchor 두 편(DROID, RoboTwin 2.0), 나머지 두 편은 비교표의 행으로만 — 모든 자료를 '수집·생성 방식 / 규모 / action 정의 / 주로 쓰이는 곳' 네 항목으로 통일</li>
       </ul>
-      <p class="note"><b>Update</b> — 발표 시점의 2025-26 demonstration synthesis 후속을 확인해 보강. 연결: GR00T 데이터 파이프라인.</p>
+      <p class="note"><b>산출물</b> — 데이터셋과 시뮬레이션을 episode 수가 아니라 fidelity, diversity, action semantics, reproducibility로 비교한 표. Open X-Embodiment는 기준 행으로만, 평가 도구로서의 문제는 C13-S01에서. BridgeData V2, RoboCasa, ManiSkill3, BEHAVIOR-1K, Isaac Lab은 이름과 용도만.</p>
     </div>
   </details>
 
   <details class="s" id="c06-s05">
-    <summary><span class="code">C06-S05</span><span class="t">VLA 데이터셋 · 벤치마크 · 데이터 엔진</span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <summary><span class="code">C06-S05</span><span class="t">Cross-embodiment <em>— 서로 다른 몸을 하나의 모델로</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
-      <p class="q">현재 VLA 병목은 모델보다 데이터 infrastructure에 있는가?</p>
+      <p class="q">서로 다른 관절 구조와 action dimension을 하나의 모델에 정렬할 때, embodiment별 파라미터를 두는 설계와 embodiment에 무관한 action 표현을 배우는 설계 중 무엇이 더 잘 확장되는가?</p>
       <ul class="papers">
-        <li>Open X-Embodiment(재방문), <a href="https://arxiv.org/abs/2403.12945" target="_blank" rel="noopener">DROID</a>, BridgeData, AgiBot World, LeRobot community data</li>
-        <li><a href="https://arxiv.org/abs/2604.23001" target="_blank" rel="noopener">VLA in Robotics: A Survey of Datasets, Benchmarks, and Data Engines</a> (2026)</li>
+        <li><a href="https://arxiv.org/abs/2510.10274" target="_blank" rel="noopener">X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment VLA</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2505.06111" target="_blank" rel="noopener">UniVLA: Learning to Act Anywhere with Task-centric Latent Actions</a> (2025)</li>
       </ul>
       <ul class="pts">
-        <li>embodiment diversity, action space mismatch, temporal alignment, annotation·language 품질, real/sim/generated mixture</li>
+        <li>데이터 출처마다 learnable soft prompt를 두어 heterogeneity를 흡수하는 설계 (X-VLA)</li>
+        <li>비디오에서 task-centric latent action을 뽑아 embodiment 무관 action space를 만들고 로봇별 decoder로 푸는 설계 (UniVLA)</li>
+        <li>비교 표(이미 다룬 모델은 한 행씩만): RDT-1B unified action space, π0.7 zero-shot cross-embodiment, Gemini motion transfer, GR00T embodiment head</li>
       </ul>
-      <p class="note"><b>산출물</b> — 데이터셋을 episode 수가 아니라 fidelity, diversity, action semantics, reproducibility로 비교.</p>
+      <p class="note"><b>발표 방식</b> — 모델 전체가 아니라 cross-embodiment interface만 분리해 비교한다. 이미 발표된 모델은 다시 읽지 않고 해당 세션 자료에서 가져온다. 2026 후속(<a href="https://arxiv.org/abs/2611.24816" target="_blank" rel="noopener">RoboMorpher</a>, <a href="https://arxiv.org/abs/2611.10061" target="_blank" rel="noopener">UniLatent</a> 등)은 발표 시 택1해 표의 행으로 추가.</p>
     </div>
   </details>
 
   <details class="s" id="c06-s06">
-    <summary><span class="code">C06-S06</span><span class="t">Cross-embodiment action representation</span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C06-S06</span><span class="t">Industry brief <em>— 로봇 foundation model은 어떻게 제공되는가</em></span><span class="badges"><span class="b upd">Update</span></span></summary>
     <div class="body">
-      <p class="q">서로 다른 관절 구조와 action dimension을 하나의 모델에 어떻게 정렬하는가?</p>
-      <ul class="pts">
-        <li>비교 후보: RDT unified action space, Gemini motion transfer, GR00T embodiment head, 최신 canonical action representation</li>
-        <li>모델 전체가 아니라 cross-embodiment interface만 분리해 비교한다</li>
+      <p class="q">2026년 하반기 현재 로봇 foundation model은 어떤 형태(공개 가중치, 호스팅 API, 파트너 한정)로 제공되며, 그 차이가 연구실이 할 수 있는 연구를 어떻게 바꾸는가?</p>
+      <ul class="papers">
+        <li>Physical Intelligence Pi API 베타 (2026-10) — 2차 보도: <a href="https://theaiinsider.tech/2026/10/14/physical-intelligence-opens-pi-api-beta-for-robot-model-training-and-deployment/" target="_blank" rel="noopener">The AI Insider</a>, <a href="https://www.unite.ai/physical-intelligence-opens-pi-api-beta-for-robot-foundation-models/" target="_blank" rel="noopener">Unite.AI</a></li>
+        <li><a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-robotics-er-2/" target="_blank" rel="noopener">Gemini Robotics-ER 2</a>의 API 공개 프리뷰, <a href="https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/" target="_blank" rel="noopener">Gemini Robotics 2</a>·On-Device 2의 파트너 한정 제공 (2026-07~10)</li>
+        <li><a href="https://huggingface.co/nvidia/GR00T-N1.7-3B" target="_blank" rel="noopener">GR00T N1.7</a> 공개 가중치와 <a href="https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf" target="_blank" rel="noopener">GR00T 2 백서</a> (2026-11)</li>
       </ul>
+      <ul class="pts">
+        <li>제공 형태 비교: 가중치 공개 / fine-tuning API / 추론 API / 파트너 한정</li>
+        <li>형태별로 가능한 연구: probing과 구조 수정, 데이터 중심 fine-tuning, black-box 평가</li>
+        <li>로봇 데이터를 제공자에게 올리는 구조가 데이터 소유, 재현성, 비용에 주는 영향</li>
+      </ul>
+      <p class="note"><b>발표 방식</b> — 논문이 아닌 자료이므로 Industry brief 형식(무엇이 공개되었나 / 어떻게 쓸 수 있나 / 보인 것과 주장에 그친 것 / 우리가 할 수 있는 것)으로 항목당 5분 이내. 공식 문서와 2차 보도를 구분해 표기하고, 발표 1주 전 공식 발표를 다시 확인한다. 산출물: 모델 제공 형태 비교표.</p>
     </div>
   </details>
 
@@ -1001,34 +1005,37 @@
   <p class="goal">world model이 무엇을 예측해야 하는지 묻는다. 픽셀 생성, latent prediction, 명시적 3D·4D 표현의 전제와 반증 조건을 비교한다.</p>
 
   <details class="s" id="c07-s01">
-    <summary><span class="code">C07-S01</span><span class="t">LeCun의 자율지능 아키텍처 + I-JEPA</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C07-S01</span><span class="t">JEPA 핵심 <em>— latent에서 예측한다는 것 (I-JEPA → V-JEPA 2)</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">예측 불가능한 픽셀 디테일을 생성하지 않고 latent에서 예측하면 무엇이 달라지는가?</p>
+      <p class="q">예측 불가능한 픽셀 디테일을 생성하지 않고 latent에서 예측하면 무엇이 달라지며, 그렇게 인터넷 비디오에서 배운 표현은 prediction과 robot planning에 충분한가?</p>
       <ul class="papers">
-        <li><a href="https://openreview.net/forum?id=BZ5a1r-kVsf" target="_blank" rel="noopener">A Path Towards Autonomous Machine Intelligence</a> (2022) — 관련 절만 발췌</li>
-        <li><a href="https://arxiv.org/abs/2301.08243" target="_blank" rel="noopener">I-JEPA: Joint-Embedding Predictive Architecture</a> (2023)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2506.09985" target="_blank" rel="noopener">V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2301.08243" target="_blank" rel="noopener">I-JEPA: Joint-Embedding Predictive Architecture</a> (2023) — 구조만 발췌</li>
+        <li><a href="https://openreview.net/forum?id=BZ5a1r-kVsf" target="_blank" rel="noopener">A Path Towards Autonomous Machine Intelligence</a> (2022) — 문제의식 한 장만 발췌</li>
       </ul>
       <ul class="pts">
-        <li>predictor, target encoder, representation collapse 방지, energy-based 관점의 최소 개념</li>
-        <li>pixel reconstruction 계열과 latent prediction 계열이 각각 버리는 정보</li>
+        <li>predictor, target encoder, representation collapse 방지, energy-based 관점의 최소 개념 (I-JEPA)</li>
+        <li>video pretraining, action-conditioned model, goal image planning, real-robot evaluation (V-JEPA 2)</li>
+        <li>계보 표: image → video, global → dense spatiotemporal feature(<a href="https://arxiv.org/abs/2603.14482" target="_blank" rel="noopener">V-JEPA 2.1</a>), understanding → prediction·planning·control</li>
       </ul>
-      <p class="note">position paper 전체 정독과 장기 철학 토론은 피하고, I-JEPA 설계로 이어지는 부분만 다룬다.</p>
+      <p class="note"><b>쟁점</b> — 접촉, 힘, 미세 기하처럼 latent가 놓칠 수 있는 정보는 무엇인가? position paper 정독과 장기 철학 토론은 피하고, V-JEPA 2.1은 계보 표의 한 행으로만 다룬다.</p>
     </div>
   </details>
 
   <details class="s" id="c07-s02">
-    <summary><span class="code">C07-S02</span><span class="t">V-JEPA 2 + V-JEPA 2.1</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C07-S02</span><span class="t">Latent world model의 현재 <em>— RoboJEPA + H-JEPA</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">인터넷 비디오에서 학습한 latent representation이 실제 prediction과 robot planning에 충분한가?</p>
+      <p class="q">latent world model은 로봇 데이터로 키우면 예측 가능하게 좋아지는가, 그리고 단일 시간 규모의 latent planning이 막히는 long-horizon 문제를 계층화로 풀 수 있는가?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2506.09985" target="_blank" rel="noopener">V-JEPA 2</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2603.14482" target="_blank" rel="noopener">V-JEPA 2.1</a> (2026)</li>
+        <li><a href="https://arxiv.org/abs/2610.10515" target="_blank" rel="noopener">RoboJEPA: Scaling Robotic Latent World Models</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2610.06805" target="_blank" rel="noopener">H-JEPA: End-to-End Learning of Hierarchical World Models for Visual Planning</a> (2026)</li>
       </ul>
       <ul class="pts">
-        <li>video pretraining, action-conditioned model, planning, real-robot evaluation, dense feature 개선</li>
-        <li>추적할 변화: image→video, global→dense spatiotemporal feature, understanding→prediction·planning·control</li>
+        <li>12개 embodiment의 실로봇 데이터로 학습한 JEPA world model, imagination error의 scaling law, goal image 기반 zero-shot planning (RoboJEPA)</li>
+        <li>수준마다 더 먼 미래를 예측하는 action-conditioned JEPA 계층, 상위 예측을 하위 planner의 subgoal로 쓰는 top-down planning (H-JEPA)</li>
+        <li>비교축: V-JEPA 2의 인터넷 비디오 사전학습 + 소량 로봇 데이터 vs RoboJEPA의 대규모 로봇 데이터 학습</li>
       </ul>
-      <p class="note"><b>핵심 질문</b> — 접촉, 힘, 미세 기하처럼 latent가 놓칠 수 있는 정보는 무엇인가?</p>
+      <p class="note"><b>쟁점</b> — imagination error가 실로봇 성능의 proxy라는 주장은 어떤 task 범위에서 검증되었는가? goal image가 필요한 planning은 언어 지시 기반 VLA와 어떻게 만나는가? RoboJEPA는 체크포인트·코드를 공개한다. 2026-11 후속(<a href="https://arxiv.org/abs/2611.25927" target="_blank" rel="noopener">Fast-JEPA</a>, <a href="https://arxiv.org/abs/2611.24062" target="_blank" rel="noopener">JEPA Dots</a>, <a href="https://arxiv.org/abs/2609.37250" target="_blank" rel="noopener">V-JEPA Policy</a>)은 택1해 10분 업데이트로.</p>
     </div>
   </details>
 
@@ -1078,7 +1085,7 @@
 <!-- ============ Ch.8 ============ -->
 <section class="ch" id="ch8">
   <header><span class="chno">CH.08</span><h2>World Model을 도구로 쓰기</h2><span class="cnt">7 sessions</span></header>
-  <p class="goal">world model을 모호한 '세계 이해'가 아니라 정책 학습, planning, 데이터 생성, 평가에 사용되는 구체적 도구로 분해한다.</p>
+  <p class="goal">world model을 모호한 '세계 이해'가 아니라 정책 학습, planning, 데이터 생성, 평가에 사용되는 구체적 도구로 분해하고, world model이 정책 자체가 되는 World Action Model까지 본다.</p>
 
   <details class="s" id="c08-s01">
     <summary><span class="code">C08-S01</span><span class="t">World Models 발췌 + Dreamer 4 <em>— imagination 계보</em></span><span class="badges"><span class="b core">Core</span></span></summary>
@@ -1096,18 +1103,19 @@
   </details>
 
   <details class="s" id="c08-s02">
-    <summary><span class="code">C08-S02</span><span class="t">Genie + Genie 3 <em>— latent action에서 실시간 상호작용 세계로</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C08-S02</span><span class="t">Genie 계보 <em>— latent action에서 실시간 상호작용 세계까지 (Genie → Genie 4)</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">action label 없는 비디오에서 제어 가능한 세계를 학습하는 아이디어는 실시간 상호작용 세계까지 어떻게 확장되었는가?</p>
+      <p class="q">action label 없는 비디오에서 제어 가능한 세계를 학습하는 아이디어는 Genie 2·3·4를 거치며 어느 방향으로 확장되었고, 그 방향은 agent와 로봇 학습에 무엇을 주는가?</p>
       <ul class="papers">
         <li><a href="https://arxiv.org/abs/2402.15391" target="_blank" rel="noopener">Genie: Generative Interactive Environments</a> (2024)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/" target="_blank" rel="noopener">Genie 3 공식 블로그·데모</a> (2025)</li>
+        <li>공식 블로그·데모: <a href="https://deepmind.google/blog/genie-2-a-large-scale-foundation-world-model/" target="_blank" rel="noopener">Genie 2</a> (2024) · <a href="https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/" target="_blank" rel="noopener">Genie 3</a> (2025) · <a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/" target="_blank" rel="noopener">Genie 4</a> (2026)</li>
       </ul>
       <ul class="pts">
         <li>latent action, video tokenizer, action-controllable generation (Genie)</li>
-        <li>실시간 720p/24fps, 분 단위 일관성, promptable world event, agent 학습 환경 (Genie 3)</li>
+        <li>계보 표: 2D 플랫폼 게임 → 3D 환경 생성(Genie 2) → 실시간 720p/24fps, 분 단위 일관성, promptable world event(Genie 3) → native audio, 실행 중 text steering, Gemini agent와의 결합(Genie 4)</li>
+        <li>원리는 Genie 논문 한 편으로 세우고, 이후 버전은 계보 표 한 장(버전 × 새로 가능해진 것 × 공개된 근거 × 남은 한계)으로 발전 과정과 방향을 보인다</li>
       </ul>
-      <p class="note"><b>주의</b> — 데모의 visual quality와 agent training utility를 구분한다. Genie 3는 기술 보고서가 얇으므로 claim-evidence 구분 연습 대상. LAPA는 latent action을 policy에, Genie는 world generation에 쓴다.</p>
+      <p class="note"><b>주의</b> — Genie 2 이후는 논문 없이 블로그와 데모만 있다. 데모의 visual quality와 agent training utility를 구분하는 claim-evidence 연습 대상. LAPA는 latent action을 policy에, Genie는 world generation에 쓴다.</p>
     </div>
   </details>
 
@@ -1138,40 +1146,43 @@
       <ul class="pts">
         <li>Text2World/Image2World/Video2World 통합, Cosmos-Reason 결합, RL post-training (Predict2.5)</li>
         <li>mixture-of-transformers, understanding·generation·action 단일 백본 (Cosmos 3)</li>
+        <li>계보 표: 용도별 모델 묶음(Predict1·Transfer1·Reason1, C08-S03) → 단일 flow 모델(Predict2.5) → omnimodal 단일 백본(Cosmos 3) — C08-S03과 이어지는 한 장의 표로 발전 방향을 보인다</li>
       </ul>
       <p class="note"><b>쟁점</b> — 통합 백본은 로봇 정책 학습에 실제로 무엇을 주는가: 표현인가, 시뮬레이터인가, 정책 초기화인가?</p>
     </div>
   </details>
 
   <details class="s" id="c08-s05">
-    <summary><span class="code">C08-S05</span><span class="t">Ctrl-World + WorldVLA <em>— 분리형과 통합형</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C08-S05</span><span class="t">World Action Model <em>— DreamZero + GR00T 2</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">정책이 지정한 action을 따르는 미래 관측을 분리된 controllable world model로 만들 것인가, policy와 world model을 하나의 autoregressive 모델로 합칠 것인가?</p>
+      <p class="q">VLM backbone 위에 action head를 얹는 대신, video world model이 미래 관측과 action을 함께 예측하게 하면 일반화는 무엇이 달라지는가?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2510.10125" target="_blank" rel="noopener">Ctrl-World: A Controllable Generative World Model for Robot Manipulation</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2506.21539" target="_blank" rel="noopener">WorldVLA: Towards Autoregressive Action World Model</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2602.15922" target="_blank" rel="noopener">World Action Models are Zero-shot Policies (DreamZero)</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf" target="_blank" rel="noopener">GR00T 2: Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation</a> (2026, 백서)</li>
       </ul>
       <ul class="pts">
-        <li>action conditioning, controllability, temporal consistency (Ctrl-World)</li>
-        <li>observation/action 통합 sequence modeling, 상호 개선 주장 (WorldVLA)</li>
+        <li>pretrained video diffusion backbone 위에서 video와 action을 joint modeling, heterogeneous 로봇 데이터 학습 (DreamZero)</li>
+        <li>14B autoregressive video diffusion 모델로 7Hz closed-loop 제어를 하기 위한 모델·시스템 최적화, video-only 시연을 이용한 cross-embodiment transfer</li>
+        <li>GR00T N1.x의 dual-system VLA(C06-S02)에서 GR00T 2의 WAM으로 바뀐 구조</li>
       </ul>
-      <p class="note"><b>쟁점</b> — 시각적으로 action을 따라가는 것과 dynamics가 정확한 것은 같은가? 통합 objective가 planning을 실제로 보장하는가?</p>
+      <p class="note"><b>쟁점</b> — WAM의 일반화 이득은 video 예측 objective에서 오는가, video 사전학습 backbone의 규모에서 오는가? 7Hz로 충분한 task와 부족한 task는? 배경 노트(1장): <a href="https://arxiv.org/abs/2506.21539" target="_blank" rel="noopener">WorldVLA</a> — WAM 이전의 통합형 시도. GR00T 2의 가중치·라이선스 공개 여부는 발표 1주 전 확인.</p>
     </div>
   </details>
 
   <details class="s" id="c08-s06">
-    <summary><span class="code">C08-S06</span><span class="t">World model as data engine &amp; policy evaluator</span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <summary><span class="code">C08-S06</span><span class="t">World model로 정책 평가하기 <em>— Ctrl-World + Veo World Simulator</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
-      <p class="q">world model을 데이터 생성기로 쓸 때와 정책 평가기로 쓸 때, 각각 어디에서 오류가 증폭되는가?</p>
+      <p class="q">정책이 낸 action을 따르는 미래를 world model이 생성해 준다면, 그 안에서 측정한 성능은 실물 성능을 얼마나 예측하는가?</p>
       <ul class="papers">
-        <li>C06-S03의 DreamGen을 world model 관점에서 재분석</li>
+        <li><a href="https://arxiv.org/abs/2510.10125" target="_blank" rel="noopener">Ctrl-World: A Controllable Generative World Model for Robot Manipulation</a> (2025)<span class="anchor-tag">anchor</span></li>
         <li><a href="https://arxiv.org/abs/2512.10675" target="_blank" rel="noopener">Evaluating Gemini Robotics Policies in a Veo World Simulator</a> (2025)</li>
       </ul>
       <ul class="pts">
-        <li>generation artifact → action label error → policy failure의 오류 전파</li>
+        <li>action conditioning, controllability, temporal consistency, world model 안에서의 policy rollout (Ctrl-World)</li>
         <li>policy evaluation protocol, real-world correlation, red-teaming, coverage (Veo)</li>
+        <li>되짚기: 데이터 생성기로 쓸 때의 오류 전파(generation artifact → action label error → policy failure)는 C06-S03 DreamGen의 내용을 한 장으로</li>
       </ul>
-      <p class="note"><b>연결</b> — Ch.13의 순환 논증 문제. 산출물: 데이터 생성·정책 평가 각각의 오류 전파도.</p>
+      <p class="note"><b>쟁점</b> — 시각적으로 action을 따라가는 것과 dynamics가 정확한 것은 같은가? evaluator와 policy가 같은 실패를 공유하면 무엇이 남는가? 연결: Ch.13의 순환 논증 문제. 산출물: 데이터 생성·정책 평가 각각의 오류 전파도.</p>
     </div>
   </details>
 
@@ -1197,14 +1208,15 @@
       <tr><td>generation</td><td>video/action condition</td><td>future observation</td><td>data augmentation</td><td>visual artifact, dynamics error</td></tr>
       <tr><td>reward/evaluation</td><td>rollout/task</td><td>score</td><td>RL·policy selection</td><td>judge bias, circular evaluation</td></tr>
       <tr><td>interactive simulator</td><td>user/policy action</td><td>responsive world</td><td>online agent training</td><td>controllability·consistency trade-off</td></tr>
+      <tr><td>world action model</td><td>관측·지시</td><td>future observation + action</td><td>정책 자체</td><td>추론 지연, 예측과 action의 불일치</td></tr>
     </table></div>
   </details>
 </section>
 
 <!-- ============ Ch.9 ============ -->
 <section class="ch" id="ch9">
-  <header><span class="chno">CH.09</span><h2>행동 전에 생각하기</h2><span class="cnt">4 sessions</span></header>
-  <p class="goal">VLA의 reasoning을 'CoT가 있는가'로 분류하지 않고, 추론의 매체·위치·지연·검증 가능성으로 비교한다.</p>
+  <header><span class="chno">CH.09</span><h2>행동 전에 생각하기</h2><span class="cnt">5 sessions</span></header>
+  <p class="goal">VLA의 reasoning을 'CoT가 있는가'로 분류하지 않고, 추론의 매체·위치·지연·검증 가능성으로 비교한다. 마지막 두 세션에서는 추론하는 범용 VLM이 별도 VLA 학습 없이 로봇을 직접 제어하는 흐름을 본다.</p>
 
   <details class="s" id="c09-s01">
     <summary><span class="code">C09-S01</span><span class="t">Cosmos-Reason + Alpamayo-R1 <em>— ontology와 인과 라벨</em></span><span class="badges"><span class="b core">Core</span></span></summary>
@@ -1250,17 +1262,42 @@
         <li>action chain, latent/action reasoning, direct control interface (ACoT)</li>
         <li>visual-linguistic parallel reasoning, synchronization (DualCoT)</li>
       </ul>
-      <p class="note"><b>비교</b> — visual / language / action reasoning을 같은 task·latency 기준으로. trade-off: 지연 감소 vs 해석 가능성.</p>
+      <p class="note"><b>비교</b> — visual / language / action reasoning을 같은 task·latency 기준으로. trade-off: 지연 감소 vs 해석 가능성. Update: 새로운 추론 매체·위치, 지연을 줄이는 새 메커니즘, trace-action 일치 검증 방법 중 하나를 제시한 후속 논문만 Ch.9 마감 비교표의 행으로 추가.</p>
     </div>
   </details>
 
   <details class="s" id="c09-s04">
-    <summary><span class="code">C09-S04</span><span class="t">Reasoning-VLA 최신 업데이트</span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C09-S04</span><span class="t">VLA 없이 제어하기 <em>— Show-Harness + OpenRUA</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <ul class="pts">
-        <li>선택 기준: 새로운 추론 매체·위치 / 지연을 줄이는 새 메커니즘 / trace-action 일치 검증 방법 중 하나 이상</li>
-        <li>Ch.9 마감 비교표에 행을 추가하는 형식으로 정리</li>
+      <p class="q">로봇 데이터로 따로 학습하지 않은 frontier VLM과 coding agent가 로봇을 직접 제어하려면 어떤 interface가 필요하며, 그 interface는 얼마나 얇아질 수 있는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2609.10522" target="_blank" rel="noopener">Show-Harness: Just a VLM Agent Can Play Robots</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2610.02459" target="_blank" rel="noopener">OpenRUA: Robot-Use Agents Are Zero-Shot Visuomotor Policies</a> (2026)</li>
       </ul>
+      <ul class="pts">
+        <li>VLM이 추론할 수 있는 discrete semantic action unit과 embodiment별 interpreter, closed-source VLM의 zero-shot 제어와 소형 공개 VLM의 저비용 fine-tuning (Show-Harness)</li>
+        <li>coding agent에게 ROS 2 terminal 접근만 주는 zero-abstraction harness — perception은 file I/O로, manipulation은 coding으로 (OpenRUA)</li>
+        <li>비교축: harness의 두께. 학습된 action head를 가진 VLA와는 action이 만들어지는 위치와 제어 주파수로 비교</li>
+      </ul>
+      <p class="note"><b>쟁점</b> — 성능은 VLM의 능력에서 오는가, harness 설계에서 오는가? 수 Hz 이하의 추론 주기로 풀 수 있는 task의 범위는? 배경 노트(1장): <a href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">RoboDawn</a>, <a href="https://arxiv.org/abs/2609.38078" target="_blank" rel="noopener">MotorMind</a>. 로봇 데이터 수집·학습 없이 API 비용만으로 시작할 수 있는 연구다.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c09-s05">
+    <summary><span class="code">C09-S05</span><span class="t">Frontier 모델의 직접 제어 <em>— 사례와 한계 분석</em></span><span class="badges"><span class="b core">Core</span><span class="b upd">Update</span></span></summary>
+    <div class="body">
+      <p class="q">frontier 모델이 로봇을 직접 제어한다는 업계 발표는 무엇을 실제로 보였으며, action 단위로 뜯어보면 어디에서 성공하고 어디에서 실패하는가?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2611.26613" target="_blank" rel="noopener">AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li>Industry brief — <a href="https://developers.googleblog.com/en/gemini-4-argon-for-robotics/" target="_blank" rel="noopener">Gemini 4 Argon for Robotics 공식 블로그</a> (2026-10)</li>
+        <li>Industry brief — Claude Fable 5.2의 로봇 제어 발표 (2026-11), <a href="https://www.humanoidsdaily.com/news/anthropic-claude-fable-5-2-robotics-robodojo" target="_blank" rel="noopener">2차 보도</a>로만 확인</li>
+      </ul>
+      <ul class="pts">
+        <li>12개 manipulation 벤치마크에서의 action-level 분석, intent-grounded critique, closed-loop recovery와 grasping·alignment 병목 (AgentRoboCritic)</li>
+        <li>각 발표가 실제로 보인 것: task, 로봇, 사전에 준비된 control interface, 성공 기준, 시뮬과 실물의 구분</li>
+        <li>배경 노트(1장): <a href="https://arxiv.org/abs/2609.24170" target="_blank" rel="noopener">An Unexpected Robot Policy</a> — <a href="https://arxiv.org/abs/2607.04434" target="_blank" rel="noopener">RoboDojo</a>에서 드러난 semantic task와 정밀 제어 task 사이의 양극화</li>
+      </ul>
+      <p class="note"><b>발표 방식</b> — 논문 한 편을 anchor로 세우고, 업계 사례 두 개는 Industry brief 형식으로 각 5분 이내. 사례는 발표 시점의 최신 발표로 교체할 수 있다. 쟁점: 자체 보고 수치와 데모 영상은 각각 무엇의 증거인가? 범용 모델이 좋아질수록 VLA 전용 학습의 몫은 어디에 남는가?</p>
     </div>
   </details>
 
@@ -1272,6 +1309,7 @@
       <tr><td>image/video</td><td>CoT-VLA</td><td>공간 subgoal 표현</td><td>generation cost</td><td>future observation consistency</td><td>hallucinated future</td></tr>
       <tr><td>action/latent</td><td>ACoT</td><td>빠르고 direct</td><td>내부 step 비용</td><td>action outcome</td><td>해석 불가</td></tr>
       <tr><td>ontology/causal</td><td>Cosmos-Reason, Alpamayo</td><td>명시적 구조</td><td>annotation cost</td><td>causal consistency</td><td>label bias</td></tr>
+      <tr><td>VLM·agent 직접 제어</td><td>Show-Harness, OpenRUA</td><td>로봇 학습 불필요, 범용 모델의 개선을 그대로 흡수</td><td>호출당 지연, API 비용</td><td>action-level critique</td><td>정밀 조작, 고주파 제어</td></tr>
     </table></div>
   </details>
 </section>
@@ -1313,18 +1351,19 @@
   </details>
 
   <details class="s" id="c10-s03">
-    <summary><span class="code">C10-S03</span><span class="t">Think Twice, Act Once + DeeR-VLA <em>— adaptive inference</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C10-S03</span><span class="t">Real-Time Chunking + Think Twice, Act Once <em>— 비동기 실행과 adaptive inference</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">모델을 작게 만들지 않고도 추론 횟수, token 수, 사용하는 layer 수를 상황에 따라 줄일 수 있는가?</p>
+      <p class="q">모델을 작게 만들지 않고도, 추론 지연 속에서 끊기지 않고 움직이거나 추론 횟수 자체를 줄일 수 있는가?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2505.21200" target="_blank" rel="noopener">Think Twice, Act Once</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2411.02359" target="_blank" rel="noopener">DeeR-VLA: Dynamic Inference for Efficient Robot Execution</a> (2024)</li>
+        <li><a href="https://arxiv.org/abs/2506.07339" target="_blank" rel="noopener">Real-Time Execution of Action Chunking Flow Policies</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2505.21200" target="_blank" rel="noopener">Think Twice, Act Once</a> (2025)</li>
       </ul>
       <ul class="pts">
-        <li>token compression, action reuse, replanning trigger (TTAO)</li>
-        <li>dynamic early-exit, 난이도별 compute 배분 (DeeR-VLA)</li>
+        <li>추론 지연 동안 action chunk를 이어붙이는 inpainting식 비동기 실행 (Real-Time Chunking)</li>
+        <li>token compression, adaptive inference, action reuse, replanning trigger (Think Twice, Act Once)</li>
+        <li>비교: fixed chunk / receding horizon / 비동기 chunking / event-triggered replanning</li>
       </ul>
-      <p class="note"><b>쟁점</b> — action을 재사용해도 되는 안정 구간을 어떻게 감지하는가? 비교: fixed chunk / receding horizon / event-triggered replanning.</p>
+      <p class="note"><b>쟁점</b> — chunk를 어느 구간에서 잘라 이어도 안전한가? action을 재사용해도 되는 안정 구간을 어떻게 감지하는가? 배경 노트: <a href="https://arxiv.org/abs/2411.02359" target="_blank" rel="noopener">DeeR-VLA</a>(dynamic early-exit)는 한 줄만.</p>
     </div>
   </details>
 
@@ -1335,7 +1374,7 @@
       <ul class="pts">
         <li>대상: OpenVLA, π0 계열 공개 구현, diffusion policy, compact VLA, 연구실 GPU 또는 Jetson급</li>
         <li>model size·memory, vision encoder frequency, action head sampling step, 통신 latency, warm-up·precision</li>
-        <li>Real-Time Chunking(C05-S02)의 비동기 실행이 예산을 어떻게 바꾸는가</li>
+        <li>Real-Time Chunking(C10-S03)의 비동기 실행이 예산을 어떻게 바꾸는가</li>
       </ul>
       <p class="note"><b>산출물</b> — 실측 또는 공식 수치 기반 end-to-end latency budget (아래 예산표).</p>
     </div>
@@ -1625,7 +1664,7 @@
     <div class="fnode opt"><span class="fc">CH.14</span>Social World Model<small>Extension — 1세션</small></div>
   </div>
 
-  <h3 style="font-size:15px; margin:34px 0 0;">최소 Core 경로 <span style="font-weight:400; color:var(--faint); font-size:12px;">— 시간이 부족할 때 우선하는 28세션</span></h3>
+  <h3 style="font-size:15px; margin:34px 0 0;">최소 Core 경로 <span style="font-weight:400; color:var(--faint); font-size:12px;">— 시간이 부족할 때 우선하는 29세션 (Core 36세션 중)</span></h3>
   <div class="cols2">
     <ol class="core-path">
       <li>Physical AI 온보딩 (지형·용어·읽는 법)</li>
@@ -1637,20 +1676,21 @@
       <li>CogACT + Octo</li>
       <li>RDT-1B + Diffusion-VLA</li>
       <li>π0 + π0.5</li>
-      <li>π*0.6 + Real-Time Chunking</li>
-      <li>Gemini Robotics 1.0 + 1.5</li>
-      <li>GR00T N1 + N1.5</li>
+      <li>π*0.6 + π0.7</li>
+      <li>Gemini Robotics 계보 (1.0 → 1.5 → 2)</li>
+      <li>GR00T N1 → N1.7</li>
       <li>LAPA + DreamGen</li>
-      <li>LeCun 발췌 + I-JEPA</li>
-      <li>V-JEPA 2.x</li>
+      <li>JEPA 핵심 (I-JEPA 발췌 + V-JEPA 2)</li>
+      <li>RoboJEPA + H-JEPA</li>
       <li>DUSt3R + VGGT 또는 3D/4D-VLA</li>
       <li>World Models 발췌 + Dreamer 4</li>
-      <li>Genie + Genie 3</li>
+      <li>Genie 계보 (Genie → Genie 4)</li>
       <li>Cosmos 플랫폼 + Transfer</li>
       <li>Cosmos-Predict2.5 + Cosmos 3</li>
-      <li>Ctrl-World + WorldVLA</li>
+      <li>DreamZero + GR00T 2 (World Action Model)</li>
       <li>Cosmos-Reason + Alpamayo-R1</li>
       <li>ECoT + CoT-VLA</li>
+      <li>Show-Harness + OpenRUA (VLA 없이 제어하기)</li>
       <li>Fast-in-Slow + Hume</li>
       <li>onboard latency 실습</li>
       <li>VTLA + ForceVLA</li>
@@ -1658,6 +1698,7 @@
       <li>물리성 선호 학습 (PhyGDPO + PhysMaster)</li>
     </ol>
   </div>
+  <p class="blk-sub" style="margin-top:14px;">최소 경로에 포함되지 않는 Core 세션 — Core 구분은 유지하되 일정이 부족하면 가장 먼저 뒤로 미룬다: C03-S03 (3D Diffusion Policy + iDP3) · C07-S03/C07-S04 중 16번에서 고르지 않은 쪽 · C09-S03 (ACoT + DualCoT) · C09-S05 (Frontier 모델의 직접 제어 사례) · C10-S02 (Reactive Diffusion Policy + TacMamba) · C10-S03 (Real-Time Chunking + Think Twice, Act Once) · C12-S02 (Tactile-VLA + TacVLA/TAP-VLA). 선택 챕터인 Ch.11의 Core 2세션은 36세션에 세지 않았다.</p>
 
   <h3 style="font-size:15px; margin:34px 0 0;">발표 템플릿과 규칙</h3>
   <ul class="plist" style="margin-top:12px;">
@@ -1665,7 +1706,8 @@
     <li><b>시스템 명세.</b> robot/embodiment, sensor, observation, action space, action chunk, control frequency, model size, data source, task·성공 정의, 공개 여부 — anchor 논문만 완전하게, 나머지는 달라진 항목만.</li>
     <li><b>가장 강한 증거와 가장 약한 증거.</b> 주장을 가장 잘 지지하는 실험 1개, 부족한 실험 또는 누락된 대조군 1개.</li>
     <li><b>재현·연구 가능성.</b> 공개 자원으로 재현 가능한 부분 / 우리 연구실에서 수정 가능한 부분 / 빅테크 자원 없이는 어려운 부분.</li>
-    <li><b>최신성 규칙.</b> core 계보가 아니면 2025-26 논문 우선. 발표 1주 전 arXiv 최신 버전·공식 페이지·코드 확인. 단순 SOTA 향상은 10분 업데이트로. 블로그만 있고 방법·평가가 없으면 Core 지정 금지. 논문 버전·확인 날짜를 슬라이드에 기록.</li>
+    <li><b>Industry brief (논문이 아닌 자료).</b> 무엇이 공개되었는가(날짜·공식 출처) / 어떻게 쓸 수 있는가(가중치·API·파트너 한정, 비용과 제약) / 실험으로 보인 것과 주장·데모에 그친 것 / 우리 연구실에서 할 수 있는 것. 전체 5~10분, 2차 보도로만 확인한 내용은 그렇게 표기.</li>
+    <li><b>최신성 규칙.</b> core 계보가 아니면 2025-26 논문 우선. 발표 1주 전 arXiv 최신 버전·공식 페이지·코드 확인. 단순 SOTA 향상은 10분 업데이트로. 블로그만 있고 방법·평가가 없으면 anchor 지정 금지(계보 표의 행이나 Industry brief로). 논문 버전·확인 날짜를 슬라이드에 기록.</li>
   </ul>
 
   <h3 style="font-size:15px; margin:34px 0 0;">최종 체크리스트 <span style="font-weight:400; color:var(--faint); font-size:12px;">— 스터디 종료 시 답할 수 있어야 하는 것</span></h3>
@@ -1673,10 +1715,12 @@
     <li>VLA 논문을 discrete/compressed token, diffusion head, flow head로 분류할 수 있다.</li>
     <li>action chunk 길이와 replanning frequency의 trade-off를 설명할 수 있다.</li>
     <li>Flow Matching(학습 목표), DiT(아키텍처), FAST(tokenizer)가 서로 다른 층위임을 설명할 수 있다.</li>
-    <li>π0 → π0.5 → π*0.6의 발전을 '한계 시인 사슬'로 설명할 수 있다.</li>
+    <li>π0 → π0.5 → π*0.6 → π0.7의 발전을 '한계 시인 사슬'로 설명할 수 있다.</li>
     <li>pixel generation, latent prediction, explicit geometry의 전제를 비교할 수 있다.</li>
     <li>world model을 representation, simulator, data engine, reward/evaluator로 분해할 수 있다.</li>
+    <li>VLA와 World Action Model의 차이를 backbone과 학습 objective로 설명할 수 있다.</li>
     <li>reasoning trace의 매체와 latency·interpretability trade-off를 분석할 수 있다.</li>
+    <li>별도 VLA 학습 없이 frontier VLM·agent가 로봇을 직접 제어하는 접근의 interface와 한계를 설명할 수 있다.</li>
     <li>manipulation VLA와 locomotion RL의 문제 설정 차이를 설명할 수 있다.</li>
     <li>촉각·힘 신호를 센서·주파수·융합 위치 기준으로 비교할 수 있다.</li>
     <li>social world model이 physical world model과 상태·전이·평가에서 어떻게 다른지 설명할 수 있다.</li>
@@ -1719,7 +1763,7 @@
 </section>
 
 <footer class="foot">
-  <p>개정 기준일 2026-08-31 · 연구실 스케일 개정안(51세션) 기준 · 커리큘럼 원문: Physical_AI_study_curriculum_revised.md</p>
+  <p>개정 기준일 2026-11-20 · 연구실 스케일 개정안(51세션) 기준 · 커리큘럼 원문: Physical_AI_study_curriculum_revised.md</p>
   <p>산업계 테크리포트는 "실험으로 보인 것 / 저자가 해석한 것 / 마케팅·전망"을 구분해서 읽는다. 커뮤니티 정리는 논문 발견용으로만 쓰고 직접 인용하지 않는다.</p>
 </footer>
 </div>
@@ -1753,13 +1797,13 @@
 <header class="hero">
   <p class="eyebrow">DSBA · Paper Seminar</p>
   <h1>Physical AI <br>Study Curriculum</h1>
-  <p class="lede">How does a robot observe the world, represent it, predict it, and turn that into action? We follow the point where VLA, policy learning, world models, reasoning, and real-time control meet — <b>problem-first and lineage-first</b>. The goal is not to start a research project right away, but <b>understanding of and curiosity about the field</b>, along with the insight to choose our next research direction as of August 2026.</p>
+  <p class="lede">How does a robot observe the world, represent it, predict it, and turn that into action? We follow the point where VLA, policy learning, world models, reasoning, and real-time control meet — <b>problem-first and lineage-first</b>. The goal is not to start a research project right away, but <b>understanding of and curiosity about the field</b>, along with the insight to choose our next research direction as of November 2026.</p>
   <div class="stats">
     <span class="stat"><b>14</b> Chapters</span>
     <span class="stat"><b>51</b> Sessions</span>
     <span class="stat"><b>100+</b> Papers</span>
     <span class="stat">1-hour sessions · <b>2–3</b> papers each</span>
-    <span class="stat">Revised <b>2026-08-31</b></span>
+    <span class="stat">Revised <b>2026-11-20</b></span>
   </div>
   <p class="rev">We progress by Chapter and learning question, not by week. Based on the lab-scale revision (including three ◆ sessions). Paper links and versions are re-checked one week before each presentation.</p>
 </header>
@@ -1796,6 +1840,9 @@
     <li><b>Classics as excerpts.</b> <i>World Models</i> (2018) and LeCun's position paper (2022) get no standalone session; they serve only as starting points of their lineages.</li>
     <li><b>Chapters are split by problem, not by company.</b> Research groups are kept only as comparison tags.</li>
     <li><b>Core / Extension / Update.</b> We don't grow the Core just because a new paper came out — promotion is considered only when it brings a new problem definition, architecture, data, or evaluation method.</li>
+    <li><b>Series as a trajectory.</b> For work that continues across versions — Gemini Robotics, GR00T, π, Genie, Cosmos — read one paper that establishes the principle in depth as the anchor, and cover the other versions with one lineage table (version × what was added × evidence × remaining limits) that shows the trajectory and its direction.</li>
+    <li><b>A cap on presenter load.</b> At most two papers are read in depth per session. Anything beyond that is an excerpt, a one-slide background note, or a single table row.</li>
+    <li><b>Industry shifts count too.</b> API launches, weight releases, and official demos are covered in the Industry brief format, but never serve as a session's anchor.</li>
     <li><b>Three questions for every presentation.</b> Where did the previous approach get stuck → what did this work change → what new limitation did that change create?</li>
   </ul>
   <details class="artifact">
@@ -2033,8 +2080,8 @@
 </section>
 <!-- ============ Ch.5 ============ -->
 <section class="ch" id="ch5">
-  <header><span class="chno">CH.05</span><h2>The π Lineage — from dexterity to learning from experience</h2><span class="cnt">4 sessions</span></header>
-  <p class="goal">Trace π0 → π0.5 → π*0.6, along with the tool papers in between, as a chain showing how each version <em>acknowledged and extended the limits</em> of the one before.</p>
+  <header><span class="chno">CH.05</span><h2>The π Lineage — from dexterity to learning from experience</h2><span class="cnt">3 sessions</span></header>
+  <p class="goal">Trace π0 → π0.5 → π*0.6 → π0.7, along with the tool papers in between, as a chain showing how each version <em>acknowledged and extended the limits</em> of the one before.</p>
 
   <details class="s" id="c05-s01">
     <summary><span class="code">C05-S01</span><span class="t">π0 + π0.5 <em>— flow expert and open-world generalization</em></span><span class="badges"><span class="b core">Core</span></span></summary>
@@ -2054,39 +2101,25 @@
   </details>
 
   <details class="s" id="c05-s02">
-    <summary><span class="code">C05-S02</span><span class="t">π*0.6 / RECAP + Real-Time Chunking <em>— learning from experience and real-time execution</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C05-S02</span><span class="t">π*0.6 + π0.7 <em>— from learning from experience to a steerable generalist</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">What does a VLA trained only on demonstrations need in order to learn from real failures — and what does a large flow policy need in order to keep moving smoothly despite inference latency?</p>
+      <p class="q">What does a VLA trained only on demonstrations need in order to learn from real failures — and to fold failures, autonomous data, and non-robot data into one model, how should it be conditioned on <em>how</em> to do a task, not just what to do?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2511.14759" target="_blank" rel="noopener">π*0.6: a VLA That Learns From Experience (RECAP)</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2506.07339" target="_blank" rel="noopener">Real-Time Execution of Action Chunking Flow Policies</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2604.15483" target="_blank" rel="noopener">π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2511.14759" target="_blank" rel="noopener">π*0.6: a VLA That Learns From Experience (RECAP)</a> (2025) — RECAP section only</li>
       </ul>
       <ul class="pts">
-        <li>Experience collection, intervention, advantage-conditioned policy, reward/judge (RECAP)</li>
-        <li>Inpainting-style asynchronous execution that stitches chunks together during inference latency (RTC)</li>
+        <li>Experience collection, intervention, advantage-conditioned policy, reward/judge (the core of RECAP)</li>
+        <li>Diverse context conditioning: language command + task-performance metadata + subgoal images to steer the strategy (π0.7)</li>
+        <li>Training on demonstrations, autonomous data including failures, and non-robot data together</li>
+        <li>Reading scope: method section and two key experiments for π0.7; only the RECAP section for π*0.6</li>
       </ul>
-      <p class="note"><b>Open questions</b> — Who defines the reward, and how far can VLM-as-judge be trusted? Is it safe to cut a chunk at any point? Connections: Ch.13 evaluation, Ch.10 real-time operation.</p>
+      <p class="note"><b>Open questions</b> — Are advantage conditioning and metadata conditioning the same idea generalized? How far can an "emergent capability" claim be accepted when the evaluation mostly compares against the company's own earlier models? Background note (one slide): <a href="https://arxiv.org/abs/2502.19417" target="_blank" rel="noopener">Hi Robot</a>, <a href="https://arxiv.org/abs/2505.23705" target="_blank" rel="noopener">Knowledge Insulation</a>. Real-Time Chunking moves to C10-S03.</p>
     </div>
   </details>
 
   <details class="s" id="c05-s03">
-    <summary><span class="code">C05-S03</span><span class="t">Hi Robot + Knowledge Insulation <em>— hierarchy and training recipes</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
-    <div class="body">
-      <p class="q">Layering a System 2 VLM on top of a low-level policy, and a recipe that trains the action expert while protecting the VLM's knowledge — which failure does each prevent?</p>
-      <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2502.19417" target="_blank" rel="noopener">Hi Robot: Open-Ended Instruction Following with Hierarchical VLAs</a> (2025)</li>
-        <li><a href="https://arxiv.org/abs/2505.23705" target="_blank" rel="noopener">Knowledge Insulating Vision-Language-Action Models</a> (2025)</li>
-      </ul>
-      <ul class="pts">
-        <li>Open-ended instructions, handling user interventions and feedback, high-/low-level division of labor (Hi Robot)</li>
-        <li>How gradients from a continuous action head damage the VLM representation, and the recipe that blocks them (KI)</li>
-      </ul>
-      <p class="note"><b>Connections</b> — Ch.10 dual system, Ch.6 data engines.</p>
-    </div>
-  </details>
-
-  <details class="s" id="c05-s04">
-    <summary><span class="code">C05-S04</span><span class="t">Lab-scale post-training <em>— continual RL and capability transfer</em></span><span class="badges"><span class="b lab">◆ Lab</span><span class="b ext">Extension</span></span></summary>
+    <summary><span class="code">C05-S03</span><span class="t">Lab-scale post-training <em>— continual RL and capability transfer</em></span><span class="badges"><span class="b lab">◆ Lab</span><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">Without a robot fleet, how far can research go in continually improving an open VLA after deployment, or transferring capabilities into it?</p>
       <ul class="papers">
@@ -2107,9 +2140,10 @@
       <tr><th>Version</th><th>Problem addressed</th><th>What was added</th><th>Limitation revealed next</th></tr>
       <tr><td>π0</td><td>precise continuous control</td><td>flow action expert</td><td>generalization to unfamiliar environments and long horizons</td></tr>
       <tr><td>π0.5</td><td>open-world generalization</td><td>heterogeneous co-training, semantic subtasks</td><td>improving from real failures</td></tr>
-      <tr><td>π*0.6</td><td>experience learning</td><td>intervention · RECAP · advantage conditioning</td><td>reward reliability, data cost, safety</td></tr>
+      <tr><td>π*0.6</td><td>experience learning</td><td>intervention · RECAP · advantage conditioning</td><td>reward reliability, data cost, per-task fine-tuning</td></tr>
+      <tr><td>π0.7</td><td>data of mixed quality in one model, out-of-the-box performance</td><td>context conditioning (metadata, subgoal images)</td><td>to be filled in at the presentation — candidates: comparison with external baselines, reproducibility</td></tr>
     </table></div>
-    <p class="art-note">Supporting lineage: FAST (tokenizer), Real-Time Chunking (real-time execution), Hi Robot (hierarchical instruction following), and Knowledge Insulation (training recipe) are read alongside as tool papers that bridge the main versions.</p>
+    <p class="art-note">Supporting lineage: FAST (tokenizer, C03-S02), Real-Time Chunking (real-time execution, C10-S03), Hi Robot (hierarchical instruction following), and Knowledge Insulation (training recipe) are tool papers that bridge the main versions; they get no standalone session and are read as background notes in the relevant sessions.</p>
   </details>
 </section>
 
@@ -2119,34 +2153,36 @@
   <p class="goal">View VLA generalization not just as a model-architecture problem, but as a problem of data engines, embodiment alignment, action labels, and synthetic data.</p>
 
   <details class="s" id="c06-s01">
-    <summary><span class="code">C06-S01</span><span class="t">Gemini Robotics 1.0 + 1.5</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C06-S01</span><span class="t">The Gemini Robotics lineage <em>— 1.0 → 1.5 → 2</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">How is RT-2's "semantic knowledge transfer" claim extended and revised in an actual generalist robot system?</p>
+      <p class="q">How was RT-2's "semantic knowledge transfer" claim extended in a generalist robot system, and what was added going from 1.0 to 1.5 to 2?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2503.20020" target="_blank" rel="noopener">Gemini Robotics</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2510.03342" target="_blank" rel="noopener">Gemini Robotics 1.5</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2510.03342" target="_blank" rel="noopener">Gemini Robotics 1.5</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/" target="_blank" rel="noopener">Gemini Robotics 2 official blog</a> (2026) · <a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-robotics-er-2/" target="_blank" rel="noopener">ER 2</a> — a three-model lineup: VLA, embodied reasoning, On-Device</li>
+        <li><a href="https://arxiv.org/abs/2503.20020" target="_blank" rel="noopener">Gemini Robotics</a> (2025) — excerpt only, as the starting row of the lineage table</li>
       </ul>
       <ul class="pts">
-        <li>The separate embodied reasoning (ER) model and its role; motion transfer and cross-embodiment learning</li>
-        <li>Think-before-acting interface and thinking budget (1.5) — derivative releases such as On-Device only as notes</li>
+        <li>The separate embodied reasoning (ER) model and its role; think-before-acting interface and thinking budget (1.5)</li>
+        <li>Motion transfer and cross-embodiment learning (1.5 → 2)</li>
+        <li>The extension from upper-body tabletop manipulation to whole-body control, and the claimed data needed to adapt to a new embodiment (2)</li>
       </ul>
-      <p class="note"><b>Presentation format</b> — Not a version-by-version summary, but a comparison of claims and evidence along the RT-2 → 1.0 → 1.5 lineage. Check the latest official version one week before presenting.</p>
+      <p class="note"><b>Presentation format</b> — Not a version-by-version summary, but one lineage table (version × what was added × kind of evidence × remaining limits) that shows the trajectory and its direction. Gemini Robotics 2 is blog-based with no technical report confirmed, so treat it as a claims-vs-evidence exercise. Check the latest official version one week before presenting.</p>
     </div>
   </details>
 
   <details class="s" id="c06-s02">
-    <summary><span class="code">C06-S02</span><span class="t">GR00T N1 + N1.5</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C06-S02</span><span class="t">GR00T N1 → N1.7 <em>— the humanoid dual-system VLA lineage</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">Why split a humanoid foundation model into a dual system of VLM and action model, and what changed in the version update?</p>
+      <p class="q">Why split a humanoid foundation model into a dual system of VLM and action model, and what changed from N1 to N1.7?</p>
       <ul class="papers">
         <li><a href="https://arxiv.org/abs/2503.14734" target="_blank" rel="noopener">GR00T N1: An Open Foundation Model for Generalist Humanoid Robots</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://huggingface.co/nvidia/GR00T-N1.5-3B" target="_blank" rel="noopener">GR00T N1.5 official release (model card &amp; technical docs)</a></li>
+        <li>Official releases (model cards &amp; technical docs): <a href="https://huggingface.co/nvidia/GR00T-N1.5-3B" target="_blank" rel="noopener">N1.5</a> · <a href="https://huggingface.co/nvidia/GR00T-N1.6-3B" target="_blank" rel="noopener">N1.6</a> · <a href="https://huggingface.co/nvidia/GR00T-N1.7-3B" target="_blank" rel="noopener">N1.7</a> — summarized as a lineage table</li>
       </ul>
       <ul class="pts">
-        <li>System 2 VLM + System 1 action model (DiT/flow); a data pyramid of real, synthetic, and web video</li>
-        <li>What changed in N1.5: frozen VLM, new embodiment head, use of DreamGen synthetic data</li>
+        <li>System 2 VLM + System 1 action model (DiT/flow); the data pyramid of real, synthetic, and web video</li>
+        <li>Per-version changes: frozen VLM, new embodiment head, use of DreamGen synthetic data, etc. — fill the lineage table (version × what changed × why) directly from the model cards</li>
       </ul>
-      <p class="note"><b>Connections</b> — Ch.10 dual system, Ch.11 whole-body control interface. State which humanoid is used and whether compute is onboard or offboard.</p>
+      <p class="note"><b>Connections</b> — Ch.10 dual system, Ch.11 whole-body control interface. GR00T 2, which swaps the VLM backbone for a video world model (a World Action Model), continues in C08-S05. State which humanoid is used and whether compute is onboard or offboard.</p>
     </div>
   </details>
 
@@ -2156,55 +2192,67 @@
       <p class="q">Two ways around the bottleneck of "real teleop data with action labels" — latent actions and neural trajectories. What learning signal does each one produce?</p>
       <ul class="papers">
         <li><a href="https://arxiv.org/abs/2410.11758" target="_blank" rel="noopener">Latent Action Pretraining from Videos (LAPA)</a> (2024)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2505.12705" target="_blank" rel="noopener">DreamGen: Unlocking Generalization through Neural Trajectories</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2505.12705" target="_blank" rel="noopener">DreamGen: Unlocking Generalization through Video World Models</a> (2025)</li>
       </ul>
       <ul class="pts">
         <li>Latent action discovery, video pretraining, policy adaptation (LAPA)</li>
         <li>Video world model fine-tuning → synthetic trajectories → policy learning, generation-to-real gap (DreamGen)</li>
       </ul>
-      <p class="note"><b>Open questions</b> — Debugging and aligning uninterpretable latent actions. Are generated trajectories new information, or a recombination of the existing distribution? Connections: Ch.8 Genie · world model as data engine.</p>
+      <p class="note"><b>Open questions</b> — Debugging and aligning uninterpretable latent actions. Are generated trajectories new information, or a recombination of the existing distribution? Programmatic multiplication inside a simulator (<a href="https://arxiv.org/abs/2310.17596" target="_blank" rel="noopener">MimicGen</a>, <a href="https://arxiv.org/abs/2410.24185" target="_blank" rel="noopener">DexMimicGen</a>) is only one row of the comparison table. Connections: Ch.8 Genie · world model as data engine.</p>
     </div>
   </details>
 
   <details class="s" id="c06-s04">
-    <summary><span class="code">C06-S04</span><span class="t">The MimicGen lineage <em>— multiplying demonstrations programmatically</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <summary><span class="code">C06-S04</span><span class="t">Representative datasets and simulation benchmarks</span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
-      <p class="q">When a handful of human demonstrations are multiplied into many new ones in simulation, how real is that diversity?</p>
+      <p class="q">What do the datasets and simulation environments that VLA research actually trains and evaluates on contain — and what do they leave out?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2410.24185" target="_blank" rel="noopener">DexMimicGen</a> (2024)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2310.17596" target="_blank" rel="noopener">MimicGen</a> (2023) — principles excerpt only</li>
+        <li>Dataset — <a href="https://arxiv.org/abs/2403.12945" target="_blank" rel="noopener">DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset</a> (2024)<span class="anchor-tag">anchor</span></li>
+        <li>Dataset — <a href="https://arxiv.org/abs/2503.06669" target="_blank" rel="noopener">AgiBot World Colosseo</a> (2025)</li>
+        <li>Simulation — <a href="https://arxiv.org/abs/2506.18088" target="_blank" rel="noopener">RoboTwin 2.0: A Scalable Data Generator and Benchmark</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li>Simulation — <a href="https://arxiv.org/abs/2306.03310" target="_blank" rel="noopener">LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning</a> (2023)</li>
       </ul>
       <ul class="pts">
-        <li>Recombining object-centric segments, scene variation, quality filtering of multiplied data, extension to humanoid and bimanual setups</li>
-        <li>Real teleop (ALOHA lineage) vs. generated video (DreamGen) vs. programmatic multiplication: cost, error, and scalability</li>
+        <li>Real-robot datasets: how they were collected (distributed collection vs. a standardized pipeline), scale, embodiment and environment diversity, action definition, language annotation quality</li>
+        <li>Simulation: how tasks are generated, domain randomization, evaluation protocol, use as a training-data generator</li>
+        <li>Read the two anchors in depth (DROID, RoboTwin 2.0); the other two only fill rows of the comparison table — describe every item by the same four fields: collection/generation method, scale, action definition, where it is mainly used</li>
       </ul>
-      <p class="note"><b>Update</b> — Check and add 2025–26 demonstration-synthesis follow-ups as of the presentation date. Connection: the GR00T data pipeline.</p>
+      <p class="note"><b>Deliverable</b> — A table comparing datasets and simulators not by episode count, but by fidelity, diversity, action semantics, and reproducibility. Open X-Embodiment appears only as the baseline row; benchmarks as evaluation tools are covered in C13-S01. BridgeData V2, RoboCasa, ManiSkill3, BEHAVIOR-1K, and Isaac Lab get a name and a one-line purpose only.</p>
     </div>
   </details>
 
   <details class="s" id="c06-s05">
-    <summary><span class="code">C06-S05</span><span class="t">VLA datasets · benchmarks · data engines</span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <summary><span class="code">C06-S05</span><span class="t">Cross-embodiment <em>— many bodies, one model</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
-      <p class="q">Is today's VLA bottleneck in data infrastructure rather than in models?</p>
+      <p class="q">When aligning different joint structures and action dimensions in a single model, which scales better: keeping per-embodiment parameters, or learning an embodiment-agnostic action representation?</p>
       <ul class="papers">
-        <li>Open X-Embodiment (revisited), <a href="https://arxiv.org/abs/2403.12945" target="_blank" rel="noopener">DROID</a>, BridgeData, AgiBot World, LeRobot community data</li>
-        <li><a href="https://arxiv.org/abs/2604.23001" target="_blank" rel="noopener">VLA in Robotics: A Survey of Datasets, Benchmarks, and Data Engines</a> (2026)</li>
+        <li><a href="https://arxiv.org/abs/2510.10274" target="_blank" rel="noopener">X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment VLA</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2505.06111" target="_blank" rel="noopener">UniVLA: Learning to Act Anywhere with Task-centric Latent Actions</a> (2025)</li>
       </ul>
       <ul class="pts">
-        <li>Embodiment diversity, action space mismatch, temporal alignment, annotation &amp; language quality, real/sim/generated mixtures</li>
+        <li>Absorbing heterogeneity with a learnable soft prompt per data source (X-VLA)</li>
+        <li>Deriving task-centric latent actions from video to build an embodiment-agnostic action space, decoded per robot (UniVLA)</li>
+        <li>Comparison table (one row each for models already covered): RDT-1B's unified action space, π0.7's zero-shot cross-embodiment, Gemini's motion transfer, GR00T's embodiment head</li>
       </ul>
-      <p class="note"><b>Deliverable</b> — Compare datasets not by episode count, but by fidelity, diversity, action semantics, and reproducibility.</p>
+      <p class="note"><b>Presentation format</b> — Compare only the cross-embodiment interface, separated out from the full model. Do not re-read models already presented; pull the interface part from those sessions' material. Pick one 2026 follow-up (<a href="https://arxiv.org/abs/2611.24816" target="_blank" rel="noopener">RoboMorpher</a>, <a href="https://arxiv.org/abs/2611.10061" target="_blank" rel="noopener">UniLatent</a>, etc.) at presentation time and add it as a table row.</p>
     </div>
   </details>
 
   <details class="s" id="c06-s06">
-    <summary><span class="code">C06-S06</span><span class="t">Cross-embodiment action representation</span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C06-S06</span><span class="t">Industry brief <em>— how robot foundation models are offered</em></span><span class="badges"><span class="b upd">Update</span></span></summary>
     <div class="body">
-      <p class="q">How do we align different joint structures and action dimensions within a single model?</p>
-      <ul class="pts">
-        <li>Candidates for comparison: RDT's unified action space, Gemini's motion transfer, GR00T's embodiment head, the latest canonical action representations</li>
-        <li>Compare only the cross-embodiment interface, separated out from the full model</li>
+      <p class="q">As of late 2026, in what forms are robot foundation models offered — open weights, hosted APIs, partner-only access — and how does that change the research a lab can do?</p>
+      <ul class="papers">
+        <li>Physical Intelligence Pi API beta (2026-10) — secondary coverage: <a href="https://theaiinsider.tech/2026/10/14/physical-intelligence-opens-pi-api-beta-for-robot-model-training-and-deployment/" target="_blank" rel="noopener">The AI Insider</a>, <a href="https://www.unite.ai/physical-intelligence-opens-pi-api-beta-for-robot-foundation-models/" target="_blank" rel="noopener">Unite.AI</a></li>
+        <li>Public API preview of <a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-robotics-er-2/" target="_blank" rel="noopener">Gemini Robotics-ER 2</a>; partner-only access to <a href="https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/" target="_blank" rel="noopener">Gemini Robotics 2</a> and On-Device 2 (2026-07 to 10)</li>
+        <li><a href="https://huggingface.co/nvidia/GR00T-N1.7-3B" target="_blank" rel="noopener">GR00T N1.7</a> open weights and the <a href="https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf" target="_blank" rel="noopener">GR00T 2 whitepaper</a> (2026-11)</li>
       </ul>
+      <ul class="pts">
+        <li>Comparing forms of access: open weights / fine-tuning API / inference API / partner-only</li>
+        <li>What research each form allows: probing and architectural changes, data-centric fine-tuning, black-box evaluation</li>
+        <li>What uploading robot data to a provider means for data ownership, reproducibility, and cost</li>
+      </ul>
+      <p class="note"><b>Presentation format</b> — Not papers, so use the Industry brief format (what was released / how it can be used / what was shown vs. only claimed / what we can do), under 5 minutes per item. Mark official documents and secondary coverage separately, and re-check the official announcements one week before presenting. Deliverable: a comparison table of access forms.</p>
     </div>
   </details>
 
@@ -2244,34 +2292,37 @@
   <p class="goal">Ask what a world model should predict. Compare the assumptions and falsification conditions of pixel generation, latent prediction, and explicit 3D/4D representations.</p>
 
   <details class="s" id="c07-s01">
-    <summary><span class="code">C07-S01</span><span class="t">LeCun's autonomous intelligence architecture + I-JEPA</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C07-S01</span><span class="t">JEPA essentials <em>— what it means to predict in latent space (I-JEPA → V-JEPA 2)</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">What changes if we predict in latent space instead of generating unpredictable pixel details?</p>
+      <p class="q">What changes if we predict in latent space instead of generating unpredictable pixel details — and are representations learned that way from internet video sufficient for prediction and robot planning?</p>
       <ul class="papers">
-        <li><a href="https://openreview.net/forum?id=BZ5a1r-kVsf" target="_blank" rel="noopener">A Path Towards Autonomous Machine Intelligence</a> (2022) — relevant sections only</li>
-        <li><a href="https://arxiv.org/abs/2301.08243" target="_blank" rel="noopener">I-JEPA: Joint-Embedding Predictive Architecture</a> (2023)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2506.09985" target="_blank" rel="noopener">V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2301.08243" target="_blank" rel="noopener">I-JEPA: Joint-Embedding Predictive Architecture</a> (2023) — architecture excerpt only</li>
+        <li><a href="https://openreview.net/forum?id=BZ5a1r-kVsf" target="_blank" rel="noopener">A Path Towards Autonomous Machine Intelligence</a> (2022) — one slide on the motivation</li>
       </ul>
       <ul class="pts">
-        <li>Minimal concepts: predictor, target encoder, preventing representation collapse, the energy-based view</li>
-        <li>What information pixel-reconstruction and latent-prediction approaches each throw away</li>
+        <li>Predictor, target encoder, preventing representation collapse, the minimum of the energy-based view (I-JEPA)</li>
+        <li>Video pretraining, action-conditioned model, goal-image planning, real-robot evaluation (V-JEPA 2)</li>
+        <li>Lineage table: image → video, global → dense spatiotemporal features (<a href="https://arxiv.org/abs/2603.14482" target="_blank" rel="noopener">V-JEPA 2.1</a>), understanding → prediction, planning, and control</li>
       </ul>
-      <p class="note">Skip a full read of the position paper and long philosophical debates; cover only the parts that lead to the I-JEPA design.</p>
+      <p class="note"><b>Open question</b> — What information might latents miss, such as contact, force, and fine geometry? Skip a full read of the position paper and long philosophical debates; V-JEPA 2.1 is only one row of the lineage table.</p>
     </div>
   </details>
 
   <details class="s" id="c07-s02">
-    <summary><span class="code">C07-S02</span><span class="t">V-JEPA 2 + V-JEPA 2.1</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C07-S02</span><span class="t">Latent world models today <em>— RoboJEPA + H-JEPA</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">Are latent representations learned from internet video sufficient for actual prediction and robot planning?</p>
+      <p class="q">Do latent world models improve predictably when scaled on robot data — and can hierarchy solve the long-horizon problems where single-timescale latent planning gets stuck?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2506.09985" target="_blank" rel="noopener">V-JEPA 2</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2603.14482" target="_blank" rel="noopener">V-JEPA 2.1</a> (2026)</li>
+        <li><a href="https://arxiv.org/abs/2610.10515" target="_blank" rel="noopener">RoboJEPA: Scaling Robotic Latent World Models</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2610.06805" target="_blank" rel="noopener">H-JEPA: End-to-End Learning of Hierarchical World Models for Visual Planning</a> (2026)</li>
       </ul>
       <ul class="pts">
-        <li>Video pretraining, action-conditioned model, planning, real-robot evaluation, dense feature improvements</li>
-        <li>Shifts to track: image → video, global → dense spatiotemporal features, understanding → prediction, planning, and control</li>
+        <li>A JEPA world model trained on real-robot data from 12 embodiments, scaling laws for imagination error, zero-shot planning toward a goal image (RoboJEPA)</li>
+        <li>A hierarchy of action-conditioned JEPAs, each level predicting farther ahead; top-down planning where upper-level predictions become subgoals for the planner below (H-JEPA)</li>
+        <li>Comparison axis: V-JEPA 2's internet-video pretraining plus a little robot data vs. RoboJEPA's large-scale robot-data training</li>
       </ul>
-      <p class="note"><b>Key question</b> — What information might latents miss, such as contact, force, and fine geometry?</p>
+      <p class="note"><b>Open questions</b> — Over what range of tasks was the claim that imagination error is a proxy for real-robot performance validated? How does planning that needs a goal image meet language-instructed VLAs? RoboJEPA releases checkpoints and code. Pick one November 2026 follow-up (<a href="https://arxiv.org/abs/2611.25927" target="_blank" rel="noopener">Fast-JEPA</a>, <a href="https://arxiv.org/abs/2611.24062" target="_blank" rel="noopener">JEPA Dots</a>, <a href="https://arxiv.org/abs/2609.37250" target="_blank" rel="noopener">V-JEPA Policy</a>) as a 10-minute update.</p>
     </div>
   </details>
 
@@ -2321,7 +2372,7 @@
 <!-- ============ Ch.8 ============ -->
 <section class="ch" id="ch8">
   <header><span class="chno">CH.08</span><h2>Using World Models as Tools</h2><span class="cnt">7 sessions</span></header>
-  <p class="goal">Break the world model down not as a vague "understanding of the world," but as a concrete tool used for policy learning, planning, data generation, and evaluation.</p>
+  <p class="goal">Break the world model down not as a vague "understanding of the world," but as a concrete tool used for policy learning, planning, data generation, and evaluation — up to World Action Models, where the world model becomes the policy itself.</p>
 
   <details class="s" id="c08-s01">
     <summary><span class="code">C08-S01</span><span class="t">World Models excerpt + Dreamer 4 <em>— the imagination lineage</em></span><span class="badges"><span class="b core">Core</span></span></summary>
@@ -2339,18 +2390,19 @@
   </details>
 
   <details class="s" id="c08-s02">
-    <summary><span class="code">C08-S02</span><span class="t">Genie + Genie 3 <em>— from latent actions to real-time interactive worlds</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C08-S02</span><span class="t">The Genie lineage <em>— from latent actions to real-time interactive worlds (Genie → Genie 4)</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">How did the idea of learning a controllable world from action-unlabeled video grow into real-time interactive worlds?</p>
+      <p class="q">In which direction did the idea of learning a controllable world from action-unlabeled video grow through Genie 2, 3, and 4 — and what does that direction offer agent and robot learning?</p>
       <ul class="papers">
         <li><a href="https://arxiv.org/abs/2402.15391" target="_blank" rel="noopener">Genie: Generative Interactive Environments</a> (2024)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/" target="_blank" rel="noopener">Genie 3 official blog &amp; demos</a> (2025)</li>
+        <li>Official blogs &amp; demos: <a href="https://deepmind.google/blog/genie-2-a-large-scale-foundation-world-model/" target="_blank" rel="noopener">Genie 2</a> (2024) · <a href="https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/" target="_blank" rel="noopener">Genie 3</a> (2025) · <a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/" target="_blank" rel="noopener">Genie 4</a> (2026)</li>
       </ul>
       <ul class="pts">
         <li>Latent actions, video tokenizer, action-controllable generation (Genie)</li>
-        <li>Real-time 720p/24fps, minute-scale consistency, promptable world events, agent training environments (Genie 3)</li>
+        <li>Lineage table: 2D platformer games → 3D environment generation (Genie 2) → real-time 720p/24fps, minute-scale consistency, promptable world events (Genie 3) → native audio, text steering while running, pairing with Gemini agents (Genie 4)</li>
+        <li>Establish the principle with the one Genie paper; cover later versions with one lineage table (version × what became possible × published evidence × remaining limits) that shows the trajectory and its direction</li>
       </ul>
-      <p class="note"><b>Caution</b> — Separate the demos' visual quality from their usefulness for agent training. Genie 3's technical report is thin, which makes it good practice for separating claims from evidence. LAPA uses latent actions for policies; Genie uses them for world generation.</p>
+      <p class="note"><b>Caution</b> — From Genie 2 onward there are only blogs and demos, no papers. Good practice for separating the demos' visual quality from their usefulness for agent training. LAPA uses latent actions for policies; Genie uses them for world generation.</p>
     </div>
   </details>
 
@@ -2381,40 +2433,43 @@
       <ul class="pts">
         <li>Unified Text2World/Image2World/Video2World, coupling with Cosmos-Reason, RL post-training (Predict2.5)</li>
         <li>Mixture-of-transformers, a single backbone for understanding, generation, and action (Cosmos 3)</li>
+        <li>Lineage table: a bundle of task-specific models (Predict1, Transfer1, Reason1 — C08-S03) → a single flow model (Predict2.5) → one omnimodal backbone (Cosmos 3) — one table, continued from C08-S03, that shows the direction of travel</li>
       </ul>
       <p class="note"><b>Open question</b> — What does a unified backbone actually give robot policy learning: a representation, a simulator, or a policy initialization?</p>
     </div>
   </details>
 
   <details class="s" id="c08-s05">
-    <summary><span class="code">C08-S05</span><span class="t">Ctrl-World + WorldVLA <em>— decoupled vs. unified</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C08-S05</span><span class="t">World Action Models <em>— DreamZero + GR00T 2</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">Should future observations that follow policy-specified actions come from a separate controllable world model, or should the policy and world model be merged into a single autoregressive model?</p>
+      <p class="q">Instead of putting an action head on a VLM backbone, what changes for generalization when a video world model predicts future observations and actions together?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2510.10125" target="_blank" rel="noopener">Ctrl-World: A Controllable Generative World Model for Robot Manipulation</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2506.21539" target="_blank" rel="noopener">WorldVLA: Towards Autoregressive Action World Model</a> (2025)</li>
+        <li><a href="https://arxiv.org/abs/2602.15922" target="_blank" rel="noopener">World Action Models are Zero-shot Policies (DreamZero)</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf" target="_blank" rel="noopener">GR00T 2: Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation</a> (2026, whitepaper)</li>
       </ul>
       <ul class="pts">
-        <li>Action conditioning, controllability, temporal consistency (Ctrl-World)</li>
-        <li>Unified observation/action sequence modeling, claims of mutual improvement (WorldVLA)</li>
+        <li>Joint modeling of video and action on a pretrained video diffusion backbone; training on heterogeneous robot data (DreamZero)</li>
+        <li>Model and system optimizations that let a 14B autoregressive video diffusion model run 7Hz closed-loop control; cross-embodiment transfer from video-only demonstrations</li>
+        <li>The architectural shift from the GR00T N1.x dual-system VLA (C06-S02) to the WAM of GR00T 2</li>
       </ul>
-      <p class="note"><b>Open questions</b> — Is visually following an action the same as having accurate dynamics? Does a unified objective actually guarantee planning?</p>
+      <p class="note"><b>Open questions</b> — Does the WAM's generalization gain come from the video-prediction objective, or from the scale of the pretrained video backbone? Which tasks is 7Hz enough for, and which not? Background note (one slide): <a href="https://arxiv.org/abs/2506.21539" target="_blank" rel="noopener">WorldVLA</a> — a unified attempt that predates WAMs. Check whether GR00T 2 weights and license are released one week before presenting.</p>
     </div>
   </details>
 
   <details class="s" id="c08-s06">
-    <summary><span class="code">C08-S06</span><span class="t">World model as data engine &amp; policy evaluator</span><span class="badges"><span class="b ext">Extension</span></span></summary>
+    <summary><span class="code">C08-S06</span><span class="t">Evaluating policies in a world model <em>— Ctrl-World + Veo World Simulator</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
-      <p class="q">When a world model is used as a data generator versus as a policy evaluator, where do errors get amplified in each case?</p>
+      <p class="q">If a world model can generate the future that follows a policy's actions, how well does performance measured inside it predict real-world performance?</p>
       <ul class="papers">
-        <li>Re-analyze DreamGen from C06-S03 from a world-model perspective</li>
+        <li><a href="https://arxiv.org/abs/2510.10125" target="_blank" rel="noopener">Ctrl-World: A Controllable Generative World Model for Robot Manipulation</a> (2025)<span class="anchor-tag">anchor</span></li>
         <li><a href="https://arxiv.org/abs/2512.10675" target="_blank" rel="noopener">Evaluating Gemini Robotics Policies in a Veo World Simulator</a> (2025)</li>
       </ul>
       <ul class="pts">
-        <li>Error propagation: generation artifact → action label error → policy failure</li>
+        <li>Action conditioning, controllability, temporal consistency, policy rollouts inside the world model (Ctrl-World)</li>
         <li>Policy evaluation protocol, correlation with the real world, red-teaming, coverage (Veo)</li>
+        <li>Recap: error propagation when a world model is used as a data generator (generation artifact → action label error → policy failure) — one slide brought back from DreamGen in C06-S03</li>
       </ul>
-      <p class="note"><b>Connection</b> — The circular-reasoning problem in Ch.13. Deliverable: error-propagation diagrams for data generation and for policy evaluation.</p>
+      <p class="note"><b>Open questions</b> — Is visually following the action the same as getting the dynamics right? What is left when the evaluator and the policy share the same failures? Connection: the circular-reasoning problem in Ch.13. Deliverable: error-propagation diagrams for data generation and for policy evaluation.</p>
     </div>
   </details>
 
@@ -2440,14 +2495,15 @@
       <tr><td>generation</td><td>video/action condition</td><td>future observation</td><td>data augmentation</td><td>visual artifact, dynamics error</td></tr>
       <tr><td>reward/evaluation</td><td>rollout/task</td><td>score</td><td>RL · policy selection</td><td>judge bias, circular evaluation</td></tr>
       <tr><td>interactive simulator</td><td>user/policy action</td><td>responsive world</td><td>online agent training</td><td>controllability–consistency trade-off</td></tr>
+      <tr><td>world action model</td><td>observation, instruction</td><td>future observation + action</td><td>the policy itself</td><td>inference latency, mismatch between prediction and action</td></tr>
     </table></div>
   </details>
 </section>
 
 <!-- ============ Ch.9 ============ -->
 <section class="ch" id="ch9">
-  <header><span class="chno">CH.09</span><h2>Thinking Before Acting</h2><span class="cnt">4 sessions</span></header>
-  <p class="goal">Rather than classifying VLA reasoning by "does it have CoT," compare it by the medium, location, latency, and verifiability of the reasoning.</p>
+  <header><span class="chno">CH.09</span><h2>Thinking Before Acting</h2><span class="cnt">5 sessions</span></header>
+  <p class="goal">Rather than classifying VLA reasoning by "does it have CoT," compare it by the medium, location, latency, and verifiability of the reasoning. The last two sessions look at general-purpose VLMs that reason and then control robots directly, with no separate VLA training.</p>
 
   <details class="s" id="c09-s01">
     <summary><span class="code">C09-S01</span><span class="t">Cosmos-Reason + Alpamayo-R1 <em>— ontologies and causal labels</em></span><span class="badges"><span class="b core">Core</span></span></summary>
@@ -2493,17 +2549,42 @@
         <li>Action chains, latent/action reasoning, direct control interface (ACoT)</li>
         <li>Visual-linguistic parallel reasoning, synchronization (DualCoT)</li>
       </ul>
-      <p class="note"><b>Comparison</b> — Visual / language / action reasoning under the same task and latency criteria. Trade-off: lower latency vs. interpretability.</p>
+      <p class="note"><b>Comparison</b> — Visual / language / action reasoning under the same task and latency criteria. Trade-off: lower latency vs. interpretability. Update: add a follow-up paper as a row of the Ch.9 wrap-up table only if it brings a new reasoning medium or location, a new mechanism that reduces latency, or a method for verifying trace–action agreement.</p>
     </div>
   </details>
 
   <details class="s" id="c09-s04">
-    <summary><span class="code">C09-S04</span><span class="t">Reasoning-VLA: latest updates</span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C09-S04</span><span class="t">Control without a VLA <em>— Show-Harness + OpenRUA</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <ul class="pts">
-        <li>Selection criteria: at least one of — a new reasoning medium or location / a new mechanism that reduces latency / a method for verifying trace–action agreement</li>
-        <li>Written up as new rows in the Ch.9 wrap-up comparison table</li>
+      <p class="q">What interface do frontier VLMs and coding agents — never trained on robot data — need in order to control a robot directly, and how thin can that interface get?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2609.10522" target="_blank" rel="noopener">Show-Harness: Just a VLM Agent Can Play Robots</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2610.02459" target="_blank" rel="noopener">OpenRUA: Robot-Use Agents Are Zero-Shot Visuomotor Policies</a> (2026)</li>
       </ul>
+      <ul class="pts">
+        <li>Discrete semantic action units a VLM can reason over, with per-embodiment interpreters; zero-shot control with closed-source VLMs and low-cost fine-tuning of small open VLMs (Show-Harness)</li>
+        <li>A zero-abstraction harness that gives a coding agent only terminal access to ROS 2 — perception as file I/O, manipulation as coding (OpenRUA)</li>
+        <li>Comparison axis: how thick the harness is. Against VLAs with a learned action head, compare where actions are produced and the control frequency</li>
+      </ul>
+      <p class="note"><b>Open questions</b> — Does performance come from the VLM's capability or from the harness design? What range of tasks can be solved with an inference loop of a few Hz or less? Background note (one slide): <a href="https://arxiv.org/abs/2609.22966" target="_blank" rel="noopener">RoboDawn</a>, <a href="https://arxiv.org/abs/2609.38078" target="_blank" rel="noopener">MotorMind</a>. This is research a lab can start with API costs alone, with no robot data collection or training.</p>
+    </div>
+  </details>
+
+  <details class="s" id="c09-s05">
+    <summary><span class="code">C09-S05</span><span class="t">Frontier models controlling robots directly <em>— cases and limits</em></span><span class="badges"><span class="b core">Core</span><span class="b upd">Update</span></span></summary>
+    <div class="body">
+      <p class="q">What did the industry announcements of frontier models controlling robots directly actually show — and, taken apart action by action, where do these models succeed and where do they fail?</p>
+      <ul class="papers">
+        <li><a href="https://arxiv.org/abs/2611.26613" target="_blank" rel="noopener">AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control</a> (2026)<span class="anchor-tag">anchor</span></li>
+        <li>Industry brief — <a href="https://developers.googleblog.com/en/gemini-4-argon-for-robotics/" target="_blank" rel="noopener">Gemini 4 Argon for Robotics, official blog</a> (2026-10)</li>
+        <li>Industry brief — Claude Fable 5.2's robot-control announcement (2026-11), confirmed only through <a href="https://www.humanoidsdaily.com/news/anthropic-claude-fable-5-2-robotics-robodojo" target="_blank" rel="noopener">secondary coverage</a></li>
+      </ul>
+      <ul class="pts">
+        <li>Action-level analysis across 12 manipulation benchmarks, intent-grounded critique, closed-loop recovery and the grasping/alignment bottlenecks (AgentRoboCritic)</li>
+        <li>What each announcement actually showed: task, robot, the control interface prepared in advance, success criterion, simulation vs. real hardware</li>
+        <li>Background note (one slide): <a href="https://arxiv.org/abs/2609.24170" target="_blank" rel="noopener">An Unexpected Robot Policy</a> — the polarized profile on <a href="https://arxiv.org/abs/2607.04434" target="_blank" rel="noopener">RoboDojo</a> between semantic tasks and precision-control tasks</li>
+      </ul>
+      <p class="note"><b>Presentation format</b> — One paper as the anchor; the two industry cases in Industry brief format, under 5 minutes each. Cases may be swapped for the latest announcements at presentation time. Open questions: what is a self-reported number evidence of, and what is a demo video evidence of? As general-purpose models improve, where does VLA-specific training still earn its place?</p>
     </div>
   </details>
 
@@ -2515,6 +2596,7 @@
       <tr><td>image/video</td><td>CoT-VLA</td><td>expresses spatial subgoals</td><td>generation cost</td><td>future observation consistency</td><td>hallucinated future</td></tr>
       <tr><td>action/latent</td><td>ACoT</td><td>fast and direct</td><td>internal step cost</td><td>action outcome</td><td>uninterpretable</td></tr>
       <tr><td>ontology/causal</td><td>Cosmos-Reason, Alpamayo</td><td>explicit structure</td><td>annotation cost</td><td>causal consistency</td><td>label bias</td></tr>
+      <tr><td>direct VLM/agent control</td><td>Show-Harness, OpenRUA</td><td>no robot training; inherits every improvement of general-purpose models</td><td>per-call latency, API cost</td><td>action-level critique</td><td>precise manipulation, high-frequency control</td></tr>
     </table></div>
   </details>
 </section>
@@ -2556,18 +2638,19 @@
   </details>
 
   <details class="s" id="c10-s03">
-    <summary><span class="code">C10-S03</span><span class="t">Think Twice, Act Once + DeeR-VLA <em>— adaptive inference</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C10-S03</span><span class="t">Real-Time Chunking + Think Twice, Act Once <em>— asynchronous execution and adaptive inference</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
-      <p class="q">Without shrinking the model, can we cut the number of inference calls, tokens, and layers used depending on the situation?</p>
+      <p class="q">Without shrinking the model, can we keep moving smoothly through inference latency, or cut the number of inference calls altogether?</p>
       <ul class="papers">
-        <li><a href="https://arxiv.org/abs/2505.21200" target="_blank" rel="noopener">Think Twice, Act Once</a> (2025)<span class="anchor-tag">anchor</span></li>
-        <li><a href="https://arxiv.org/abs/2411.02359" target="_blank" rel="noopener">DeeR-VLA: Dynamic Inference for Efficient Robot Execution</a> (2024)</li>
+        <li><a href="https://arxiv.org/abs/2506.07339" target="_blank" rel="noopener">Real-Time Execution of Action Chunking Flow Policies</a> (2025)<span class="anchor-tag">anchor</span></li>
+        <li><a href="https://arxiv.org/abs/2505.21200" target="_blank" rel="noopener">Think Twice, Act Once</a> (2025)</li>
       </ul>
       <ul class="pts">
-        <li>Token compression, action reuse, replanning triggers (TTAO)</li>
-        <li>Dynamic early exit, difficulty-aware compute allocation (DeeR-VLA)</li>
+        <li>Inpainting-style asynchronous execution that stitches action chunks together during inference latency (Real-Time Chunking)</li>
+        <li>Token compression, adaptive inference, action reuse, replanning triggers (Think Twice, Act Once)</li>
+        <li>Compare: fixed chunk / receding horizon / asynchronous chunking / event-triggered replanning</li>
       </ul>
-      <p class="note"><b>Open question</b> — How do we detect stable intervals where actions can safely be reused? Compare: fixed chunk / receding horizon / event-triggered replanning.</p>
+      <p class="note"><b>Open questions</b> — Is it safe to cut and stitch a chunk at any point? How do we detect stable intervals where actions can safely be reused? Background note: <a href="https://arxiv.org/abs/2411.02359" target="_blank" rel="noopener">DeeR-VLA</a> (dynamic early-exit) gets one line.</p>
     </div>
   </details>
 
@@ -2578,7 +2661,7 @@
       <ul class="pts">
         <li>Targets: OpenVLA, open π0-family implementations, diffusion policy, compact VLAs — on lab GPUs or Jetson-class devices</li>
         <li>Model size &amp; memory, vision encoder frequency, action-head sampling steps, communication latency, warm-up &amp; precision</li>
-        <li>How the asynchronous execution of Real-Time Chunking (C05-S02) changes the budget</li>
+        <li>How the asynchronous execution of Real-Time Chunking (C10-S03) changes the budget</li>
       </ul>
       <p class="note"><b>Deliverable</b> — An end-to-end latency budget based on measurements or official figures (budget table below).</p>
     </div>
@@ -2868,7 +2951,7 @@
     <div class="fnode opt"><span class="fc">CH.14</span>Social World Model<small>Extension — 1 session</small></div>
   </div>
 
-  <h3 style="font-size:15px; margin:34px 0 0;">Minimal Core path <span style="font-weight:400; color:var(--faint); font-size:12px;">— 28 sessions to prioritize when time is short</span></h3>
+  <h3 style="font-size:15px; margin:34px 0 0;">Minimal Core path <span style="font-weight:400; color:var(--faint); font-size:12px;">— 29 of the 36 Core sessions, to prioritize when time is short</span></h3>
   <div class="cols2">
     <ol class="core-path">
       <li>Physical AI onboarding (landscape · terminology · how to read)</li>
@@ -2880,20 +2963,21 @@
       <li>CogACT + Octo</li>
       <li>RDT-1B + Diffusion-VLA</li>
       <li>π0 + π0.5</li>
-      <li>π*0.6 + Real-Time Chunking</li>
-      <li>Gemini Robotics 1.0 + 1.5</li>
-      <li>GR00T N1 + N1.5</li>
+      <li>π*0.6 + π0.7</li>
+      <li>The Gemini Robotics lineage (1.0 → 1.5 → 2)</li>
+      <li>GR00T N1 → N1.7</li>
       <li>LAPA + DreamGen</li>
-      <li>LeCun excerpt + I-JEPA</li>
-      <li>V-JEPA 2.x</li>
+      <li>JEPA essentials (I-JEPA excerpt + V-JEPA 2)</li>
+      <li>RoboJEPA + H-JEPA</li>
       <li>DUSt3R + VGGT or 3D/4D-VLA</li>
       <li>World Models excerpt + Dreamer 4</li>
-      <li>Genie + Genie 3</li>
+      <li>The Genie lineage (Genie → Genie 4)</li>
       <li>Cosmos platform + Transfer</li>
       <li>Cosmos-Predict2.5 + Cosmos 3</li>
-      <li>Ctrl-World + WorldVLA</li>
+      <li>DreamZero + GR00T 2 (World Action Models)</li>
       <li>Cosmos-Reason + Alpamayo-R1</li>
       <li>ECoT + CoT-VLA</li>
+      <li>Show-Harness + OpenRUA (control without a VLA)</li>
       <li>Fast-in-Slow + Hume</li>
       <li>Onboard latency hands-on</li>
       <li>VTLA + ForceVLA</li>
@@ -2901,6 +2985,7 @@
       <li>Physical-plausibility preference learning (PhyGDPO + PhysMaster)</li>
     </ol>
   </div>
+  <p class="blk-sub" style="margin-top:14px;">Core sessions not on the minimal path — they stay Core, but are the first to be deferred when time is short: C03-S03 (3D Diffusion Policy + iDP3) · whichever of C07-S03/C07-S04 was not chosen in item 16 · C09-S03 (ACoT + DualCoT) · C09-S05 (frontier models controlling robots directly) · C10-S02 (Reactive Diffusion Policy + TacMamba) · C10-S03 (Real-Time Chunking + Think Twice, Act Once) · C12-S02 (Tactile-VLA + TacVLA/TAP-VLA). The two Core sessions of the optional Ch.11 are not counted in the 36.</p>
 
   <h3 style="font-size:15px; margin:34px 0 0;">Presentation template and rules</h3>
   <ul class="plist" style="margin-top:12px;">
@@ -2908,7 +2993,8 @@
     <li><b>System spec.</b> Robot/embodiment, sensors, observation, action space, action chunk, control frequency, model size, data source, task &amp; success definition, openness — complete for the anchor paper only; for the others, list only what differs.</li>
     <li><b>Strongest and weakest evidence.</b> The one experiment that best supports the claim, and one experiment that falls short or a missing control.</li>
     <li><b>Reproducibility &amp; research potential.</b> What can be reproduced with open resources / what our lab could modify / what is hard without Big Tech resources.</li>
-    <li><b>Recency rules.</b> Outside the core lineages, prioritize 2025–26 papers. One week before presenting, check the latest arXiv version, the official page, and the code. Plain SOTA improvements get a 10-minute update slot. A blog post without method or evaluation cannot be designated Core. Record the paper version and the date checked on the slides.</li>
+    <li><b>Industry brief (non-paper material).</b> What was released (date, official source) / how it can be used (weights, API, partner-only; cost and constraints) / what was shown by experiment vs. only claimed or demoed / what our lab can do with it. 5–10 minutes in total; mark anything confirmed only through secondary coverage as such.</li>
+    <li><b>Recency rules.</b> Outside the core lineages, prioritize 2025–26 papers. One week before presenting, check the latest arXiv version, the official page, and the code. Plain SOTA improvements get a 10-minute update slot. A blog post without method or evaluation cannot be a session's anchor — treat it as a lineage-table row or an Industry brief. Record the paper version and the date checked on the slides.</li>
   </ul>
 
   <h3 style="font-size:15px; margin:34px 0 0;">Final checklist <span style="font-weight:400; color:var(--faint); font-size:12px;">— what you should be able to do by the end of the study</span></h3>
@@ -2916,10 +3002,12 @@
     <li>Classify VLA papers into discrete/compressed token, diffusion head, and flow head.</li>
     <li>Explain the trade-off between action chunk length and replanning frequency.</li>
     <li>Explain that Flow Matching (training objective), DiT (architecture), and FAST (tokenizer) sit at different layers.</li>
-    <li>Explain the progression π0 → π0.5 → π*0.6 as a "chain of acknowledged limits."</li>
+    <li>Explain the progression π0 → π0.5 → π*0.6 → π0.7 as a "chain of acknowledged limits."</li>
     <li>Compare the assumptions behind pixel generation, latent prediction, and explicit geometry.</li>
     <li>Break a world model down into representation, simulator, data engine, and reward/evaluator.</li>
+    <li>Explain how a World Action Model differs from a VLA in backbone and training objective.</li>
     <li>Analyze the medium of a reasoning trace and its latency–interpretability trade-off.</li>
+    <li>Explain the interface and the limits of having frontier VLMs and agents control robots directly, without separate VLA training.</li>
     <li>Explain how the problem settings of manipulation VLAs and locomotion RL differ.</li>
     <li>Compare touch and force signals by sensor, frequency, and fusion location.</li>
     <li>Explain how social world models differ from physical world models in state, transitions, and evaluation.</li>
@@ -2962,7 +3050,7 @@
 </section>
 
 <footer class="foot">
-  <p>Revised 2026-08-31 · Based on the lab-scale revision (51 sessions) · Source curriculum: Physical_AI_study_curriculum_revised.md</p>
+  <p>Revised 2026-11-20 · Based on the lab-scale revision (51 sessions) · Source curriculum: Physical_AI_study_curriculum_revised.md</p>
   <p>Read industry tech reports by separating "what the experiments showed / what the authors interpreted / marketing and outlook." Use community summaries only to discover papers; don't cite them directly.</p>
 </footer>
 </template>
