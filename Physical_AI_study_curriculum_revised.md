@@ -2,9 +2,9 @@
 
 > 개정 기준일: 2026-11-20  
 > 운영 원칙: **주차가 아니라 Chapter와 학습 질문을 기준으로 진행한다.** 휴회, 발표자 수, 논문 발표 속도에 따라 한 Chapter의 세션 수와 진행 기간을 자유롭게 조정한다.  
-> 이번 개정(2026-11-20): C04-S02까지 진행한 세션은 그대로 두고 C04-S03 이후만 고쳤다. (1) 버전이 이어지는 시리즈 연구는 원리 논문 1편 + 계보 표로 다루고 최신 버전을 반영 — π0.7, Gemini Robotics 2, GR00T N1.7·GR00T 2, Genie 4, (2) latent world model 최신 세션(RoboJEPA + H-JEPA)과 World Action Model 세션(DreamZero + GR00T 2) 추가, (3) 별도 VLA 학습 없이 frontier VLM·agent로 로봇을 직접 제어하는 세션 2개(C09-S04, C09-S05) 추가, (4) 논문이 아닌 업계 변화를 다루는 Industry brief 세션(C06-S06)과 발표 형식 추가, (5) 데이터셋 세션을 대표 데이터셋 + 대표 시뮬레이션으로 재구성하고 cross-embodiment 세션에 논문 지정, (6) Hi Robot + Knowledge Insulation, MimicGen 계보는 배경 노트로 내리고 Real-Time Chunking은 Ch.10으로 이동. 발표 부담을 막기 위해 세션당 정독 2편 상한을 두었고 총 세션 수는 유지했다.  
+> 이번 개정(2026-11-20): C04-S02까지 진행한 세션은 그대로 두고 C04-S03 이후만 고쳤다. (1) 버전이 이어지는 시리즈 연구는 원리 논문 1편 + 계보 표로 다루고 최신 버전을 반영 — π0.7, Gemini Robotics 2, GR00T N1.7·GR00T 2, Genie 4, (2) latent world model 최신 세션(RoboJEPA + H-JEPA)과 World Action Model 세션(DreamZero + GR00T 2) 추가, (3) 별도 VLA 학습 없이 frontier VLM·agent로 로봇을 직접 제어하는 세션 2개(C09-S04, C09-S05) 추가, (4) 논문이 아닌 업계 변화를 다루는 Industry brief 세션(C06-S06)과 발표 형식 추가, (5) 데이터셋 세션을 대표 데이터셋 + 대표 시뮬레이션으로 재구성하고 cross-embodiment 세션에 논문 지정, (6) Hi Robot + Knowledge Insulation, MimicGen 계보는 배경 노트로 내리고 Real-Time Chunking은 Ch.10으로 이동, (7) 정책의 memory·long-context를 다루는 Core 세션(C10-S04, MEM + RoboTTT)을 추가하고, 사람 egocentric 데이터(C06-S03 LAPA + EgoScale), differentiable world model 기반 전신 제어(C11-S02 HOVER + SuperMimic), 시뮬레이션 벤치마크 감사(C13-S01 발췌)를 기존 세션에 반영. 발표 부담을 막기 위해 세션당 정독 2편 상한을 두었고 총 세션 수는 1개만 늘었다.  
 > 이전 개정(2026-08-31): (1) 온보딩을 1세션으로 압축, (2) 논문 없는 토론 전용 세션 제거, (3) 평가 Chapter를 요약형 2세션으로 축소, (4) 종합·연구 제안 Chapter 제거, (5) **core 계보가 아니면 2025-2026년 논문을 우선**하는 최신성 원칙 적용(locomotion 세션 전면 교체 포함), (6) social world model Extension 세션(Ch.14, 맨 끝) 1회 추가.  
-> **본 문서는 연구실 스케일 개정안이다:** 빅테크가 아닌 대학 연구실 규모로 수행 가능한 **2026년 논문**만으로 구성한 Extension 세션 3개 — C05-S03(post-training), C06-S07(데이터 엔진), C13-S03(평가·분석) — 를 분산 추가했다. 목적은 연구실 스케일에서 어떤 연구가 충분히 가능한지를 보여주는 것이다. 총 51세션.
+> **본 문서는 연구실 스케일 개정안이다:** 빅테크가 아닌 대학 연구실 규모로 수행 가능한 **2026년 논문**만으로 구성한 Extension 세션 3개 — C05-S03(post-training), C06-S07(데이터 엔진), C13-S03(평가·분석) — 를 분산 추가했다. 목적은 연구실 스케일에서 어떤 연구가 충분히 가능한지를 보여주는 것이다. 총 52세션.
 
 ---
 
@@ -160,7 +160,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 | **Ch.7 Predictive representation과 기하** | 픽셀, latent, 3D 중 무엇을 예측해야 하는가 | 표현 선택·반증 조건 표 |
 | **Ch.8 World model을 도구로 쓰기** | world model은 시뮬레이터, 데이터 생성기, 정책 평가기, 정책 자체 중 무엇인가 | world model 기능 분해표 |
 | **Ch.9 행동 전에 생각하기** | 추론은 언어·이미지·action 중 어디에서 수행해야 하며, 추론하는 VLM이 로봇을 직접 제어할 수 있는가 | 추론 매체 × 지연 × 해석 가능성 표 |
-| **Ch.10 실시간성과 dual system** | 큰 모델의 느린 추론과 빠른 제어를 어떻게 분리하는가 | 모델 크기 × 지연 × 제어 주파수 표 |
+| **Ch.10 실시간성과 dual system** | 큰 모델의 느린 추론과 빠른 제어를 어떻게 분리하며, 긴 과거를 어떻게 기억하는가 | 모델 크기 × 지연 × 제어 주파수 표 |
 | **Ch.11 Locomotion과 whole-body control** | 다리·전신 제어는 manipulation과 어떻게 다른 문제인가 | manipulation vs locomotion 문제 설정 비교표 |
 | **Ch.12 촉각과 힘** | 시각 중심 VLA에 고주파·희소 접촉 신호를 어떻게 넣는가 | 촉각·힘 융합 위치 비교표 |
 | **Ch.13 평가와 물리 일관성** | 그럴듯한 생성과 일관된 world model을 어떻게 구분하는가 | 평가 실패 모드 표 |
@@ -170,7 +170,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 ### 1.1 전체 세션 리스트 (한눈에 보기)
 
-> 총 51세션. 세부 내용은 2장의 각 세션 항목을 본다. `◆` 표시는 이 개정안에서 추가된 연구실 스케일 세션(2026년 논문)이다.
+> 총 52세션. 세부 내용은 2장의 각 세션 항목을 본다. `◆` 표시는 이 개정안에서 추가된 연구실 스케일 세션(2026년 논문)이다.
 
 | 세션 | 주제 · 논문 | 구분 |
 | --- | --- | --- |
@@ -195,7 +195,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 | **Ch.6 데이터·스케일·Embodiment** | | |
 | C06-S01 | Gemini Robotics 계보 — 1.0 → 1.5 → 2 | Core |
 | C06-S02 | GR00T N1 → N1.7 — humanoid dual-system VLA 계보 | Core |
-| C06-S03 | LAPA + DreamGen — 라벨 없는 비디오와 생성 비디오 | Core |
+| C06-S03 | LAPA + EgoScale — 라벨 없는 비디오와 사람 egocentric 데이터 | Core |
 | C06-S04 | 대표 데이터셋과 시뮬레이션 — DROID·AgiBot World + RoboTwin 2.0·LIBERO | Extension |
 | C06-S05 | Cross-embodiment — X-VLA + UniVLA | Extension |
 | C06-S06 | Industry brief — 로봇 foundation model의 제공 형태 (Pi API 등) | Update |
@@ -223,10 +223,11 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 | C10-S01 | Fast-in-Slow + Hume | Core |
 | C10-S02 | Reactive Diffusion Policy + TacMamba — 다중 주파수 제어 | Core |
 | C10-S03 | Real-Time Chunking + Think Twice, Act Once — 비동기 실행과 adaptive inference | Core |
-| C10-S04 | Onboard deployment budget | Core / 실습 |
+| C10-S04 | Memory와 long-context 정책 — MEM + RoboTTT | Core |
+| C10-S05 | Onboard deployment budget | Core / 실습 |
 | **Ch.11 Locomotion과 Whole-Body Control** | | |
 | C11-S01 | Locomotion RL의 현재 — Perceptive Terrain Locomotion + BeyondMimic | Core (챕터 내) |
-| C11-S02 | Humanoid whole-body control — HOVER + ASAP | Core (챕터 내) |
+| C11-S02 | Humanoid whole-body control — HOVER + SuperMimic | Core (챕터 내) |
 | C11-S03 | 전신 teleop 데이터 수집 — TWIST + TWIST2 | Extension / Update |
 | **Ch.12 촉각과 힘** | | |
 | C12-S01 | VTLA + ForceVLA — tactile image와 force/torque | Core |
@@ -541,6 +542,8 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
   - 시뮬레이터·벤치마크 위에서의 RL fine-tuning과 continual learning의 catastrophic forgetting 문제
   - fine-tuned 모델들 사이의 parameter-space 연산으로 능력을 추출·이식하는 접근
 - **비교축:** π*0.6 RECAP(C05-S02)의 fleet 경험 학습과 같은 질문 — '배포 후에도 배우는 로봇' — 을 공개 모델 + 시뮬레이터 + 소수 GPU 규모에서 공격한다.
+- **그 외 후보(하나를 골라 짧게):** *RL Token: Bootstrapping Online RL with Vision-Language-Action Models*(VLA에 작은 actor-critic head를 붙여 수 시간의 실물 online RL로 fine-tuning), *VLA Adaptation with Real and Simulated Data: A Case Study on Robotic Chess*(SO-101 + π0.5 사례 연구 — 자기 rollout으로 학습하는 post-training 변형들이 plain behavior cloning을 넘지 못했다는 negative result 포함)
+- **토론:** post-training의 이득은 어떤 조건에서 재현되는가? negative result는 방법의 한계인가, 설정의 한계인가?
 - **개인 연구자 관점:** OpenVLA·π0 계열 공개 가중치와 LIBERO/RoboTwin급 벤치마크로 시작할 수 있는 첫 실험 설계
 - **연결:** Ch.13 평가(시뮬에서 얻은 개선의 실물 이전)
 
@@ -592,27 +595,31 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
   - GR00T N1.5 · N1.6 · N1.7 공식 릴리스(모델 카드·기술 문서) — 계보 표로 정리
 - **다루는 것:** System 2 VLM, System 1 action model(DiT/flow 계열), 실물·합성·웹 비디오로 구성된 data pyramid, 버전별 변화(frozen VLM, 새로운 embodiment head, 합성 데이터(DreamGen) 활용 등)
 - **발표 방식:** N1으로 구조를 세우고, 이후 버전은 계보 표 한 장(버전 × 바뀐 것 × 바꾼 이유)으로 다룬다. 표의 내용은 발표 전 모델 카드에서 직접 확인한다.
+- **계보 표에 넣을 행:** DreamGen(Jang et al., 2025, *DreamGen: Unlocking Generalization in Robot Learning through Video World Models*) — video world model을 fine-tuning해 만든 합성 trajectory(neural trajectory)를 학습 데이터로 쓰는 경로. 독립 세션으로 읽지 않고 data pyramid의 합성 데이터 층을 설명하는 한 행으로 다룬다.
 - **하드웨어:** 사용 humanoid, bimanual task, onboard/offboard compute를 명시한다.
 - **연결:** Ch.10 dual system, Ch.11 whole-body control과의 인터페이스. VLM backbone을 video world model로 바꾼 GR00T 2(World Action Model)는 C08-S05에서 이어서 다룬다.
 - **Update:** 이후 공식 릴리스는 구조 변화가 있을 때만 계보 표에 행으로 추가한다.
 
 ---
 
-#### C06-S03 · LAPA + DreamGen: 라벨 없는 비디오와 생성 비디오
+#### C06-S03 · LAPA + EgoScale: 라벨 없는 비디오와 사람 egocentric 데이터
 
 - **구분:** Core
-- **핵심 질문:** 'action label이 붙은 실물 teleop 데이터'라는 병목을 우회하는 두 갈래 — latent action과 neural trajectory — 는 각각 어떤 학습 신호를 만들어내는가?
+- **핵심 질문:** 'action label이 붙은 실물 teleop 데이터'라는 병목을 로봇이 아닌 비디오로 우회하는 두 갈래 — 라벨 없는 비디오의 latent action과 대규모 사람 egocentric 데이터 — 는 각각 어떤 학습 신호를 만들어내며, 어디까지 스케일하는가?
 - **논문:**
   - Ye et al. (2024), *Latent Action Pretraining from Videos* (LAPA) — anchor
-  - Jang et al. (2025), *DreamGen: Unlocking Generalization in Robot Learning through Video World Models*
+  - Zheng et al. (2026), *EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data*
 - **다루는 것:**
   - latent action discovery, video pretraining, policy adaptation (LAPA)
-  - video world model fine-tuning → 합성 trajectory 생성 → policy 학습, generation-to-real gap (DreamGen)
+  - 2만 시간 규모의 action-labeled egocentric 사람 비디오로 VLA pretraining, 데이터 규모와 validation loss의 log-linear 관계, human pretraining → 소량의 정렬된 human-robot mid-training이라는 2단계 전이 (EgoScale)
+- **배경 노트(1장):**
+  - *HumanScale*(Ma et al., 2026) — 같은 양의 pretraining 데이터에서 egocentric 사람 비디오가 teleop 실물 로봇 데이터보다 낮은 validation loss와 높은 실물 성공률을 냈다는 통제 비교
+  - DreamGen(Jang et al., 2025) — 생성 비디오로 만든 neural trajectory. C06-S02의 GR00T 계보 표에서 한 행으로 다루고, 여기서는 비교축의 한 칸으로만 둔다.
 - **쟁점:**
   - 해석 불가능한 latent action을 실제 로봇에서 어떻게 디버깅하고 정렬하는가?
-  - 생성된 trajectory는 실제 새 정보인가, 기존 분포의 재조합인가?
-- **비교축:** 실물 demonstration, simulator data, generated video trajectory, 시뮬레이터 안에서의 프로그램적 증식(MimicGen·DexMimicGen 계보 — 표의 한 행으로만)의 비용과 오류
-- **연결:** Ch.8 Genie의 latent action, world model as data engine
+  - 사람 손 동작에서 얻은 motor prior는 어떤 embodiment까지 옮겨지는가? validation loss가 실물 성능을 예측한다는 주장의 근거는 충분한가?
+- **비교축:** 실물 demonstration, 사람 egocentric 비디오, 라벨 없는 웹 비디오, generated video trajectory, 시뮬레이터 안에서의 프로그램적 증식(MimicGen·DexMimicGen 계보 — 표의 한 행으로만)의 비용과 오류
+- **연결:** Ch.8 Genie의 latent action, C06-S07의 wearable 수집 장비(RealDexUMI), world model as data engine
 
 ---
 
@@ -884,7 +891,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 - **쟁점:**
   - 생성 결과가 action을 시각적으로 따라가는 것과 실제 dynamics가 정확한 것은 같은가?
   - evaluator와 policy가 같은 실패를 공유하면 무엇이 남는가?
-- **되짚기:** world model을 데이터 생성기로 쓸 때의 오류 전파(generation artifact → action label error → policy failure)는 C06-S03 DreamGen의 내용을 한 장으로 다시 가져온다.
+- **되짚기:** world model을 데이터 생성기로 쓸 때의 오류 전파(generation artifact → action label error → policy failure)는 DreamGen(C06-S02 계보 표, C06-S03 배경 노트)을 예로 한 장으로 짚는다.
 - **연결:** Ch.13의 순환 논증 문제
 - **산출물:** 데이터 생성·정책 평가 각각의 오류 전파도
 
@@ -981,6 +988,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
   - coding agent에게 ROS 2 terminal 접근만 주는 zero-abstraction harness, perception을 file I/O로, manipulation을 coding으로 바꾸는 설계 (OpenRUA)
 - **비교축:** harness의 두께 — semantic action interface를 설계하는 접근과 로봇의 native software stack을 그대로 주는 접근. 학습된 action head를 가진 VLA와는 action이 만들어지는 위치와 제어 주파수로 비교한다.
 - **배경 노트(1장):** RoboDawn(discrete 이동·회전·gripper 명령 + in-context demonstration)과 MotorMind(mid-level action + 비동기 monitoring)는 같은 문제의 다른 interface로 한 줄씩 짚는다.
+- **Update 후보:** *EmbodiedSWE*(coding agent가 long-horizon·dexterous task를 풀고, 그 풀이를 정책 학습의 supervision으로 쓸 수 있는지 묻는 벤치마크), *Agentic World Action Models*(code 기반 planning과 video·action 동시 예측의 결합) — 발표 시점에 배경 노트와 교체할 수 있다.
 - **쟁점:**
   - 성능은 VLM의 능력에서 오는가, harness 설계에서 오는가?
   - 수 Hz 이하의 추론 주기로 풀 수 있는 task의 범위는 어디까지인가?
@@ -1005,6 +1013,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 - **쟁점:**
   - 자체 보고 수치와 데모 영상은 각각 무엇의 증거인가?
   - 범용 모델이 좋아질수록 VLA 전용 학습의 몫은 어디에 남는가 — 정밀도, 제어 주파수, 비용?
+  - VLM·agent가 직접 제어하면 언어 모델의 jailbreak 취약점이 물리적 위험으로 이어진다. *RoboJailBench*(Yeke et al., 2026)는 공격 성공률뿐 아니라 방어가 정상 명령 수행을 얼마나 해치는지도 함께 측정한다. 직접 제어의 안전은 어느 층에서 책임지는가?
 - **연결:** C06-S06 Industry brief, Ch.13 평가(RoboDojo 등 벤치마크의 해석), Ch.10 실시간성
 
 ---
@@ -1023,7 +1032,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 ### Ch.10 실시간성과 Dual System
 
-> 목표: 실시간성을 단순 inference optimization이 아니라 perception, reasoning, action, reflex의 서로 다른 시간 규모를 조정하는 시스템 문제로 본다.
+> 목표: 실시간성을 단순 inference optimization이 아니라 perception, reasoning, action, reflex의 서로 다른 시간 규모를 조정하는 시스템 문제로 본다. C10-S04에서는 가장 긴 시간 규모인 memory — 정책이 과거를 얼마나, 어떤 형태로 기억하는가 — 를 다룬다.
 
 ---
 
@@ -1068,15 +1077,36 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
   - 추론 지연 동안 action chunk를 이어붙이는 inpainting식 비동기 실행 (Real-Time Chunking)
   - token compression, adaptive inference, action reuse, replanning trigger (Think Twice, Act Once)
 - **배경 노트:** DeeR-VLA(dynamic early-exit)는 상황 난이도에 따라 compute를 배분한 초기 사례로 한 줄만 짚는다.
+- **분석 노트(1장):** *What Makes a VLA Reactive? A Study of Execution Strategies for Dynamic Manipulation*(Li et al., 2026) — π0.5에서 prediction·execution horizon, 동기·비동기 추론, chunk 연속성 기법을 통제 비교한 실증 연구. 물체가 움직이면 chunk가 실행 전에 낡는 문제를 다루며, 아래 쟁점의 근거 자료로 쓴다.
 - **쟁점:**
   - chunk를 어느 구간에서 잘라 이어도 안전한가?
   - action을 재사용해도 되는 안정 구간을 어떻게 감지하는가?
 - **비교:** fixed chunk, receding horizon, 비동기 chunking, event-triggered replanning
-- **연결:** π 계보(Ch.5)의 flow policy, C10-S04 예산표
+- **연결:** π 계보(Ch.5)의 flow policy, C10-S05 예산표
 
 ---
 
-#### C10-S04 · Onboard deployment budget
+#### C10-S04 · Memory와 long-context 정책: MEM + RoboTTT
+
+- **구분:** Core
+- **핵심 질문:** 한두 프레임만 보는 정책이 수 분에서 십수 분짜리 task를 수행하려면 과거를 어디에, 어떤 형태로 저장해야 하며, 그 비용을 추론 지연으로 치르지 않을 수 있는가?
+- **논문:**
+  - Torne et al. (2026), *MEM: Multi-Scale Embodied Memory for Vision Language Action Models* — anchor
+  - Jiang et al. (2026), *RoboTTT: Context Scaling for Robot Policies*
+- **다루는 것:**
+  - video encoder로 압축한 단기 비디오 memory와 텍스트 기반 장기 memory의 혼합, 최대 15분 길이의 task, memory를 이용한 in-context 전략 수정 (MEM)
+  - test-time training으로 history를 fast weight에 압축해 추론 지연을 늘리지 않고 8K timestep context 사용, sequence action forcing + truncated BPTT 학습 레시피, 사람 비디오 시연의 one-shot in-context imitation (RoboTTT)
+- **비교축:** memory의 저장 위치 — 입력 token(과거 프레임) / 언어 요약 / weight space. 각각의 추론 비용, 해석 가능성, 잘못된 기억이 만드는 실패를 비교한다.
+- **계보 연결:** MEM은 π 계보(Ch.5), RoboTTT는 GR00T 계보(C06-S02)의 연구 그룹에서 나왔다. 같은 문제를 두 계보가 다르게 푼 사례로 읽는다. 기반 모델 버전은 발표 전 논문에서 확인한다.
+- **배경 노트(1장):** *RoboMME*(Dai et al., 2026) — memory가 필요한 task의 분류 체계와 표준 벤치마크. memory 논문들의 평가가 서로 비교되지 않던 문제를 짚는 데만 쓴다.
+- **쟁점:**
+  - memory가 실제로 쓰였는지 어떻게 검증하는가 — 경과 시간 같은 shortcut과 구분되는가?
+  - context 길이는 데이터·모델 크기와 나란한 새로운 scaling 축인가?
+- **연결:** C10-S01 dual system(System 2가 유지하는 언어 상태도 memory의 한 형태), Ch.9 reasoning trace, C10-S05 예산표
+
+---
+
+#### C10-S05 · Onboard deployment budget
 
 - **구분:** Core / 실습
 - **핵심 질문:** 논문의 architecture를 실제 GPU·edge device에서 몇 Hz로 실행할 수 있는가?
@@ -1088,6 +1118,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
   - network·camera·robot communication latency
   - warm-up, batch size, precision
   - Real-Time Chunking(C10-S03)의 비동기 실행이 예산을 어떻게 바꾸는가
+  - 과거 context를 넣었을 때(C10-S04)의 추가 연산과 지연
 - **산출물:** 실제 또는 공식 수치에 근거한 end-to-end latency budget
 
 ---
@@ -1099,6 +1130,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 | camera/sensor acquisition |  |  | downsampling | contact·motion 손실 |
 | vision encoding |  |  | frame reuse, smaller encoder | stale representation |
 | reasoning |  |  | parallel/latent reasoning | interpretability 감소 |
+| memory/context |  |  | history 압축 (video encoder, 언어 요약, fast weight) | 잘못된 기억, 추가 compute |
 | action generation |  |  | fewer flow/diffusion steps, async chunking | action quality 저하 |
 | communication/control |  |  | onboard execution | compute·thermal 제한 |
 
@@ -1134,17 +1166,19 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 ---
 
-#### C11-S02 · Humanoid whole-body control: HOVER + ASAP
+#### C11-S02 · Humanoid whole-body control: HOVER + SuperMimic
 
 - **구분:** Core (챕터 내)
-- **핵심 질문:** 서로 다른 제어 모드를 하나의 whole-body 컨트롤러로 통합할 수 있는가, 그리고 시뮬과 실물의 물리 격차는 어떻게 보정하는가?
+- **핵심 질문:** 서로 다른 제어 모드와 대규모 motion을 하나의 whole-body 컨트롤러로 통합할 때 병목은 무엇인가 — specialist를 합치는 distillation의 손실인가, 학습 compute인가?
 - **논문:**
   - He et al. (2024), *HOVER: Versatile Neural Whole-Body Controller for Humanoid Robots* — anchor
-  - He et al. (2025), *ASAP: Aligning Simulation and Real-World Physics for Learning Agile Humanoid Whole-Body Skills*
+  - Liao et al. (2026), *SuperMimic: Scaling Humanoid Whole-Body Control with One Differentiable World Model*
 - **다루는 것:**
   - motion tracking 기반 통합 컨트롤러 distillation, command space 통일 (HOVER)
-  - delta action model로 dynamics 격차 보정, agile 전신 기술 (ASAP)
-- **연결:** GR00T 계열에서 VLA(상체 조작)와 whole-body controller(하체·전신)가 만나는 인터페이스
+  - 시뮬레이터 transition으로 학습한 differentiable world model 하나와 tracking policy의 동시 학습, 짧은 imagined rollout을 통한 analytic gradient, 대규모 motion library tracking의 compute 절감 (SuperMimic)
+- **배경 노트(1장):** ASAP(He et al., 2025) — delta action model로 시뮬과 실물의 dynamics 격차를 보정하는 접근. sim-to-real 보정이라는 별도 축으로 한 줄만 짚는다.
+- **읽을 때 주의:** SuperMimic의 compute 수치(단일 GPU 3시간 대 128 GPU 7일 baseline)는 저자 보고다. baseline의 설정과 비교 조건을 확인한다.
+- **연결:** GR00T 계열에서 VLA(상체 조작)와 whole-body controller(하체·전신)가 만나는 인터페이스. C11-S01 BeyondMimic에서 이어지는 motion tracking 계보. world model을 '미분 가능한 정책 학습 환경'으로 쓰는 사례이므로 Ch.8 world model 기능 분해표에 한 칸을 더한다.
 
 ---
 
@@ -1239,7 +1273,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 #### C12-S04 · 촉각·힘 최신 논문 업데이트
 
 - **구분:** Update
-- **선택 기준:** 센서 숫자를 늘린 연구가 아니라 다음 중 하나를 새롭게 해결한 연구 (후보: UniTacVLA 등)
+- **선택 기준:** 센서 숫자를 늘린 연구가 아니라 다음 중 하나를 새롭게 해결한 연구 (후보: UniTacVLA, T-Rex 등)
   - contact onset detection
   - sensor-free force inference
   - cross-sensor generalization
@@ -1274,7 +1308,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 - **발표 방식:** 논문 정독이 아니라 평가 지형의 빠른 요약이다. 아래 네 묶음을 평가 계층표 한 장으로 정리한다.
   1. **생성 모델의 내재 일관성** — Vafa et al. (2024), *Evaluating the World Model Implicit in a Generative Model*: 그럴듯한 생성과 일관된 내부 상태의 구분, counterfactual probe 개념만 발췌
   2. **Physics benchmark** — Physics-IQ, WorldModelBench: 무엇을 judge로 쓰는가(사람 / VLM / programmatic metric) 비교
-  3. **정책 평가용 시뮬 벤치마크** — LIBERO, SimplerEnv: real-to-sim 상관과 그것이 무너지는 조건
+  3. **정책 평가용 시뮬 벤치마크** — LIBERO, SimplerEnv: real-to-sim 상관과 그것이 무너지는 조건. Jiang et al. (2026), *What Are We Actually Benchmarking in Robot Manipulation?* 발췌 — shortcut solvability, 통계적 유의성, creeping overfitting, data-source dependence 네 진단으로 LIBERO·CALVIN·SimplerEnv·RoboCasa·RoboTwin 2.0을 감사한 결과
   4. **실로봇 평가·재현성과 순환 논증** — camera pose, calibration, reset, object set, operator 개입 같은 재현성 변수 + world model로 policy를 평가할 때의 순환 논증(Veo World Simulator, World-Gymnast 재방문)
 - **쟁점:** benchmark가 모델의 shortcut을 측정하는 것은 아닌가? evaluator와 policy가 같은 실패를 공유하면 무엇이 남는가?
 - **실습(선택):** 공개 VLA 논문 하나의 evaluation protocol을 재현 체크리스트로 변환
@@ -1304,7 +1338,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 - **다루는 것:**
   - 저비용·재현 가능한 실물 평가 프로토콜의 설계 (VLA-REPLICA)
   - LeRobot SO-101급 저가 암에서의 표준화 평가, 실패 분류 체계(failure taxonomy), recovery 지표 (SO-101 벤치마크)
-- **분석 연구 후보(하나를 골라 짧게):** *VLM4VLA*(VLM backbone의 기여를 되묻는 실증 연구), *Do World Action Models Generalize Better than VLAs?*(perturbation 강건성 비교 연구)
+- **분석 연구 후보(하나를 골라 짧게):** *VLM4VLA*(VLM backbone의 기여를 되묻는 실증 연구), *Do World Action Models Generalize Better than VLAs?*(perturbation 강건성 비교 연구), *Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models*(SAE로 VLA 내부 feature를 찾아 행동을 steering하는 해석 가능성 연구)
 - **연결:** C13-S01의 재현성 묶음을 '우리도 만들 수 있는 평가 연구'로 확장
 - **개인 연구자 관점:** 벤치마크·실패 분석 논문이 기여로 인정받는 조건 — 프로토콜·코드 공개, 통계적 엄밀성, 다른 연구의 채택 가능성
 
@@ -1399,7 +1433,7 @@ Ch.7 JEPA·geometry              Ch.8 World model
 
 ### 최소 Core 경로
 
-시간이 부족할 경우 다음 29세션을 우선한다. 이 목록은 Core 전체가 아니라, Core로 표시된 36세션(선택 챕터인 Ch.11의 '챕터 내 Core' 2세션 제외) 중에서 다시 고른 부분집합이다.
+시간이 부족할 경우 다음 30세션을 우선한다. 이 목록은 Core 전체가 아니라, Core로 표시된 37세션(선택 챕터인 Ch.11의 '챕터 내 Core' 2세션 제외) 중에서 다시 고른 부분집합이다.
 
 1. Physical AI 온보딩 (지형·용어·읽는 법)
 2. RT-1 + RT-2
@@ -1413,7 +1447,7 @@ Ch.7 JEPA·geometry              Ch.8 World model
 10. π*0.6 + π0.7
 11. Gemini Robotics 계보 (1.0 → 1.5 → 2)
 12. GR00T N1 → N1.7
-13. LAPA + DreamGen
+13. LAPA + EgoScale
 14. JEPA 핵심 (I-JEPA 발췌 + V-JEPA 2)
 15. RoboJEPA + H-JEPA
 16. DUSt3R + VGGT 또는 3D/4D-VLA
@@ -1426,10 +1460,11 @@ Ch.7 JEPA·geometry              Ch.8 World model
 23. ECoT + CoT-VLA
 24. Show-Harness + OpenRUA (VLA 없이 제어하기)
 25. Fast-in-Slow + Hume
-26. onboard latency 실습
-27. VTLA + ForceVLA
-28. 평가 지형 요약
-29. 물리성 선호 학습 (PhyGDPO + PhysMaster)
+26. MEM + RoboTTT (memory와 long-context 정책)
+27. onboard latency 실습
+28. VTLA + ForceVLA
+29. 평가 지형 요약
+30. 물리성 선호 학습 (PhyGDPO + PhysMaster)
 
 다음 Core 세션은 최소 경로에 포함되지 않는다. Core 구분은 유지하되, 일정이 부족하면 가장 먼저 뒤로 미룬다.
 
@@ -1574,6 +1609,7 @@ Physical AI는 모델과 릴리스 주기가 빠르므로 다음 규칙을 적�
 - [ ] VLA와 World Action Model의 차이를 backbone과 학습 objective로 설명할 수 있다.
 - [ ] reasoning trace의 매체와 latency·interpretability trade-off를 분석할 수 있다.
 - [ ] 별도 VLA 학습 없이 frontier VLM·agent가 로봇을 직접 제어하는 접근의 interface와 한계를 설명할 수 있다.
+- [ ] 정책의 memory를 저장 위치(입력 token, 언어 요약, weight)와 추론 비용으로 비교할 수 있다.
 - [ ] manipulation VLA와 locomotion RL의 문제 설정 차이(학습 신호, 제어 주파수, sim의 역할)를 설명할 수 있다.
 - [ ] 촉각과 힘 신호를 센서·주파수·융합 위치 기준으로 비교할 수 있다.
 - [ ] social world model이 physical world model과 상태·전이·평가에서 어떻게 다른지 설명할 수 있다.
@@ -1637,6 +1673,8 @@ Physical AI는 모델과 릴리스 주기가 빠르므로 다음 규칙을 적�
 - [GR00T N1.7 (모델 카드)](https://huggingface.co/nvidia/GR00T-N1.7-3B)
 - [Latent Action Pretraining from Videos (LAPA)](https://arxiv.org/abs/2410.11758)
 - [DreamGen](https://arxiv.org/abs/2505.12705)
+- [EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data](https://arxiv.org/abs/2602.16710)
+- [HumanScale: Egocentric Human Video Can Outperform Real-Robot Data for Embodied Pretraining](https://arxiv.org/abs/2606.20521)
 - [MimicGen](https://arxiv.org/abs/2310.17596)
 - [DexMimicGen](https://arxiv.org/abs/2410.24185)
 - [DROID: A Large-Scale In-the-Wild Robot Manipulation Dataset](https://arxiv.org/abs/2403.12945)
@@ -1695,6 +1733,10 @@ Physical AI는 모델과 릴리스 주기가 빠르므로 다음 규칙을 적�
 - [Think Twice, Act Once](https://arxiv.org/abs/2505.21200)
 - [DeeR-VLA](https://arxiv.org/abs/2411.02359)
 - [TacMamba](https://arxiv.org/abs/2603.01700)
+- [What Makes a VLA Reactive? A Study of Execution Strategies for Dynamic Manipulation](https://arxiv.org/abs/2611.15491)
+- [MEM: Multi-Scale Embodied Memory for Vision Language Action Models](https://arxiv.org/abs/2603.03596)
+- [RoboTTT: Context Scaling for Robot Policies](https://arxiv.org/abs/2607.15275)
+- [RoboMME: Benchmarking and Understanding Memory for Robotic Generalist Policies](https://arxiv.org/abs/2603.04639)
 
 VLM·agent 직접 제어 (C09-S04, C09-S05):
 
@@ -1705,6 +1747,9 @@ VLM·agent 직접 제어 (C09-S04, C09-S05):
 - [AgentRoboCritic](https://arxiv.org/abs/2611.26613)
 - [An Unexpected Robot Policy: Early Evaluations of GPT-6 Astra on RoboDojo and Beyond](https://arxiv.org/abs/2609.24170)
 - [RoboDojo](https://arxiv.org/abs/2607.04434)
+- [EmbodiedSWE: Coding Agents for Long Horizon Dexterous Robotics](https://arxiv.org/abs/2609.27308)
+- [Agentic World Action Models](https://arxiv.org/abs/2610.30136)
+- [RoboJailBench: Benchmarking Adversarial Attacks and Defenses in Embodied Robotic Agents](https://arxiv.org/abs/2605.19328)
 - [Gemini 4 Argon for Robotics (공식 블로그)](https://developers.googleblog.com/en/gemini-4-argon-for-robotics/)
 - [Claude Fable 5.2의 RoboDojo 결과 (2차 보도)](https://www.humanoidsdaily.com/news/anthropic-claude-fable-5-2-robotics-robodojo)
 
@@ -1713,6 +1758,7 @@ VLM·agent 직접 제어 (C09-S04, C09-S05):
 - [Learning Perceptive Humanoid Locomotion over Challenging Terrain](https://arxiv.org/abs/2503.00692)
 - [BeyondMimic: From Motion Tracking to Versatile Humanoid Control](https://arxiv.org/abs/2508.08241)
 - [HOVER: Versatile Neural Whole-Body Controller for Humanoid Robots](https://arxiv.org/abs/2410.21229)
+- [SuperMimic: Scaling Humanoid Whole-Body Control with One Differentiable World Model](https://arxiv.org/abs/2610.28480)
 - [ASAP: Aligning Simulation and Real-World Physics](https://arxiv.org/abs/2502.01143)
 - [TWIST: Teleoperated Whole-Body Imitation System](https://arxiv.org/abs/2505.02833)
 - [TWIST2: Scalable, Portable, and Holistic Humanoid Data Collection System](https://arxiv.org/abs/2511.02832)
@@ -1726,6 +1772,7 @@ VLM·agent 직접 제어 (C09-S04, C09-S05):
 - [TacVLA](https://arxiv.org/abs/2603.12665)
 - [TAP-VLA](https://arxiv.org/abs/2606.29089)
 - [UniTacVLA](https://arxiv.org/abs/2606.31723)
+- [T-Rex: Tactile-Reactive Dexterous Manipulation](https://arxiv.org/abs/2606.17055)
 - [Tactile-WAM](https://arxiv.org/abs/2606.26663)
 
 ### A.10 평가와 물리 일관성
@@ -1737,6 +1784,7 @@ VLM·agent 직접 제어 (C09-S04, C09-S05):
 - [PhysMaster](https://arxiv.org/abs/2510.13809)
 - [LIBERO](https://arxiv.org/abs/2306.03310)
 - [SimplerEnv: Evaluating Real-World Robot Manipulation Policies in Simulation](https://arxiv.org/abs/2405.05941)
+- [What Are We Actually Benchmarking in Robot Manipulation?](https://arxiv.org/abs/2606.04233)
 
 ### A.11 Social World Model
 
@@ -1748,6 +1796,8 @@ VLM·agent 직접 제어 (C09-S04, C09-S05):
 
 - [Towards Long-Lived Robots: Continual Learning VLA Models via Reinforcement Fine-Tuning](https://arxiv.org/abs/2602.10503)
 - [CapVector: Learning Transferable Capability Vectors in Parametric Space for VLA Models](https://arxiv.org/abs/2605.10903)
+- [RL Token: Bootstrapping Online RL with Vision-Language-Action Models](https://arxiv.org/abs/2604.23073)
+- [VLA Adaptation with Real and Simulated Data: A Case Study on Robotic Chess](https://arxiv.org/abs/2611.12676)
 - [RealDexUMI: A Wearable Universal Manipulation Interface for Dexterous Robot Learning](https://arxiv.org/abs/2606.06033)
 - [YOR: Your Own Mobile Manipulator for Generalizable Robotics](https://arxiv.org/abs/2602.11150)
 - [MEVION: Low-Cost Open-Source Data Collection System for Dual-Arm Manipulation](https://arxiv.org/abs/2607.17970)
@@ -1756,3 +1806,4 @@ VLM·agent 직접 제어 (C09-S04, C09-S05):
 - [Benchmarking Vision-Language-Action Models on SO-101: Failure and Recovery Analysis](https://arxiv.org/abs/2606.08881)
 - [VLM4VLA: Revisiting Vision-Language-Models in Vision-Language-Action Models](https://arxiv.org/abs/2601.03309)
 - [Do World Action Models Generalize Better than VLAs? A Robustness Study](https://arxiv.org/abs/2603.22078)
+- [Sparse Autoencoders Reveal Interpretable and Steerable Features in VLA Models](https://arxiv.org/abs/2603.19183)
