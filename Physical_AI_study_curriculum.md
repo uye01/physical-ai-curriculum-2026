@@ -1,13 +1,15 @@
 # Physical AI 스터디 커리큘럼
 
 > 개정 기준일: 2026-11-20  
-> 운영 원칙: **주차가 아니라 Chapter와 학습 질문을 기준으로 진행한다.** 휴회, 발표자 수, 논문 발표 속도에 따라 한 Chapter의 세션 수와 진행 기간을 자유롭게 조정한다.  
-> 이번 개정(2026-11-20): C04-S02까지 진행한 세션은 그대로 두고 C04-S03 이후만 고쳤다. (1) 버전이 이어지는 시리즈 연구는 원리 논문 1편 + 계보 표로 다루고 최신 버전을 반영 — π0.7, Gemini Robotics 2, GR00T N1.7·GR00T 2, Genie 4, (2) latent world model 최신 세션(RoboJEPA + H-JEPA)과 World Action Model 세션(DreamZero + GR00T 2) 추가, (3) 별도 VLA 학습 없이 frontier VLM·agent로 로봇을 직접 제어하는 세션 2개(C09-S04, C09-S05) 추가, (4) 논문이 아닌 업계 변화를 다루는 Industry brief 세션(C06-S06)과 발표 형식 추가, (5) 데이터셋 세션을 대표 데이터셋 + 대표 시뮬레이션으로 재구성하고 cross-embodiment 세션에 논문 지정, (6) Hi Robot + Knowledge Insulation, MimicGen 계보는 배경 노트로 내리고 Real-Time Chunking은 Ch.10으로 이동, (7) 정책의 memory·long-context를 다루는 Core 세션(C10-S04, MEM + RoboTTT)을 추가하고, 사람 egocentric 데이터(C06-S03 LAPA + EgoScale), differentiable world model 기반 전신 제어(C11-S02 HOVER + SuperMimic), 시뮬레이션 벤치마크 감사(C13-S01 발췌)를 기존 세션에 반영. 발표 부담을 막기 위해 세션당 정독 2편 상한을 두었고 총 세션 수는 1개만 늘었다.  
-> 이전 개정(2026-08-31): (1) 온보딩을 1세션으로 압축, (2) 논문 없는 토론 전용 세션 제거, (3) 평가 Chapter를 요약형 2세션으로 축소, (4) 종합·연구 제안 Chapter 제거, (5) **core 계보가 아니면 2025-2026년 논문을 우선**하는 최신성 원칙 적용(locomotion 세션 전면 교체 포함), (6) social world model Extension 세션(Ch.14, 맨 끝) 1회 추가. 총 49세션.
+> 운영 원칙: **주차가 아니라 Chapter와 학습 질문을 기준으로 진행한다.** 휴회, 발표자 수, 논문 발표 속도에 따라 한 Chapter의 세션 수와 진행 기간을 자유롭게 조정한다.
 
 ---
 
 ## 0. 스터디 개요
+
+> 🌐 웹페이지: <https://uye01.github.io/physical-ai-curriculum-2026/>
+
+- **Contributors: 김한결, 이우준**
 
 ### 0.1 무엇을 다루는가
 
@@ -123,71 +125,71 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 > 총 49세션. 세부 내용은 2장의 각 세션 항목을 본다.
 
-| 세션 | 주제 · 논문 | 구분 |
-| --- | --- | --- |
-| **Ch.1 온보딩과 좌표계** | | |
-| C01-S01 | Physical AI 온보딩 — 연구 지형, 용어, 논문 읽는 법 | Core |
-| **Ch.2 VLA 초기 계보** | | |
-| C02-S01 | RT-1 + RT-2 — action token의 탄생과 웹 지식 전이 | Core |
-| C02-S02 | Open X-Embodiment + OpenVLA — 데이터와 가중치의 공개 | Core |
-| C02-S03 | ACT + Mobile ALOHA — action chunking의 초기 계보 | Core |
-| **Ch.3 Action 생성 도구** | | |
-| C03-S01 | Diffusion Policy + Flow Matching | Core |
-| C03-S02 | DiT + FAST — 아키텍처와 tokenizer | Core |
-| C03-S03 | 3D Diffusion Policy + iDP3 | Core |
-| **Ch.4 Continuous-action VLA** | | |
-| C04-S01 | CogACT + Octo — diffusion head의 두 가지 동기 | Core |
-| C04-S02 | RDT-1B + Diffusion-VLA — DiT 스케일업과 reasoning 조건화 | Core |
-| C04-S03 | 경량·공개 VLA: OpenVLA-OFT + SmolVLA | Extension / Update |
-| **Ch.5 π 계보** | | |
-| C05-S01 | π0 + π0.5 — flow expert와 open-world 일반화 | Core |
-| C05-S02 | π*0.6 + π0.7 — 경험 학습에서 steerable generalist로 | Core |
-| **Ch.6 데이터·스케일·Embodiment** | | |
-| C06-S01 | Gemini Robotics 계보 — 1.0 → 1.5 → 2 | Core |
-| C06-S02 | GR00T N1 → N1.7 — humanoid dual-system VLA 계보 | Core |
-| C06-S03 | LAPA + EgoScale — 라벨 없는 비디오와 사람 egocentric 데이터 | Core |
-| C06-S04 | 대표 데이터셋과 시뮬레이션 — DROID·AgiBot World + RoboTwin 2.0·LIBERO | Extension |
-| C06-S05 | Cross-embodiment — X-VLA + UniVLA | Extension |
-| C06-S06 | Industry brief — 로봇 foundation model의 제공 형태 (Pi API 등) | Update |
-| **Ch.7 Predictive Representation과 기하** | | |
-| C07-S01 | JEPA 핵심 — I-JEPA 발췌 + V-JEPA 2 | Core |
-| C07-S02 | Latent world model의 현재 — RoboJEPA + H-JEPA | Core |
-| C07-S03 | DUSt3R + VGGT — geometry foundation model | Core |
-| C07-S04 | 3D-VLA + 4D-VLA | Core |
-| **Ch.8 World Model을 도구로 쓰기** | | |
-| C08-S01 | World Models 발췌 + Dreamer 4 — imagination 계보 | Core |
-| C08-S02 | Genie 계보 — Genie → Genie 4, latent action에서 실시간 세계로 | Core |
-| C08-S03 | Cosmos 플랫폼 + Cosmos-Transfer | Core |
-| C08-S04 | Cosmos-Predict2.5 + Cosmos 3 — 통합 world model 백본 | Core / Update |
-| C08-S05 | World Action Model — DreamZero + GR00T 2 | Core |
-| C08-S06 | World model로 정책 평가하기 — Ctrl-World + Veo | Extension |
-| C08-S07 | World-Gymnast와 RL inside world models | Extension / Update |
-| **Ch.9 행동 전에 생각하기** | | |
-| C09-S01 | Cosmos-Reason + Alpamayo-R1 — ontology와 인과 라벨 | Core |
-| C09-S02 | ECoT + CoT-VLA — 언어로/이미지로 생각하기 | Core |
-| C09-S03 | ACoT + DualCoT — action-space reasoning과 병렬화 | Core |
-| C09-S04 | VLA 없이 제어하기 — Show-Harness + OpenRUA | Core |
-| C09-S05 | Frontier 모델의 직접 제어 — AgentRoboCritic + Gemini 4 Argon·Fable 5.2 사례 | Core / Update |
-| **Ch.10 실시간성과 Dual System** | | |
-| C10-S01 | Fast-in-Slow + Hume | Core |
-| C10-S02 | Reactive Diffusion Policy + TacMamba — 다중 주파수 제어 | Core |
-| C10-S03 | Real-Time Chunking + Think Twice, Act Once — 비동기 실행과 adaptive inference | Core |
-| C10-S04 | Memory와 long-context 정책 — MEM + RoboTTT | Core |
-| C10-S05 | Onboard deployment budget | Core / 실습 |
-| **Ch.11 Locomotion과 Whole-Body Control** | | |
-| C11-S01 | Locomotion RL의 현재 — Perceptive Terrain Locomotion + BeyondMimic | Core (챕터 내) |
-| C11-S02 | Humanoid whole-body control — HOVER + SuperMimic | Core (챕터 내) |
-| C11-S03 | 전신 teleop 데이터 수집 — TWIST + TWIST2 | Extension / Update |
-| **Ch.12 촉각과 힘** | | |
-| C12-S01 | VTLA + ForceVLA — tactile image와 force/torque | Core |
-| C12-S02 | Tactile-VLA + TacVLA/TAP-VLA — grounding과 융합 위치 | Core |
-| C12-S03 | RDP 재방문 + Tactile-WAM — 시간 특성과 tactile pollution | Extension |
-| C12-S04 | 촉각·힘 최신 논문 업데이트 | Update |
-| **Ch.13 평가와 물리 일관성** | | |
-| C13-S01 | 평가 지형 요약 — 벤치마크·평가 방식·함정 한눈에 보기 | Core |
-| C13-S02 | PhyGDPO + PhysMaster — 물리성 선호 학습 | Core |
-| **Ch.14 Social World Model** | | |
-| C14-S01 | Social World Models + Building Social World Models with LLMs — 사회적 상태의 world model | Extension |
+| 세션 | 주제 · 논문 | 구분 | 발표자 |
+| --- | --- | --- | --- |
+| **Ch.1 온보딩과 좌표계** | | | |
+| C01-S01 | Physical AI 온보딩 — 연구 지형, 용어, 논문 읽는 법 | Core | @김한결 |
+| **Ch.2 VLA 초기 계보** | | | |
+| C02-S01 | RT-1 + RT-2 — action token의 탄생과 웹 지식 전이 | Core | @Woojun Lee |
+| C02-S02 | Open X-Embodiment + OpenVLA — 데이터와 가중치의 공개 | Core | @시언 박 |
+| C02-S03 | ACT + Mobile ALOHA — action chunking의 초기 계보 | Core | @임성훈 |
+| **Ch.3 Action 생성 도구** | | | |
+| C03-S01 | Diffusion Policy + Flow Matching | Core | @고재용 |
+| C03-S02 | DiT + FAST — 아키텍처와 tokenizer | Core | @이준기 |
+| C03-S03 | 3D Diffusion Policy + iDP3 | Core | @임훈 |
+| **Ch.4 Continuous-action VLA** | | | |
+| C04-S01 | CogACT + Octo — diffusion head의 두 가지 동기 | Core | @김선민 |
+| C04-S02 | RDT-1B + Diffusion-VLA — DiT 스케일업과 reasoning 조건화 | Core | @장진우 |
+| C04-S03 | 경량·공개 VLA: OpenVLA-OFT + SmolVLA | Extension |  |
+| **Ch.5 π 계보** | | | |
+| C05-S01 | π0 + π0.5 — flow expert와 open-world 일반화 | Core |  |
+| C05-S02 | π*0.6 + π0.7 — 경험 학습에서 steerable generalist로 | Core |  |
+| **Ch.6 데이터·스케일·Embodiment** | | | |
+| C06-S01 | Gemini Robotics 계보 — 1.0 → 1.5 → 2 | Core |  |
+| C06-S02 | GR00T N1 → N1.7 — humanoid dual-system VLA 계보 | Core | @최아정 |
+| C06-S03 | LAPA + EgoScale — 라벨 없는 비디오와 사람 egocentric 데이터 | Core |  |
+| C06-S04 | 대표 데이터셋과 시뮬레이션 — DROID·AgiBot World + RoboTwin 2.0·LIBERO | Extension |  |
+| C06-S05 | Cross-embodiment — X-VLA + UniVLA | Extension |  |
+| C06-S06 | Industry brief — 로봇 foundation model의 제공 형태 (Pi API 등) | Extension |  |
+| **Ch.7 Predictive Representation과 기하** | | | |
+| C07-S01 | JEPA 핵심 — I-JEPA 발췌 + V-JEPA 2 | Core |  |
+| C07-S02 | Latent world model의 현재 — RoboJEPA + H-JEPA | Core |  |
+| C07-S03 | DUSt3R + VGGT — geometry foundation model | Core |  |
+| C07-S04 | 3D-VLA + 4D-VLA | Core |  |
+| **Ch.8 World Model을 도구로 쓰기** | | | |
+| C08-S01 | World Models 발췌 + Dreamer 4 — imagination 계보 | Core |  |
+| C08-S02 | Genie 계보 — Genie → Genie 4, latent action에서 실시간 세계로 | Core |  |
+| C08-S03 | Cosmos 플랫폼 + Cosmos-Transfer | Core |  |
+| C08-S04 | Cosmos-Predict2.5 + Cosmos 3 — 통합 world model 백본 | Core |  |
+| C08-S05 | World Action Model — DreamZero + GR00T 2 | Core |  |
+| C08-S06 | World model로 정책 평가하기 — Ctrl-World + Veo | Extension |  |
+| C08-S07 | World-Gymnast와 RL inside world models | Extension |  |
+| **Ch.9 행동 전에 생각하기** | | | |
+| C09-S01 | Cosmos-Reason + Alpamayo-R1 — ontology와 인과 라벨 | Core | @최아정 |
+| C09-S02 | ECoT + CoT-VLA — 언어로/이미지로 생각하기 | Core |  |
+| C09-S03 | ACoT + DualCoT — action-space reasoning과 병렬화 | Core |  |
+| C09-S04 | VLA 없이 제어하기 — Show-Harness + OpenRUA | Core |  |
+| C09-S05 | Frontier 모델의 직접 제어 — AgentRoboCritic + Gemini 4 Argon·Fable 5.2 사례 | Core |  |
+| **Ch.10 실시간성과 Dual System** | | | |
+| C10-S01 | Fast-in-Slow + Hume | Core |  |
+| C10-S02 | Reactive Diffusion Policy + TacMamba — 다중 주파수 제어 | Core |  |
+| C10-S03 | Real-Time Chunking + Think Twice, Act Once — 비동기 실행과 adaptive inference | Core |  |
+| C10-S04 | Memory와 long-context 정책 — MEM + RoboTTT | Core |  |
+| C10-S05 | Onboard deployment budget | Core / 실습 |  |
+| **Ch.11 Locomotion과 Whole-Body Control** | | | |
+| C11-S01 | Locomotion RL의 현재 — Perceptive Terrain Locomotion + BeyondMimic | Core (챕터 내) |  |
+| C11-S02 | Humanoid whole-body control — HOVER + SuperMimic | Core (챕터 내) |  |
+| C11-S03 | 전신 teleop 데이터 수집 — TWIST + TWIST2 | Extension |  |
+| **Ch.12 촉각과 힘** | | | |
+| C12-S01 | VTLA + ForceVLA — tactile image와 force/torque | Core |  |
+| C12-S02 | Tactile-VLA + TacVLA/TAP-VLA — grounding과 융합 위치 | Core |  |
+| C12-S03 | RDP 재방문 + Tactile-WAM — 시간 특성과 tactile pollution | Extension |  |
+| C12-S04 | 촉각·힘 최신 논문 업데이트 | Extension |  |
+| **Ch.13 평가와 물리 일관성** | | | |
+| C13-S01 | 평가 지형 요약 — 벤치마크·평가 방식·함정 한눈에 보기 | Core |  |
+| C13-S02 | PhyGDPO + PhysMaster — 물리성 선호 학습 | Core |  |
+| **Ch.14 Social World Model** | | | |
+| C14-S01 | Social World Models + Building Social World Models with LLMs — 사회적 상태의 world model | Extension |  |
 
 ---
 
@@ -216,7 +218,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
   - single-step action / action chunk
   - teleoperation / demonstration / rollout
   - control frequency / inference latency
-- **참고 서베이(정독하지 않음):** [Embodied AI 종합 서베이](https://arxiv.org/abs/2407.06886), [VLA 서베이](https://arxiv.org/abs/2405.14093), [world model 서베이](https://arxiv.org/abs/2510.16732)(부록 A.1)는 학기 중 좌표 확인용으로만 반복 참조한다.
+- **참고 서베이(정독하지 않음):** [*Aligning Cyber Space with Physical World: A Comprehensive Survey on Embodied AI*](https://arxiv.org/abs/2407.06886), [*A Survey on Vision-Language-Action Models for Embodied AI*](https://arxiv.org/abs/2405.14093), [*A Comprehensive Survey on World Models for Embodied AI*](https://arxiv.org/abs/2510.16732)는 학기 중 좌표 확인용으로만 반복 참조한다.
 - **범위:** 제품 사양·센서 스펙 조사는 하지 않는다. 개별 하드웨어는 해당 논문이 등장하는 Chapter에서 필요한 만큼 다룬다.
 - **산출물:** Physical AI problem map 초안, 공통 발제 템플릿 확정, 용어집 v1
 
@@ -412,7 +414,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 #### C04-S03 · 경량·공개 VLA의 흐름: OpenVLA-OFT + SmolVLA
 
-- **구분:** Extension / Update
+- **구분:** Extension
 - **핵심 질문:** 빅테크 밖의 공개 VLA는 어떤 구조적 차별화로 경쟁하는가?
 - **논문:**
   - Kim et al. (2025), [*Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success*](https://arxiv.org/abs/2502.19645) (OpenVLA-OFT) — parallel decoding, continuous action head, fine-tuning 레시피
@@ -593,7 +595,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 #### C06-S06 · Industry brief: 로봇 foundation model은 어떻게 제공되는가
 
-- **구분:** Update
+- **구분:** Extension
 - **핵심 질문:** 2026년 하반기 현재 로봇 foundation model은 어떤 형태(공개 가중치, 호스팅 API, 파트너 한정)로 제공되며, 그 차이가 연구실이 할 수 있는 연구를 어떻게 바꾸는가?
 - **자료(논문 아님):**
   - Physical Intelligence Pi API 베타 (2026-10) — 로봇 데이터 업로드, 호스팅 fine-tuning, 호스팅 추론 (2차 보도: [The AI Insider](https://theaiinsider.tech/2026/10/14/physical-intelligence-opens-pi-api-beta-for-robot-model-training-and-deployment/), [Unite.AI](https://www.unite.ai/physical-intelligence-opens-pi-api-beta-for-robot-foundation-models/))
@@ -756,7 +758,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 #### C08-S04 · Cosmos-Predict2.5 + Cosmos 3: 통합 world model 백본
 
-- **구분:** Core / Update
+- **구분:** Core
 - **핵심 질문:** video world model 계보는 왜 '용도별 모델 묶음'에서 '통합 flow 모델'로, 다시 'reasoning·generation·action을 한 백본에 넣은 omnimodal 모델'로 이동하는가?
 - **자료:**
   - NVIDIA (2025), [*World Simulation with Video Foundation Models for Physical AI*](https://arxiv.org/abs/2511.00062) (Cosmos-Predict2.5) — anchor
@@ -813,7 +815,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 #### C08-S07 · World-Gymnast와 RL inside world models
 
-- **구분:** Extension / Update
+- **구분:** Extension
 - **핵심 질문:** 생성 world model rollout과 VLM reward로 실제 policy를 개선할 수 있는가?
 - **논문:** Sharma et al. (2026), [*World-Gymnast: Training Robots with Reinforcement Learning in a World Model*](https://arxiv.org/abs/2602.02454)
 - **비교축:** physics simulator vs generative world model
@@ -913,7 +915,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 #### C09-S05 · Frontier 모델의 직접 제어: 사례와 한계 분석
 
-- **구분:** Core / Update
+- **구분:** Core
 - **핵심 질문:** frontier 모델이 로봇을 직접 제어한다는 업계 발표는 무엇을 실제로 보였으며, action 단위로 뜯어보면 어디에서 성공하고 어디에서 실패하는가?
 - **자료:**
   - Du et al. (2026), [*AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control*](https://arxiv.org/abs/2611.26613) — anchor
@@ -1098,7 +1100,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 #### C11-S03 · 전신 teleop 데이터 수집: TWIST + TWIST2
 
-- **구분:** Extension / Update
+- **구분:** Extension
 - **핵심 질문:** 사람의 전신 동작을 humanoid 데이터로 바꾸는 retargeting·teleop 시스템은 manipulation 데이터 엔진이 될 수 있는가?
 - **논문:**
   - Ze et al. (2025), [*TWIST: Teleoperated Whole-Body Imitation System*](https://arxiv.org/abs/2505.02833) — anchor
@@ -1186,7 +1188,7 @@ Chapter를 회사별로 나누지는 않지만, 각 연구를 아래 관점 태�
 
 #### C12-S04 · 촉각·힘 최신 논문 업데이트
 
-- **구분:** Update
+- **구분:** Extension
 - **선택 기준:** 센서 숫자를 늘린 연구가 아니라 다음 중 하나를 새롭게 해결한 연구 (후보: [UniTacVLA](https://arxiv.org/abs/2606.31723), [T-Rex](https://arxiv.org/abs/2606.17055) 등)
   - contact onset detection
   - sensor-free force inference
