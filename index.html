@@ -246,7 +246,7 @@
   }
   .b.core { color: var(--accent-text); background: var(--accent-soft); }
   .b.ext { color: var(--muted); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line-strong); }
-  .b.upd { color: var(--teal); background: var(--teal-soft); }
+  .b.who { color: var(--muted); background: transparent; box-shadow: inset 0 0 0 1px var(--line); font-weight: 500; }
   .b.lab { color: var(--violet); background: var(--violet-soft); }
   .b.prac { color: var(--green); background: var(--green-soft); }
 
@@ -485,7 +485,7 @@
 <div class="shell">
 <nav class="toc" id="toc" aria-label="목차">
   <p class="toc-label">Curriculum</p>
-  <a href="#top"><span class="n">◎</span>개요·원칙</a>
+  <a href="#top"><span class="n">◎</span>개요·운영 방식</a>
   <a href="#ch1"><span class="n">01</span>온보딩과 좌표계</a>
   <a href="#ch2"><span class="n">02</span>VLA 초기 계보</a>
   <a href="#ch3"><span class="n">03</span>Action 생성 도구</a>
@@ -518,7 +518,8 @@
     <span class="stat">세션 1시간 · 논문 <b>2~3편</b></span>
     <span class="stat">개정 <b>2026-11-20</b></span>
   </div>
-  <p class="rev">주차가 아니라 Chapter와 학습 질문 기준으로 진행한다. 연구실 스케일 개정안(◆ 세션 3개 포함) 기준. 논문 링크·버전은 발표 1주 전에 재확인한다.</p>
+  <p class="rev">주차가 아니라 Chapter와 학습 질문 기준으로 진행한다. 연구실 스케일 세션(◆) 3개를 포함한다. 논문 링크·버전은 발표 1주 전에 재확인한다.</p>
+  <p class="rev">Contributors: 김한결, 이우준</p>
 </header>
 
 <div class="toolbar">
@@ -527,7 +528,6 @@
   <div class="legend">
     <span class="b core">Core</span>
     <span class="b ext">Extension</span>
-    <span class="b upd">Update</span>
     <span class="b prac">실습</span>
     <span class="b lab">◆ 연구실 스케일 (2026)</span>
   </div>
@@ -545,17 +545,10 @@
 </section>
 
 <section class="blk" id="principles">
-  <h2>운영 원칙</h2>
+  <h2>운영 방식</h2>
   <ul class="plist">
-    <li><b>깊이보다 흐름.</b> 한 세션(1시간, 발표 40분 + 토론 15~20분)에 같은 문제를 공유하는 논문 2~3편을 하나의 비교 질문으로 묶는다. 시스템 명세는 anchor 논문 1편만 완전하게 작성한다.</li>
-    <li><b>최신 우선.</b> core 계보가 아니면 2025–2026년 논문을 우선한다. 오래된 원리 논문은 발췌·배경 노트로 강등한다.</li>
-    <li><b>문제 먼저, 도구는 필요할 때.</b> RT 계보로 한계를 확인한 뒤에 Diffusion·Flow Matching을 배운다. 하드웨어는 논문이 등장하는 Chapter에서 필요한 만큼만.</li>
-    <li><b>고전 원전은 발췌로.</b> <i>World Models</i>(2018)와 LeCun position paper(2022)는 독립 세션 없이 계보의 출발점으로만 다룬다.</li>
+    <li><b>세션 구성.</b> 한 세션(1시간, 발표 40분 + 토론 15~20분)에 같은 문제를 공유하는 논문 2~3편을 하나의 비교 질문으로 묶는다. anchor 논문으로 개념을 세우고 나머지는 차이점 중심으로 다루며, 시스템 명세는 anchor 논문 1편만 완전하게 작성한다.</li>
     <li><b>회사가 아니라 문제로 Chapter를 나눈다.</b> 연구그룹은 비교 태그로만 유지한다.</li>
-    <li><b>Core / Extension / Update 구분.</b> 새 논문이 나왔다는 이유만으로 Core를 늘리지 않는다 — 새로운 문제 정의·아키텍처·데이터·평가 방식이 있을 때만 승격을 검토한다.</li>
-    <li><b>시리즈는 발전 과정으로.</b> Gemini Robotics, GR00T, π, Genie, Cosmos처럼 버전이 이어지는 연구는 원리 논문 1편을 anchor로 정독하고, 나머지 버전은 계보 표 한 장(버전 × 추가된 것 × 근거 × 남은 한계)으로 발전 과정과 방향을 보인다.</li>
-    <li><b>발표 분량 상한.</b> 정독은 세션당 2편까지. 세 번째 이후 자료는 발췌, 배경 노트 1장, 또는 표의 한 행으로만 다룬다.</li>
-    <li><b>논문이 아닌 업계 변화도 다룬다.</b> API 공개, 가중치 릴리스, 공식 데모는 Industry brief 형식으로 다루되 세션의 anchor로 지정하지 않는다.</li>
     <li><b>모든 발제의 세 질문.</b> 이전 접근은 무엇에서 막혔는가 → 무엇을 바꿨는가 → 그 변경이 새로 만든 한계는 무엇인가.</li>
   </ul>
   <details class="artifact">
@@ -578,7 +571,7 @@
   <p class="goal">제품명과 논문 목록을 외우기 전에 전체 질문, 핵심 용어, 스터디 진행 방식을 이해한다.</p>
 
   <details class="s" id="c01-s01">
-    <summary><span class="code">C01-S01</span><span class="t">Physical AI 온보딩 <em>— 연구 지형, 용어, 논문 읽는 법</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C01-S01</span><span class="t">Physical AI 온보딩 <em>— 연구 지형, 용어, 논문 읽는 법</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@김한결</span></span></summary>
     <div class="body">
       <p class="q">Physical AI는 기존 vision-language AI와 무엇이 다르며, 이 분야의 논문·테크리포트를 어떤 기준으로 읽어야 하는가?</p>
       <ul class="pts">
@@ -587,7 +580,7 @@
         <li>읽는 기준: method / data / system / product claim 구분, claim-evidence 구분, task 정의가 다른 성공률을 직접 비교하지 않기</li>
         <li>(마지막 5~10분) 하드웨어 지형은 "이런 제품들이 있다" 수준으로만</li>
       </ul>
-      <p class="note"><b>산출물</b> — Physical AI problem map 초안 · 공통 발제 템플릿 확정 · 용어집 v1. 서베이 3종(부록 A.1)은 정독하지 않고 좌표 확인용으로 반복 참조한다.</p>
+      <p class="note"><b>산출물</b> — Physical AI problem map 초안 · 공통 발제 템플릿 확정 · 용어집 v1. 서베이 3종(<a href="https://arxiv.org/abs/2407.06886" target="_blank" rel="noopener">Embodied AI</a>, <a href="https://arxiv.org/abs/2405.14093" target="_blank" rel="noopener">VLA</a>, <a href="https://arxiv.org/abs/2510.16732" target="_blank" rel="noopener">world model</a>)은 정독하지 않고 좌표 확인용으로 반복 참조한다.</p>
     </div>
   </details>
 </section>
@@ -598,7 +591,7 @@
   <p class="goal">생성모델 이론에 들어가기 전에 VLA의 입력·출력·학습 방식, discrete action token과 action chunk의 장단점을 초기 논문 계보로 체감한다.</p>
 
   <details class="s" id="c02-s01">
-    <summary><span class="code">C02-S01</span><span class="t">RT-1 + RT-2 <em>— action token의 탄생과 웹 지식 전이</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C02-S01</span><span class="t">RT-1 + RT-2 <em>— action token의 탄생과 웹 지식 전이</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@Woojun Lee</span></span></summary>
     <div class="body">
       <p class="q">로봇 action을 언어처럼 token으로 예측하면 무엇이 좋아지고, 웹 규모 VLM의 지식은 어디까지 제어로 전이되는가?</p>
       <ul class="papers">
@@ -615,7 +608,7 @@
   </details>
 
   <details class="s" id="c02-s02">
-    <summary><span class="code">C02-S02</span><span class="t">Open X-Embodiment + OpenVLA <em>— 데이터와 가중치의 공개</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C02-S02</span><span class="t">Open X-Embodiment + OpenVLA <em>— 데이터와 가중치의 공개</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@시언 박</span></span></summary>
     <div class="body">
       <p class="q">cross-embodiment 데이터셋과 공개 학습 파이프라인은 왜 그 자체로 연구 기여인가?</p>
       <ul class="papers">
@@ -631,7 +624,7 @@
   </details>
 
   <details class="s" id="c02-s03">
-    <summary><span class="code">C02-S03</span><span class="t">ACT + Mobile ALOHA <em>— action chunking의 초기 계보</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C02-S03</span><span class="t">ACT + Mobile ALOHA <em>— action chunking의 초기 계보</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@임성훈</span></span></summary>
     <div class="body">
       <p class="q">한 스텝씩 action을 예측하면 왜 실패하며, chunk는 무엇을 해결하고 무엇을 잃는가?</p>
       <ul class="papers">
@@ -666,7 +659,7 @@
   <p class="goal">Diffusion, Flow Matching, DiT, action tokenizer를 독립 생성모델 강의가 아니라 로봇 action의 multimodality·정밀도·속도·스케일링 문제에 대한 도구로 이해한다.</p>
 
   <details class="s" id="c03-s01">
-    <summary><span class="code">C03-S01</span><span class="t">Diffusion Policy + Flow Matching</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C03-S01</span><span class="t">Diffusion Policy + Flow Matching</span><span class="badges"><span class="b core">Core</span><span class="b who">@고재용</span></span></summary>
     <div class="body">
       <p class="q">같은 관측에서 여러 action이 모두 정답일 때 MSE 회귀는 왜 실패하며, iterative sampling의 비용은 어떻게 줄이는가?</p>
       <ul class="papers">
@@ -683,7 +676,7 @@
   </details>
 
   <details class="s" id="c03-s02">
-    <summary><span class="code">C03-S02</span><span class="t">DiT + FAST <em>— 아키텍처와 tokenizer라는 별개의 층위</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C03-S02</span><span class="t">DiT + FAST <em>— 아키텍처와 tokenizer라는 별개의 층위</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@이준기</span></span></summary>
     <div class="body">
       <p class="q">학습 목표(diffusion/flow)와 별개로, 아키텍처와 action tokenizer는 각각 무엇을 결정하는가?</p>
       <ul class="papers">
@@ -699,7 +692,7 @@
   </details>
 
   <details class="s" id="c03-s03">
-    <summary><span class="code">C03-S03</span><span class="t">3D Diffusion Policy + iDP3</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C03-S03</span><span class="t">3D Diffusion Policy + iDP3</span><span class="badges"><span class="b core">Core</span><span class="b who">@임훈</span></span></summary>
     <div class="body">
       <p class="q">action model을 그대로 두고 입력 표현만 2D→3D로 바꾸면 왜 데이터 효율이 달라지며, humanoid·egocentric·onboard 환경에서는 무엇이 새로 필요한가?</p>
       <ul class="papers">
@@ -733,7 +726,7 @@
   <p class="goal">VLM의 semantic representation과 continuous robot action 사이를 연결하는 구조적 선택을 비교한다.</p>
 
   <details class="s" id="c04-s01">
-    <summary><span class="code">C04-S01</span><span class="t">CogACT + Octo <em>— diffusion head를 붙이는 두 가지 동기</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C04-S01</span><span class="t">CogACT + Octo <em>— diffusion head를 붙이는 두 가지 동기</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@김선민</span></span></summary>
     <div class="body">
       <p class="q">cognition-action 분리와 재사용성·adaptation이라는 서로 다른 설계 동기는 구조를 어떻게 다르게 만드는가?</p>
       <ul class="papers">
@@ -749,7 +742,7 @@
   </details>
 
   <details class="s" id="c04-s02">
-    <summary><span class="code">C04-S02</span><span class="t">RDT-1B + Diffusion-VLA <em>— DiT 스케일업과 reasoning 조건화</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C04-S02</span><span class="t">RDT-1B + Diffusion-VLA <em>— DiT 스케일업과 reasoning 조건화</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@장진우</span></span></summary>
     <div class="body">
       <p class="q">DiT 기반 action model을 대규모 bimanual foundation model로 키우면 무엇이 달라지고, reasoning을 조건으로 넣으면 무엇을 얻고 잃는가?</p>
       <ul class="papers">
@@ -765,7 +758,7 @@
   </details>
 
   <details class="s" id="c04-s03">
-    <summary><span class="code">C04-S03</span><span class="t">경량·공개 VLA의 흐름 <em>— OpenVLA-OFT + SmolVLA</em></span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C04-S03</span><span class="t">경량·공개 VLA의 흐름 <em>— OpenVLA-OFT + SmolVLA</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">빅테크 밖의 공개 VLA는 어떤 구조적 차별화로 경쟁하는가?</p>
       <ul class="papers">
@@ -885,7 +878,7 @@
   </details>
 
   <details class="s" id="c06-s02">
-    <summary><span class="code">C06-S02</span><span class="t">GR00T N1 → N1.7 <em>— humanoid dual-system VLA 계보</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C06-S02</span><span class="t">GR00T N1 → N1.7 <em>— humanoid dual-system VLA 계보</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@최아정</span></span></summary>
     <div class="body">
       <p class="q">humanoid foundation model에서 VLM과 action model을 dual-system으로 나누는 이유는 무엇이며, N1에서 N1.7까지 무엇이 바뀌었는가?</p>
       <ul class="papers">
@@ -954,7 +947,7 @@
   </details>
 
   <details class="s" id="c06-s06">
-    <summary><span class="code">C06-S06</span><span class="t">Industry brief <em>— 로봇 foundation model은 어떻게 제공되는가</em></span><span class="badges"><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C06-S06</span><span class="t">Industry brief <em>— 로봇 foundation model은 어떻게 제공되는가</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">2026년 하반기 현재 로봇 foundation model은 어떤 형태(공개 가중치, 호스팅 API, 파트너 한정)로 제공되며, 그 차이가 연구실이 할 수 있는 연구를 어떻게 바꾸는가?</p>
       <ul class="papers">
@@ -1138,7 +1131,7 @@
   </details>
 
   <details class="s" id="c08-s04">
-    <summary><span class="code">C08-S04</span><span class="t">Cosmos-Predict2.5 + Cosmos 3 <em>— 통합 world model 백본</em></span><span class="badges"><span class="b core">Core</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C08-S04</span><span class="t">Cosmos-Predict2.5 + Cosmos 3 <em>— 통합 world model 백본</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
       <p class="q">video world model 계보는 왜 '용도별 모델 묶음'에서 '통합 flow 모델'로, 다시 reasoning·generation·action을 한 백본에 넣은 omnimodal 모델로 이동하는가?</p>
       <ul class="papers">
@@ -1189,7 +1182,7 @@
   </details>
 
   <details class="s" id="c08-s07">
-    <summary><span class="code">C08-S07</span><span class="t">World-Gymnast와 RL inside world models</span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C08-S07</span><span class="t">World-Gymnast와 RL inside world models</span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">생성 world model rollout과 VLM reward로 실제 policy를 개선할 수 있는가?</p>
       <ul class="papers">
@@ -1221,7 +1214,7 @@
   <p class="goal">VLA의 reasoning을 'CoT가 있는가'로 분류하지 않고, 추론의 매체·위치·지연·검증 가능성으로 비교한다. 마지막 두 세션에서는 추론하는 범용 VLM이 별도 VLA 학습 없이 로봇을 직접 제어하는 흐름을 본다.</p>
 
   <details class="s" id="c09-s01">
-    <summary><span class="code">C09-S01</span><span class="t">Cosmos-Reason + Alpamayo-R1 <em>— ontology와 인과 라벨</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C09-S01</span><span class="t">Cosmos-Reason + Alpamayo-R1 <em>— ontology와 인과 라벨</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@최아정</span></span></summary>
     <div class="body">
       <p class="q">physical common sense와 인과를 명시적 ontology·라벨·reasoning supervision으로 만들 수 있는가 — 조작과 자율주행 각각에서?</p>
       <ul class="papers">
@@ -1286,7 +1279,7 @@
   </details>
 
   <details class="s" id="c09-s05">
-    <summary><span class="code">C09-S05</span><span class="t">Frontier 모델의 직접 제어 <em>— 사례와 한계 분석</em></span><span class="badges"><span class="b core">Core</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C09-S05</span><span class="t">Frontier 모델의 직접 제어 <em>— 사례와 한계 분석</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
       <p class="q">frontier 모델이 로봇을 직접 제어한다는 업계 발표는 무엇을 실제로 보였으며, action 단위로 뜯어보면 어디에서 성공하고 어디에서 실패하는가?</p>
       <ul class="papers">
@@ -1455,7 +1448,7 @@
   </details>
 
   <details class="s" id="c11-s03">
-    <summary><span class="code">C11-S03</span><span class="t">전신 teleop 데이터 수집 <em>— TWIST + TWIST2</em></span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C11-S03</span><span class="t">전신 teleop 데이터 수집 <em>— TWIST + TWIST2</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">사람의 전신 동작을 humanoid 데이터로 바꾸는 retargeting·teleop 시스템은 manipulation 데이터 엔진이 될 수 있는가?</p>
       <ul class="papers">
@@ -1538,7 +1531,7 @@
   </details>
 
   <details class="s" id="c12-s04">
-    <summary><span class="code">C12-S04</span><span class="t">촉각·힘 최신 논문 업데이트</span><span class="badges"><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C12-S04</span><span class="t">촉각·힘 최신 논문 업데이트</span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <ul class="pts">
         <li>선택 기준: contact onset detection / sensor-free force inference / cross-sensor generalization / high-frequency control / tactile pretraining / calibration-free fusion 중 하나를 새롭게 해결한 연구 (후보: <a href="https://arxiv.org/abs/2606.31723" target="_blank" rel="noopener">UniTacVLA</a>, <a href="https://arxiv.org/abs/2606.17055" target="_blank" rel="noopener">T-Rex</a> 등)</li>
@@ -1788,7 +1781,7 @@
 </section>
 
 <footer class="foot">
-  <p>개정 기준일 2026-11-20 · 연구실 스케일 개정안(52세션) 기준 · 커리큘럼 원문: Physical_AI_study_curriculum_revised.md</p>
+  <p>개정 기준일 2026-11-20 · 커리큘럼 원문: Physical_AI_study_curriculum_revised.md (52세션)</p>
   <p>산업계 테크리포트는 "실험으로 보인 것 / 저자가 해석한 것 / 마케팅·전망"을 구분해서 읽는다. 커뮤니티 정리는 논문 발견용으로만 쓰고 직접 인용하지 않는다.</p>
 </footer>
 </div>
@@ -1798,7 +1791,7 @@
 <!-- ============ English version (swapped in by the language switcher) ============ -->
 <template id="tpl-toc-en">
   <p class="toc-label">Curriculum</p>
-  <a href="#top"><span class="n">◎</span>Overview &amp; principles</a>
+  <a href="#top"><span class="n">◎</span>Overview &amp; format</a>
   <a href="#ch1"><span class="n">01</span>Onboarding</a>
   <a href="#ch2"><span class="n">02</span>Early VLA lineage</a>
   <a href="#ch3"><span class="n">03</span>Action generation tools</a>
@@ -1830,7 +1823,8 @@
     <span class="stat">1-hour sessions · <b>2–3</b> papers each</span>
     <span class="stat">Revised <b>2026-11-20</b></span>
   </div>
-  <p class="rev">We progress by Chapter and learning question, not by week. Based on the lab-scale revision (including three ◆ sessions). Paper links and versions are re-checked one week before each presentation.</p>
+  <p class="rev">We progress by Chapter and learning question, not by week. Includes three lab-scale (◆) sessions. Paper links and versions are re-checked one week before each presentation.</p>
+  <p class="rev">Contributors: 김한결, 이우준</p>
 </header>
 
 <div class="toolbar">
@@ -1839,7 +1833,6 @@
   <div class="legend">
     <span class="b core">Core</span>
     <span class="b ext">Extension</span>
-    <span class="b upd">Update</span>
     <span class="b prac">Hands-on</span>
     <span class="b lab">◆ Lab scale (2026)</span>
   </div>
@@ -1857,17 +1850,10 @@
 </section>
 
 <section class="blk" id="principles">
-  <h2>Operating principles</h2>
+  <h2>How sessions run</h2>
   <ul class="plist">
-    <li><b>Flow over depth.</b> Each session (1 hour: 40-min presentation + 15–20-min discussion) bundles 2–3 papers that share a problem under a single comparative question. A full system spec is written only for the one anchor paper.</li>
-    <li><b>Recent first.</b> Outside the core lineages, 2025–2026 papers take priority. Older foundational papers are demoted to excerpts and background notes.</li>
-    <li><b>Problems first, tools when needed.</b> We learn Diffusion and Flow Matching only after seeing the limits of the RT lineage. Hardware is covered only as much as needed, in the chapter where the paper appears.</li>
-    <li><b>Classics as excerpts.</b> <i>World Models</i> (2018) and LeCun's position paper (2022) get no standalone session; they serve only as starting points of their lineages.</li>
+    <li><b>Session format.</b> Each session (1 hour: 40-min presentation + 15–20-min discussion) bundles 2–3 papers that share a problem under a single comparative question. The anchor paper establishes the concepts and the others are covered by how they differ; a full system spec is written only for the anchor paper.</li>
     <li><b>Chapters are split by problem, not by company.</b> Research groups are kept only as comparison tags.</li>
-    <li><b>Core / Extension / Update.</b> We don't grow the Core just because a new paper came out — promotion is considered only when it brings a new problem definition, architecture, data, or evaluation method.</li>
-    <li><b>Series as a trajectory.</b> For work that continues across versions — Gemini Robotics, GR00T, π, Genie, Cosmos — read one paper that establishes the principle in depth as the anchor, and cover the other versions with one lineage table (version × what was added × evidence × remaining limits) that shows the trajectory and its direction.</li>
-    <li><b>A cap on presenter load.</b> At most two papers are read in depth per session. Anything beyond that is an excerpt, a one-slide background note, or a single table row.</li>
-    <li><b>Industry shifts count too.</b> API launches, weight releases, and official demos are covered in the Industry brief format, but never serve as a session's anchor.</li>
     <li><b>Three questions for every presentation.</b> Where did the previous approach get stuck → what did this work change → what new limitation did that change create?</li>
   </ul>
   <details class="artifact">
@@ -1890,7 +1876,7 @@
   <p class="goal">Before memorizing product names and paper lists, understand the big questions, the core terminology, and how the study runs.</p>
 
   <details class="s" id="c01-s01">
-    <summary><span class="code">C01-S01</span><span class="t">Physical AI onboarding <em>— research landscape, terminology, how to read papers</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C01-S01</span><span class="t">Physical AI onboarding <em>— research landscape, terminology, how to read papers</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@김한결</span></span></summary>
     <div class="body">
       <p class="q">How does Physical AI differ from conventional vision-language AI, and by what criteria should we read the papers and tech reports in this field?</p>
       <ul class="pts">
@@ -1899,7 +1885,7 @@
         <li>Reading criteria: separate method / data / system / product claims, separate claims from evidence, and never directly compare success rates across different task definitions</li>
         <li>(Last 5–10 min) The hardware landscape, only at the level of "these products exist"</li>
       </ul>
-      <p class="note"><b>Deliverables</b> — Draft Physical AI problem map · finalized common presentation template · glossary v1. The three surveys (Appendix A.1) are not read closely; they are consulted repeatedly to get one's bearings.</p>
+      <p class="note"><b>Deliverables</b> — Draft Physical AI problem map · finalized common presentation template · glossary v1. The three surveys (<a href="https://arxiv.org/abs/2407.06886" target="_blank" rel="noopener">Embodied AI</a>, <a href="https://arxiv.org/abs/2405.14093" target="_blank" rel="noopener">VLA</a>, <a href="https://arxiv.org/abs/2510.16732" target="_blank" rel="noopener">world models</a>) are not read closely; they are consulted repeatedly to get one's bearings.</p>
     </div>
   </details>
 </section>
@@ -1910,7 +1896,7 @@
   <p class="goal">Before getting into generative-model theory, get a hands-on feel — through the early paper lineage — for VLA inputs, outputs, and training, and for the pros and cons of discrete action tokens and action chunks.</p>
 
   <details class="s" id="c02-s01">
-    <summary><span class="code">C02-S01</span><span class="t">RT-1 + RT-2 <em>— the birth of action tokens and web-knowledge transfer</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C02-S01</span><span class="t">RT-1 + RT-2 <em>— the birth of action tokens and web-knowledge transfer</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@Woojun Lee</span></span></summary>
     <div class="body">
       <p class="q">What improves when robot actions are predicted as tokens, like language, and how far does the knowledge of web-scale VLMs transfer to control?</p>
       <ul class="papers">
@@ -1927,7 +1913,7 @@
   </details>
 
   <details class="s" id="c02-s02">
-    <summary><span class="code">C02-S02</span><span class="t">Open X-Embodiment + OpenVLA <em>— opening up data and weights</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C02-S02</span><span class="t">Open X-Embodiment + OpenVLA <em>— opening up data and weights</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@시언 박</span></span></summary>
     <div class="body">
       <p class="q">Why are cross-embodiment datasets and open training pipelines research contributions in their own right?</p>
       <ul class="papers">
@@ -1943,7 +1929,7 @@
   </details>
 
   <details class="s" id="c02-s03">
-    <summary><span class="code">C02-S03</span><span class="t">ACT + Mobile ALOHA <em>— the early lineage of action chunking</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C02-S03</span><span class="t">ACT + Mobile ALOHA <em>— the early lineage of action chunking</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@임성훈</span></span></summary>
     <div class="body">
       <p class="q">Why does predicting actions one step at a time fail, and what does chunking solve — and what does it lose?</p>
       <ul class="papers">
@@ -1978,7 +1964,7 @@
   <p class="goal">Understand Diffusion, Flow Matching, DiT, and action tokenizers not as a standalone generative-modeling lecture, but as tools for the multimodality, precision, speed, and scaling problems of robot actions.</p>
 
   <details class="s" id="c03-s01">
-    <summary><span class="code">C03-S01</span><span class="t">Diffusion Policy + Flow Matching</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C03-S01</span><span class="t">Diffusion Policy + Flow Matching</span><span class="badges"><span class="b core">Core</span><span class="b who">@고재용</span></span></summary>
     <div class="body">
       <p class="q">Why does MSE regression fail when several actions are all correct for the same observation, and how can the cost of iterative sampling be reduced?</p>
       <ul class="papers">
@@ -1995,7 +1981,7 @@
   </details>
 
   <details class="s" id="c03-s02">
-    <summary><span class="code">C03-S02</span><span class="t">DiT + FAST <em>— architecture and tokenizer as separate layers</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C03-S02</span><span class="t">DiT + FAST <em>— architecture and tokenizer as separate layers</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@이준기</span></span></summary>
     <div class="body">
       <p class="q">Independent of the training objective (diffusion/flow), what do the architecture and the action tokenizer each determine?</p>
       <ul class="papers">
@@ -2011,7 +1997,7 @@
   </details>
 
   <details class="s" id="c03-s03">
-    <summary><span class="code">C03-S03</span><span class="t">3D Diffusion Policy + iDP3</span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C03-S03</span><span class="t">3D Diffusion Policy + iDP3</span><span class="badges"><span class="b core">Core</span><span class="b who">@임훈</span></span></summary>
     <div class="body">
       <p class="q">Why does data efficiency change when the action model stays the same and only the input representation switches from 2D to 3D — and what new requirements appear in humanoid, egocentric, and onboard settings?</p>
       <ul class="papers">
@@ -2045,7 +2031,7 @@
   <p class="goal">Compare the structural choices that connect a VLM's semantic representation to continuous robot actions.</p>
 
   <details class="s" id="c04-s01">
-    <summary><span class="code">C04-S01</span><span class="t">CogACT + Octo <em>— two motivations for attaching a diffusion head</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C04-S01</span><span class="t">CogACT + Octo <em>— two motivations for attaching a diffusion head</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@김선민</span></span></summary>
     <div class="body">
       <p class="q">How do different design motivations — separating cognition from action vs. reusability and adaptation — lead to different structures?</p>
       <ul class="papers">
@@ -2061,7 +2047,7 @@
   </details>
 
   <details class="s" id="c04-s02">
-    <summary><span class="code">C04-S02</span><span class="t">RDT-1B + Diffusion-VLA <em>— scaling up DiT and conditioning on reasoning</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C04-S02</span><span class="t">RDT-1B + Diffusion-VLA <em>— scaling up DiT and conditioning on reasoning</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@장진우</span></span></summary>
     <div class="body">
       <p class="q">What changes when a DiT-based action model is scaled up into a large bimanual foundation model, and what is gained and lost by conditioning it on reasoning?</p>
       <ul class="papers">
@@ -2077,7 +2063,7 @@
   </details>
 
   <details class="s" id="c04-s03">
-    <summary><span class="code">C04-S03</span><span class="t">The lightweight, open VLA wave <em>— OpenVLA-OFT + SmolVLA</em></span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C04-S03</span><span class="t">The lightweight, open VLA wave <em>— OpenVLA-OFT + SmolVLA</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">What structural differentiation do open VLAs from outside Big Tech compete on?</p>
       <ul class="papers">
@@ -2197,7 +2183,7 @@
   </details>
 
   <details class="s" id="c06-s02">
-    <summary><span class="code">C06-S02</span><span class="t">GR00T N1 → N1.7 <em>— the humanoid dual-system VLA lineage</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C06-S02</span><span class="t">GR00T N1 → N1.7 <em>— the humanoid dual-system VLA lineage</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@최아정</span></span></summary>
     <div class="body">
       <p class="q">Why split a humanoid foundation model into a dual system of VLM and action model, and what changed from N1 to N1.7?</p>
       <ul class="papers">
@@ -2266,7 +2252,7 @@
   </details>
 
   <details class="s" id="c06-s06">
-    <summary><span class="code">C06-S06</span><span class="t">Industry brief <em>— how robot foundation models are offered</em></span><span class="badges"><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C06-S06</span><span class="t">Industry brief <em>— how robot foundation models are offered</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">As of late 2026, in what forms are robot foundation models offered — open weights, hosted APIs, partner-only access — and how does that change the research a lab can do?</p>
       <ul class="papers">
@@ -2450,7 +2436,7 @@
   </details>
 
   <details class="s" id="c08-s04">
-    <summary><span class="code">C08-S04</span><span class="t">Cosmos-Predict2.5 + Cosmos 3 <em>— unified world model backbones</em></span><span class="badges"><span class="b core">Core</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C08-S04</span><span class="t">Cosmos-Predict2.5 + Cosmos 3 <em>— unified world model backbones</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
       <p class="q">Why is the video world model lineage moving from "a bundle of task-specific models" to "a unified flow model," and then to omnimodal models that put reasoning, generation, and action in a single backbone?</p>
       <ul class="papers">
@@ -2501,7 +2487,7 @@
   </details>
 
   <details class="s" id="c08-s07">
-    <summary><span class="code">C08-S07</span><span class="t">World-Gymnast and RL inside world models</span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C08-S07</span><span class="t">World-Gymnast and RL inside world models</span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">Can real policies be improved using generative world-model rollouts and VLM rewards?</p>
       <ul class="papers">
@@ -2533,7 +2519,7 @@
   <p class="goal">Rather than classifying VLA reasoning by "does it have CoT," compare it by the medium, location, latency, and verifiability of the reasoning. The last two sessions look at general-purpose VLMs that reason and then control robots directly, with no separate VLA training.</p>
 
   <details class="s" id="c09-s01">
-    <summary><span class="code">C09-S01</span><span class="t">Cosmos-Reason + Alpamayo-R1 <em>— ontologies and causal labels</em></span><span class="badges"><span class="b core">Core</span></span></summary>
+    <summary><span class="code">C09-S01</span><span class="t">Cosmos-Reason + Alpamayo-R1 <em>— ontologies and causal labels</em></span><span class="badges"><span class="b core">Core</span><span class="b who">@최아정</span></span></summary>
     <div class="body">
       <p class="q">Can physical common sense and causality be turned into explicit ontologies, labels, and reasoning supervision — for manipulation and for autonomous driving, respectively?</p>
       <ul class="papers">
@@ -2598,7 +2584,7 @@
   </details>
 
   <details class="s" id="c09-s05">
-    <summary><span class="code">C09-S05</span><span class="t">Frontier models controlling robots directly <em>— cases and limits</em></span><span class="badges"><span class="b core">Core</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C09-S05</span><span class="t">Frontier models controlling robots directly <em>— cases and limits</em></span><span class="badges"><span class="b core">Core</span></span></summary>
     <div class="body">
       <p class="q">What did the industry announcements of frontier models controlling robots directly actually show — and, taken apart action by action, where do these models succeed and where do they fail?</p>
       <ul class="papers">
@@ -2767,7 +2753,7 @@
   </details>
 
   <details class="s" id="c11-s03">
-    <summary><span class="code">C11-S03</span><span class="t">Whole-body teleop data collection <em>— TWIST + TWIST2</em></span><span class="badges"><span class="b ext">Extension</span><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C11-S03</span><span class="t">Whole-body teleop data collection <em>— TWIST + TWIST2</em></span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <p class="q">Can retargeting and teleop systems that turn human whole-body motion into humanoid data become a data engine for manipulation?</p>
       <ul class="papers">
@@ -2850,7 +2836,7 @@
   </details>
 
   <details class="s" id="c12-s04">
-    <summary><span class="code">C12-S04</span><span class="t">Touch &amp; force: latest updates</span><span class="badges"><span class="b upd">Update</span></span></summary>
+    <summary><span class="code">C12-S04</span><span class="t">Touch &amp; force: latest updates</span><span class="badges"><span class="b ext">Extension</span></span></summary>
     <div class="body">
       <ul class="pts">
         <li>Selection criteria: work that newly solves one of contact onset detection / sensor-free force inference / cross-sensor generalization / high-frequency control / tactile pretraining / calibration-free fusion (candidates: <a href="https://arxiv.org/abs/2606.31723" target="_blank" rel="noopener">UniTacVLA</a>, <a href="https://arxiv.org/abs/2606.17055" target="_blank" rel="noopener">T-Rex</a>, etc.)</li>
@@ -3100,7 +3086,7 @@
 </section>
 
 <footer class="foot">
-  <p>Revised 2026-11-20 · Based on the lab-scale revision (52 sessions) · Source curriculum: Physical_AI_study_curriculum_revised.md</p>
+  <p>Revised 2026-11-20 · Source curriculum: Physical_AI_study_curriculum_revised.md (52 sessions)</p>
   <p>Read industry tech reports by separating "what the experiments showed / what the authors interpreted / marketing and outlook." Use community summaries only to discover papers; don't cite them directly.</p>
 </footer>
 </template>
